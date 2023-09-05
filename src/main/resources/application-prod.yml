@@ -1,0 +1,26 @@
+server:
+  port: 80
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:templates/views/
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${rds.hostname}:${rds.port}/${rds.db.name}?useSSL=false&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: ${rds.username}
+    password: ${rds.password}
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+app:
+  pagination:
+    write_pages: 10
+    page_rows: 10

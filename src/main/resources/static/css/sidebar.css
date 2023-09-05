@@ -1,0 +1,20 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    padding: 20px;
+    height: 100%;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #212529;
+    transition: right 0.3s ease-in-out;
+    overflow: auto;
+    z-index: 5;
+}
+
+#schedule {
+    cursor: pointer;
+}
