@@ -3,6 +3,7 @@ package com.jnjnetwork.CUHelper.service;
 import com.jnjnetwork.CUHelper.domain.Role;
 import com.jnjnetwork.CUHelper.domain.User;
 import com.jnjnetwork.CUHelper.repository.RoleRepository;
+import com.jnjnetwork.CUHelper.repository.ScheduleRepository;
 import com.jnjnetwork.CUHelper.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +18,12 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder passwordEncoder;
     UserRepository userRepository;
     RoleRepository roleRepository;
+    ScheduleRepository scheduleRepository;
+
+    @Autowired
+    public void setScheduleRepository(ScheduleRepository scheduleRepository) {
+        this.scheduleRepository = scheduleRepository;
+    }
 
     @Autowired
     public void setRoleRepository(RoleRepository roleRepository) {
@@ -70,6 +77,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void removeById(Long user_id) {
         User user = userRepository.findById(user_id).orElseThrow(RuntimeException::new);
+        scheduleRepository.deleteByUserId(user.getId());
         userRepository.delete(user);
     }
 }
