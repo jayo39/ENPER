@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="register">
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Add User</h5>
+            </div>
+            <div id="errorField" class="col-12 text-danger text-center">
+                <!--error message-->
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="re_password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="re_password" name="re_password" required>
+                </div>
+                <div id="registerBtn">
+                    <button id="register" class="btn btn-outline-dark">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

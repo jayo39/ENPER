@@ -22,7 +22,8 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/book/add/**", "/detail/add/**").authenticated()
+                        .requestMatchers("/schedule/**").authenticated()
+                        .requestMatchers("/admin/**", "/book/add/**", "/detail/add/**").hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .formLogin(form -> form
                         .loginPage("/user/login")

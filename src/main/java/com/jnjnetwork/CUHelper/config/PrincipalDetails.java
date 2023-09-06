@@ -1,5 +1,6 @@
 package com.jnjnetwork.CUHelper.config;
 
+import com.jnjnetwork.CUHelper.domain.Role;
 import com.jnjnetwork.CUHelper.domain.User;
 import com.jnjnetwork.CUHelper.service.UserService;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class PrincipalDetails implements UserDetails {
 
@@ -32,7 +34,21 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Collection<GrantedAuthority> collect = new ArrayList<>();
+        List<Role> roles = userService.selectRolesById(user.getId());
+        for(Role role : roles) {
+            collect.add(new GrantedAuthority() {
+                @Override
+                public String getAuthority() {
+                    return role.getName();
+                }
+                @Override
+                public String toString() {
+                    return role.getName();
+                }
+            });
+        }
+        return collect;
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.jnjnetwork.CUHelper.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,5 +26,17 @@ public class User {
 
     @Transient
     private String re_password;
+
+    // User:Role = N:M
+    @ManyToMany(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @Builder.Default
+    @JsonIgnore
+    private List<Role> roles = new ArrayList<>();
+    public void addRole(Role... roles) {
+        if(roles != null) {
+            Collections.addAll(this.roles, roles);
+        }
+    }
 
 }
