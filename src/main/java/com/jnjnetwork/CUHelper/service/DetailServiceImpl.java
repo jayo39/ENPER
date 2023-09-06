@@ -5,6 +5,7 @@ import com.jnjnetwork.CUHelper.domain.Detail;
 import com.jnjnetwork.CUHelper.repository.BookRepository;
 import com.jnjnetwork.CUHelper.repository.DetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,6 +41,14 @@ public class DetailServiceImpl implements DetailService{
 
     @Override
     public List<Detail> findDetailByPage(Book book, Long firstPage, Long lastPage) {
-        return detailRepository.listDetail(book, firstPage, lastPage);
+        Sort sort = Sort.by(Sort.Order.asc("firstPage"));
+        return detailRepository.listDetail(book, firstPage, lastPage, sort);
+    }
+
+    @Override
+    public List<Detail> findByBook(Book book) {
+        Long book_id = book.getId();
+        Sort sort = Sort.by(Sort.Order.asc("firstPage"));
+        return detailRepository.findByBookId(book_id, sort);
     }
 }

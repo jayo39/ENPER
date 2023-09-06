@@ -54,8 +54,11 @@ public class DetailController {
 
     @GetMapping("/list")
     @ResponseBody
-    public List<Detail> list(@RequestParam("book_id") Long book_id, @RequestParam("firstPage") Long firstPage, @RequestParam("lastPage") Long lastPage) {
+    public List<Detail> list(@RequestParam("book_id") Long book_id, @RequestParam(name = "firstPage", required = false) Long firstPage, @RequestParam(name = "lastPage", required = false) Long lastPage) {
         Book book = bookService.findById(book_id);
+        if (firstPage == null || lastPage == null || firstPage < 0 || lastPage < 0) {
+            return detailService.findByBook(book);
+        }
         return detailService.findDetailByPage(book, firstPage, lastPage);
     }
 
