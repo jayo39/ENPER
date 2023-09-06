@@ -11,7 +11,17 @@
 <body>
 <th:block th:insert="~{component/header.html::header}"></th:block>
 <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
-    <table class="table table-hover text-center">
+<form th:action="@{/book/search}" method="POST">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col d-flex input-group">
+                <input class="form-control" type="search" placeholder="Search by title or series" aria-label="Search" name="searchedValue">
+                <button class="btn btn-success" type="submit">Search</button>
+            </div>
+        </div>
+    </div>
+</form>
+    <table class="table table-hover text-center mt-3">
         <thead class="table-secondary">
             <tr>
                 <th colspan="3">Title</th>
@@ -21,7 +31,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="book : ${books}" class="clickable">
+            <tr th:if="${#lists.isEmpty(searchedBooks)}" th:each="book : ${books}" class="clickable">
+                <input type="hidden" th:value="${book.id}">
+                <td colspan="3" th:text="${book.title}"></td>
+                <td th:text="${book.series}" colspan="3"></td>
+                <td th:utext="${book.description}" colspan="5"></td>
+                <td th:text="${#lists.size(book.details)}" colspan="1"></td>
+            </tr>
+            <tr th:if="${!#lists.isEmpty(searchedBooks)}" th:each="book : ${searchedBooks}" class="clickable">
                 <input type="hidden" th:value="${book.id}">
                 <td colspan="3" th:text="${book.title}"></td>
                 <td th:text="${book.series}" colspan="3"></td>

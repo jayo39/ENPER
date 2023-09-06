@@ -106,4 +106,9 @@ public class BookServiceImpl implements BookService{
             b = bookRepository.saveAndFlush(b);
         }
     }
+
+    @Override
+    public List<Book> findByKeyword(String keyword) {
+        return bookRepository.findByKeywordInColumns(keyword);
+    }
 }

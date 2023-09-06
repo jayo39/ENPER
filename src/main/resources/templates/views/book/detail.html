@@ -8,15 +8,18 @@
 
 <th:block th:if="${book}">
     <th:block th:insert="~{component/header.html::header}"></th:block>
+    <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link href="/css/sidebar.css" rel="stylesheet">
         <title>CU Helper</title>
     </head>
 
     <body style="margin-bottom: 200px">
+
     <div class="container mt-3">
         <h2>[[${book.title}]]</h2>
         <hr>
@@ -72,6 +75,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 <script th:src="@{/js/detail.js}"></script>
 <script th:src="@{/js/delete.js}"></script>
+<script src="/js/schedule.js"></script>
 </html>
 
 
