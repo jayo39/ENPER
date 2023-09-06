@@ -27,7 +27,7 @@
             <div class="mb-2 w-25">
                 <select class="form-control category">
                     <option id="generalinfo">General Info</option>
-                    <option id="detailedsummary">Detailed Summary</option>
+                    <option id="detailedsummary" th:if="${not #lists.isEmpty(details)}">Detailed Summary</option>
                 </select>
             </div>
         </div>
