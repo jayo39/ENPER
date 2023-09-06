@@ -30,7 +30,7 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<Book> findAll() {
-        return bookRepository.findAll(Sort.by(Sort.Order.desc("title")));
+        return bookRepository.findAll(Sort.by(Sort.Order.asc("title")));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class BookServiceImpl implements BookService{
 
         session.setAttribute("page", page);
 
-        Page<Book> pageWrites = bookRepository.findAll(PageRequest.of(page - 1, pageRows, Sort.by(Sort.Order.desc("title"))));
+        Page<Book> pageWrites = bookRepository.findAll(PageRequest.of(page - 1, pageRows, Sort.by(Sort.Order.asc("title"))));
 
         long cnt = pageWrites.getTotalElements();
         int totalPage =  pageWrites.getTotalPages();
@@ -103,12 +103,13 @@ public class BookServiceImpl implements BookService{
             b.setSeries_formatted(book.getSeries().toLowerCase().replaceAll(" ", ""));
             b.setDescription(book.getDescription());
             b.setSummary(book.getSummary());
-            b = bookRepository.saveAndFlush(b);
+            bookRepository.saveAndFlush(b);
         }
     }
 
     @Override
     public List<Book> findByKeyword(String keyword) {
-        return bookRepository.findByKeywordInColumns(keyword);
+        String keywordFormatted = keyword.toLowerCase().replaceAll(" ", "");
+        return bookRepository.findByKeywordInColumns(keywordFormatted);
     }
 }
