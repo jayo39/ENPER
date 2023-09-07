@@ -61,6 +61,9 @@ public class BookController {
 
     @PostMapping("/search")
     public String searchOk(@RequestParam("searchedValue") String keyword, Model model) {
+        if (keyword.isEmpty()) {
+            return "redirect:/index";
+        }
         List<Book> books = bookService.findByKeyword(keyword);
         model.addAttribute("searchedBooks", books);
         return "index";
