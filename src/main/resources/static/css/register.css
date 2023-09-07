@@ -26,3 +26,7 @@
     display: flex;
     justify-content: center;
 }
+
+#register-success {
+  display: none;
+}

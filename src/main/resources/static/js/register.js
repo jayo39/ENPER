@@ -18,6 +18,16 @@ $(window).on('click', function(event) {
 });
 
 $(function() {
+    if (localStorage.getItem('registrationSuccess') === 'true') {
+        $("#register-success").show();
+        localStorage.removeItem('registrationSuccess');
+    }
+    $(".btn-delete").click(function() {
+        let answer = confirm("Delete this user?");
+        if(answer) {
+            $(this).closest("form").submit();
+        }
+    });
     $('#title').on('click', function() {
         location.href = window.location.protocol + "//" + window.location.host + "/";
     });
@@ -49,7 +59,7 @@ $(function() {
             data: data,
             cache: false,
             success: function(data, status, xhr) {
-                alert("Added user.");
+                localStorage.setItem('registrationSuccess', 'true');
                 location.href = "/admin/panel";
             },
             error: function(xhr, status, error) {

@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@ActiveProfiles("build")
+@ActiveProfiles("dev")
 public class CUHelperTest {
     @Autowired
     private UserRepository userRepository;
