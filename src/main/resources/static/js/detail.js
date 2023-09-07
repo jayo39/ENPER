@@ -1,4 +1,20 @@
 $(function() {
+    $('#pageStart').keypress(function(e) {
+        if(e.which === 13) {
+            e.preventDefault();
+            $('#pageEnd').focus();
+        }
+    });
+    $('#pageEnd').keypress(function(e) {
+        if(e.which === 13) {
+            e.preventDefault();
+            var firstPage = $('#pageStart').val();
+            var lastPage = $('#pageEnd').val();
+            var book_id = $('#book_id').val();
+            loadDetail(firstPage, lastPage, book_id);
+        }
+    });
+
     $('.category').on("change", function() {
         var selectedCategory = $(this).val();
         if(selectedCategory === "General Info") {
