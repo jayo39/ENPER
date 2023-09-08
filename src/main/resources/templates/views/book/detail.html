@@ -6,7 +6,7 @@
   history.back();
 </script>
 
-<th:block th:if="${book}">
+<th:block th:if="${book}" th:with="logged_user=${#authentication.principal.user}">
     <th:block th:insert="~{component/header.html::header}"></th:block>
     <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
     <head>
@@ -17,6 +17,9 @@
         <link href="/css/sidebar.css" rel="stylesheet">
         <title>CU Helper</title>
     </head>
+    <script th:inline="javascript">
+        var roles = [[${logged_user.roles}]];
+    </script>
 
     <body style="margin-bottom: 200px">
 

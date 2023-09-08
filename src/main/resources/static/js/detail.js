@@ -57,13 +57,25 @@ function buildDetail(result) {
         let firstPage = detail.firstPage;
         let lastPage = detail.lastPage;
         let content = detail.detail;
+        let role1 = 'none';
+        if(roles.length !== 0) {
+            let role1 = roles[0].name;
+        }
+        let role2 = 'none';
+        if (roles.length > 1) {
+            role2 = roles[1].name;
+        }
+
+        const deleteBtn = (role1 !== 'ROLE_ADMIN' && role2 !== 'ROLE_ADMIN') ? '' : `
+            <button class="btn btn-outline-danger" data-detail-id="${id}">Delete</button>
+        `
         const row = `
             <div id="detail-${id}" class="my-2">
                 <div class="border bg-light rounded p-2">
                     <p class="fw-bold">${firstPage} - ${lastPage}</p>
                     <p>${content}</p>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-outline-danger" data-detail-id="${id}">Delete</button>
+                        ${deleteBtn}
                     </div>
                 </div>
             </div>
