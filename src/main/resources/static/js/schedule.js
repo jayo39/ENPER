@@ -11,7 +11,7 @@ $(function() {
     });
 
     closeSidebar.click(function() {
-        sidebar.css('right', '-350px');
+        sidebar.css('right', '-300px');
     });
 
     clearBtn.click(function() {
@@ -48,10 +48,12 @@ $(function() {
                 loadSchedule();
             }
         });
+        $('#schedule-studentName').val('');
+        $('#schedule-endTime-initial').val('');
     });
 
-    $('#schedule-content').on("input", function() {
-        var maxLength = 25;
+    $('#schedule-studentName').on("input", function() {
+        var maxLength = 8;
         if ($(this).val().length > maxLength) {
           $(this).val($(this).val().substring(0, maxLength));
         }
@@ -200,17 +202,14 @@ function listenDelete(result) {
     });
     $("[data-schedule-id]").click(function() {
         const schedule_id = $(this).attr("data-schedule-id");
-        $('#schedule-' + schedule_id).css('text-decoration', 'line-through');
-        setTimeout(function() {
-            $.ajax({
-                url: "/schedule/delete",
-                type: "POST",
-                cache: false,
-                data: {"id": schedule_id},
-                success: function(data, status, xhr) {
-                    loadSchedule();
-                }
-            });
-        }, 150);
+        $.ajax({
+            url: "/schedule/delete",
+            type: "POST",
+            cache: false,
+            data: {"id": schedule_id},
+            success: function(data, status, xhr) {
+                loadSchedule();
+            }
+        });
     });
 }
