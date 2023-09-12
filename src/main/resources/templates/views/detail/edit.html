@@ -37,10 +37,10 @@
 
         <div class="d-flex justify-content-center">
             <div class="mx-1">
-                <div id="btn-finish" class="btn btn-outline-dark">Finish</div>
+                <div id="btn-finish" class="btn btn-outline-dark">Update</div>
             </div>
             <div class="mx-1">
-                <a class="btn btn-outline-dark" th:href="@{/detail/${thisbook.id}}">Back</a>
+                <a class="btn btn-outline-dark" th:href="@{'/book/detail/' + ${thisbook.id}}">Back</a>
             </div>
         </div>
     </form>
