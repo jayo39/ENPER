@@ -51,4 +51,19 @@ public class DetailServiceImpl implements DetailService{
         Sort sort = Sort.by(Sort.Order.asc("firstPage"));
         return detailRepository.findByBookId(book_id, sort);
     }
+
+    @Override
+    public Detail findById(Long detail_id) {
+        return detailRepository.findById(detail_id).orElseThrow(RuntimeException::new);
+    }
+
+    @Override
+    public void edit(Detail detail, Book book) {
+        Detail newDetail = detailRepository.findById(detail.getId()).orElseThrow(RuntimeException::new);
+        newDetail.setDetail(detail.getDetail());
+        newDetail.setBook(book);
+        newDetail.setFirstPage(detail.getFirstPage());
+        newDetail.setLastPage(detail.getLastPage());
+        detailRepository.saveAndFlush(newDetail);
+    }
 }

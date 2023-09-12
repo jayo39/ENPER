@@ -62,6 +62,36 @@ public class DetailController {
         return detailService.findDetailByPage(book, firstPage, lastPage);
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable long id, Model model) {
+        Detail detail = detailService.findById(id);
+        Book book = detail.getBook();
+        List<Book> books = bookService.findAll();
+        model.addAttribute("books", books);
+        model.addAttribute("detail", detail);
+        model.addAttribute("thisbook", book);
+        return "detail/edit";
+    }
+
+    @PostMapping("/editOk")
+    public String editOk(@RequestParam("book_id") Long book_id
+            ,@RequestParam("firstPage") Long firstPage
+            ,@RequestParam("lastPage") Long lastPage
+            ,@RequestParam("detail") String detail
+            ,@RequestParam("id") Long id
+            ,Model model) {
+        Detail detailBuild = Detail.builder()
+                .id(id)
+                .firstPage(firstPage)
+                .lastPage(lastPage)
+                .detail(detail)
+                .build();
+        Book book = bookService.findById(book_id);
+        detailService.edit(detailBuild, book);
+        model.addAttribute("book", book);
+        return "detail/editOk";
+    }
+
     @PostMapping("/delete")
     @ResponseBody
     public void delete(Long detail_id) {

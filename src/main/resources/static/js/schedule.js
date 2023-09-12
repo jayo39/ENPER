@@ -98,7 +98,7 @@ function buildSchedule(result) {
                     </div>
                 </div>
             </div>
-            <textarea data-schedule-id-note="${id}" class="form-control my-1" placeholder="Note..">${content}</textarea>
+            <textarea data-schedule-id-note="${id}" class="form-control my-1 note" placeholder="Note..">${content}</textarea>
             <div class="d-flex justify-content-between mb-3">
                 <div class="form-check me-2">
                   <input id="check-${id}" data-schedule-id-check="${id}" class="form-check-input" type="checkbox" value="">
@@ -126,6 +126,11 @@ function buildSchedule(result) {
             $("#check-" + id).prop("checked", false);
         }
     });
+    $('.note').on("input", function() {
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight) + "px";
+    });
+    $('.note').trigger("input");
 }
 
 function listenEdit() {

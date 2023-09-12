@@ -10,4 +10,6 @@ public interface DetailService {
     void deleteById(Long detail_id);
     List<Detail> findDetailByPage(Book book, Long firstPage, Long lastPage);
     List<Detail> findByBook(Book book);
+    Detail findById(Long detail_id);
+    void edit(Detail detail, Book book);
 }

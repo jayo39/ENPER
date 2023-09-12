@@ -45,6 +45,7 @@ function loadDetail(firstPage, lastPage, book_id) {
         cache: false,
         success: function(data, status, xhr) {
             buildDetail(data);
+            addEdit();
             addDelete(firstPage, lastPage, book_id);
         }
     });
@@ -66,6 +67,10 @@ function buildDetail(result) {
             role2 = roles[1].name;
         }
 
+        const editBtn = (role1 !== 'ROLE_ADMIN' && role2 !== 'ROLE_ADMIN') ? '' : `
+            <button class="btn btn-outline-dark" data-detail-edit-id="${id}">Edit</button>
+        `
+
         const deleteBtn = (role1 !== 'ROLE_ADMIN' && role2 !== 'ROLE_ADMIN') ? '' : `
             <button class="btn btn-outline-danger" data-detail-id="${id}">Delete</button>
         `
@@ -75,7 +80,12 @@ function buildDetail(result) {
                     <p class="fw-bold">${firstPage} - ${lastPage}</p>
                     <p>${content}</p>
                     <div class="d-flex justify-content-end">
-                        ${deleteBtn}
+                        <div class="mx-2">
+                            ${editBtn}
+                        </div>
+                        <div>
+                            ${deleteBtn}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,6 +93,13 @@ function buildDetail(result) {
         out.push(row);
     });
     $('#pageInfo').html(out.join("\n"));
+}
+
+function addEdit() {
+    $("[data-detail-edit-id]").click(function() {
+        const detail_id = $(this).attr("data-detail-edit-id");
+        location.href = "/detail/edit/" + detail_id;
+    });
 }
 
 function addDelete(firstPage, lastPage, book_id) {
