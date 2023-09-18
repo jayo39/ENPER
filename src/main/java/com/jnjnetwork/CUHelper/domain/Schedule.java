@@ -25,6 +25,7 @@ public class Schedule {
     @Column(nullable = false)
     private LocalTime endTime;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String note;
 
     @ManyToOne
