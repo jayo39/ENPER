@@ -21,6 +21,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session
+                        .invalidSessionUrl("/user/login")
+                        .sessionFixation().none()
+                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/schedule/**", "/book/detail/**").authenticated()
                         .requestMatchers("/admin/**", "/book/add/**", "/book/edit/**", "/detail/add/**", "/detail/delete/**", "/detail/edit/**", "/book/delete/**", "/user/delete/**").hasRole("ADMIN")
