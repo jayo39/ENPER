@@ -2,10 +2,13 @@ package com.jnjnetwork.CUHelper.controller;
 
 import com.jnjnetwork.CUHelper.domain.Book;
 import com.jnjnetwork.CUHelper.domain.Detail;
+import com.jnjnetwork.CUHelper.domain.Question;
 import com.jnjnetwork.CUHelper.service.BookService;
-import jakarta.transaction.Transactional;
+import com.jnjnetwork.CUHelper.service.DetailService;
+import com.jnjnetwork.CUHelper.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +19,20 @@ import java.util.List;
 public class BookController {
 
     BookService bookService;
+    QuestionService questionService;
+    DetailService detailService;
 
     @Autowired
     public void setBookService(BookService bookService) {
         this.bookService = bookService;
+    }
+    @Autowired
+    public void setQuestionService(QuestionService questionService) {
+        this.questionService = questionService;
+    }
+    @Autowired
+    public void setDetailService(DetailService detailService) {
+        this.detailService = detailService;
     }
 
     @GetMapping("/add")
@@ -27,6 +40,8 @@ public class BookController {
 
     @PostMapping("/addOk")
     public String addOk(Book book) {
+        book.setTitle_formatted(book.getTitle().toLowerCase().replaceAll(" ", ""));
+        book.setSeries_formatted(book.getSeries().toLowerCase().replaceAll(" ", ""));
         bookService.save(book);
         return "book/addOk";
     }
@@ -35,8 +50,10 @@ public class BookController {
     public String detail(@PathVariable long id, Model model) {
         Book book = bookService.findById(id);
         List<Detail> details = book.getDetails();
+        Question question = questionService.findByBookId(id);
         model.addAttribute("book", book);
         model.addAttribute("details", details);
+        model.addAttribute("question", question);
         return "book/detail";
     }
 
@@ -55,6 +72,11 @@ public class BookController {
     @PostMapping("/delete")
     @Transactional
     public String deleteOk(long id) {
+        Question question = questionService.findByBookId(id);
+        if (question != null) {
+            questionService.deleteById(question.getId());
+        }
+        detailService.deleteByBookId(id);
         bookService.deleteById(id);
         return "book/deleteOk";
     }

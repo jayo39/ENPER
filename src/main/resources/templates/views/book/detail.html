@@ -31,6 +31,7 @@
                 <select class="form-control category">
                     <option id="generalinfo">General Info</option>
                     <option id="detailedsummary" th:if="${not #lists.isEmpty(details)}">Detailed Summary</option>
+                    <option id="chapterquestion" th:if="${question != null}">Chapter Question</option>
                 </select>
             </div>
         </div>
@@ -70,6 +71,20 @@
             <div id="pageInfo">
             </div>
         </div>
+    </div>
+    <div id="questions" th:if="${question != null}" class="container d-none">
+        <section class="border bg-light rounded p-2">
+            <form name="questionDelete" th:action="@{/question/delete}" method="POST">
+                <input id="question_id" type="hidden" name="id" th:value="${question.id}">
+                <input id="question_book_id" type="hidden" name="book_id" th:value="${question.book.id}">
+            </form>
+
+            <div class="mb-3" th:utext="${question.content}"></div>
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-outline-dark mx-2" th:href="@{'/question/edit/' + ${question.id}}" sec:authorize="hasRole('ADMIN')">Edit</a>
+                <button type="button" class="btn btn-outline-danger" id="btnDelQuestion" sec:authorize="hasRole('ADMIN')">Delete</button>
+            </div>
+        </section>
     </div>
     </body>
 </th:block>

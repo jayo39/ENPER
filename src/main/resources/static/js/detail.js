@@ -19,14 +19,21 @@ $(function() {
         var selectedCategory = $(this).val();
         if(selectedCategory === "General Info") {
             $('#detailed').addClass('d-none');
+            $('#questions').addClass('d-none');
             $('#general').removeClass('d-none');
             $('#detailedsummary').removeAttr("selected");
             $('#generalinfo').attr('selected', 'selected');
         } else if (selectedCategory === "Detailed Summary") {
             $('#general').addClass('d-none');
+            $('#questions').addClass('d-none');
             $('#detailed').removeClass('d-none');
             $('#generalinfo').removeAttr("selected");
             $('#detailedsummary').attr('selected', 'selected');
+        } else if (selectedCategory === "Chapter Question") {
+            $('#general').addClass('d-none');
+            $('#detailed').addClass('d-none');
+            $('#questions').removeClass('d-none');
+            $('#questions').attr('selected', 'selected');
         }
     });
 

@@ -40,4 +40,8 @@ public class Book {
     @ToString.Exclude
     private List<Detail> details = new ArrayList<>();
 
+    @OneToOne
+    @ToString.Exclude
+    private Question question;
+
 }

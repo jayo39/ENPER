@@ -19,7 +19,10 @@
                         <a class="nav-link" href="/book/add">Add Book</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                        <a class="nav-link" href="/detail/add">Add Note</a>
+                        <a class="nav-link" href="/detail/add">Add DS</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link" href="/question/add">Add CQ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/desk/enroll">Enroll</a>

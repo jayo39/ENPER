@@ -66,4 +66,9 @@ public class DetailServiceImpl implements DetailService{
         newDetail.setLastPage(detail.getLastPage());
         detailRepository.saveAndFlush(newDetail);
     }
+
+    @Override
+    public void deleteByBookId(Long book_id) {
+        detailRepository.deleteByBookId(book_id);
+    }
 }

@@ -12,4 +12,5 @@ public interface DetailService {
     List<Detail> findByBook(Book book);
     Detail findById(Long detail_id);
     void edit(Detail detail, Book book);
+    void deleteByBookId(Long book_id);
 }

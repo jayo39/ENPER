@@ -77,8 +77,6 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public void save(Book book) {
-        book.setTitle_formatted(book.getTitle().toLowerCase().replaceAll(" ", ""));
-        book.setSeries_formatted(book.getSeries().toLowerCase().replaceAll(" ", ""));
         bookRepository.saveAndFlush(book);
     }
 
