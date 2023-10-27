@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/booklist.css}">
     <link href="/css/sidebar.css" rel="stylesheet">
     <link href="/css/register.css" rel="stylesheet">
-    <title>EN Helper</title>
+    <title>ENPER</title>
 </head>
 <body>
 <th:block th:insert="~{component/header.html::header}"></th:block>
@@ -32,7 +32,10 @@
                 <td class="align-middle">
                     <form th:action="@{/user/delete}" method="POST">
                         <input type="hidden" th:value="${user.id}" name="user_id">
-                        <a class="btn btn-outline-danger btn-delete">
+                        <a th:if="${user.username == 'sjeaho'}" class="btn btn-outline-danger btn-delete disabled">
+                            Delete
+                        </a>
+                        <a th:if="${user.username != 'sjeaho'}" class="btn btn-outline-danger btn-delete">
                             Delete
                         </a>
                     </form>

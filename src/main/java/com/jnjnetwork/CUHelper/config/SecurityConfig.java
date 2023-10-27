@@ -27,7 +27,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/schedule/**", "/book/detail/**").authenticated()
-                        .requestMatchers("/admin/**", "/book/add/**", "/book/edit/**", "/detail/add/**", "/detail/delete/**", "/detail/edit/**", "/book/delete/**", "/user/delete/**", "/question/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**", "/book/add/**", "/book/edit/**", "/detail/add/**", "/detail/delete/**", "/detail/edit/**", "/book/delete/**", "/user/delete/**", "/question/**", "/user/delete", "/book/delete", "/detail/delete", "/book/edit", "/detail/edit").hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .formLogin(form -> form
                         .loginPage("/user/login")
