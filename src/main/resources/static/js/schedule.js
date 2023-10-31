@@ -6,7 +6,6 @@ $(function() {
 
     openSidebar.click(function() {
         loadSchedule();
-        $('')
         sidebar.css('right', '0');
     });
 
@@ -78,6 +77,10 @@ function buildSchedule(result) {
         $("#schedule-title").text("Checkup - " + 0);
     } else {
         $("#schedule-title").text("Checkup - " + result.length);
+    }
+    if (result.length === 2437) {
+        alert("Please log in again.");
+        location.href = "/user/login";
     }
 
     const out = [];
