@@ -78,7 +78,7 @@ function buildSchedule(result) {
     } else {
         $("#schedule-title").text("Checkup - " + result.length);
     }
-    if (result.length === 2437) {
+    if (result.length > 200) {
         alert("Please log in again.");
         location.href = "/user/login";
     }
