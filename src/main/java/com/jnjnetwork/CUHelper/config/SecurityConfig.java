@@ -21,13 +21,6 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
-                .sessionManagement(session -> session
-                        .invalidSessionUrl("/user/logout")
-                        .sessionFixation().none()
-                        .maximumSessions(1)
-                        .expiredUrl("/user/logout")
-                        .maxSessionsPreventsLogin(false)
-                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/schedule/**", "/book/detail/**").authenticated()
                         .requestMatchers("/admin/**", "/book/add/**", "/book/edit/**", "/detail/add/**", "/detail/delete/**", "/detail/edit/**", "/book/delete/**", "/user/delete/**", "/question/**", "/user/delete", "/book/delete", "/detail/delete", "/book/edit", "/detail/edit").hasRole("ADMIN")
