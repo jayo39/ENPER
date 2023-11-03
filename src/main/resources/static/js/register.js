@@ -1,4 +1,5 @@
 const modal = $('#myModal');
+const errorField = $("#errorField");
 
 function openModal() {
     modal.css('display', 'flex');
@@ -8,6 +9,7 @@ function openModal() {
 }
 
 function closeModal() {
+    errorField.text('');
     modal.css('display', 'none');
 }
 
@@ -65,7 +67,6 @@ $(function() {
             error: function(xhr, status, error) {
                 if (xhr.status === 400) {
                     var errorMsg = xhr.responseText;
-                    const errorField = $("#errorField");
                     errorField.text(errorMsg);
                 }
             }

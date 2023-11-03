@@ -24,6 +24,8 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .invalidSessionUrl("/user/login")
                         .sessionFixation().none()
+                        .maximumSessions(1)
+                        .expiredUrl("/user/logout")
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/schedule/**", "/book/detail/**").authenticated()
