@@ -22,10 +22,11 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session
-                        .invalidSessionUrl("/user/login")
+                        .invalidSessionUrl("/user/logout")
                         .sessionFixation().none()
                         .maximumSessions(1)
                         .expiredUrl("/user/logout")
+                        .maxSessionsPreventsLogin(false)
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/schedule/**", "/book/detail/**").authenticated()
