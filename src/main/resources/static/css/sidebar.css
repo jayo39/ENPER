@@ -18,3 +18,7 @@
 #schedule {
     cursor: pointer;
 }
+
+body {
+    transition: 0.3s ease-in-out;
+}

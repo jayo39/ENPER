@@ -3,14 +3,36 @@ $(function() {
     const openSidebar = $('#schedule');
     const closeSidebar = $('#closeSidebar');
     const clearBtn = $('#clear-all');
+    const body = $('body');
+    let isOpen = false;
+    let bodyWidth = body.width();
+
+    $(window).resize(function() {
+        if(isOpen) {
+            let screenWidth = $(window).width();
+            if (screenWidth <= 980) {
+                body.css('padding-right', '0px');
+            } else if (screenWidth > 980) {
+                body.css('padding-right', '300px');
+            }
+        }
+    });
+
 
     openSidebar.click(function() {
+        let screenWidth = $(window).width();
+        isOpen = true;
         loadSchedule();
         sidebar.css('right', '0');
+        if (screenWidth > 980) {
+            body.css('padding-right', '300px');
+        }
     });
 
     closeSidebar.click(function() {
+        isOpen = false;
         sidebar.css('right', '-300px');
+        body.css('padding-right', '0px');
     });
 
     clearBtn.click(function() {
