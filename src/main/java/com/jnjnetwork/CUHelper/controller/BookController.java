@@ -81,8 +81,8 @@ public class BookController {
         return "book/deleteOk";
     }
 
-    @PostMapping("/search")
-    public String searchOk(@RequestParam("searchedValue") String keyword, Model model) {
+    @GetMapping("/search")
+    public String searchOk(@RequestParam("value") String keyword, Model model) {
         if (keyword.isEmpty()) {
             return "redirect:/index";
         }

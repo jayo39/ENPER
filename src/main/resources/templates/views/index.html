@@ -11,11 +11,11 @@
 <body>
 <th:block th:insert="~{component/header.html::header}"></th:block>
 <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
-<form th:action="@{/book/search}" method="POST">
+<form th:action="@{/book/search}" method="GET">
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col d-flex input-group">
-                <input class="form-control" type="search" placeholder="Search by title or series" aria-label="Search" name="searchedValue">
+                <input class="form-control" type="search" placeholder="Search by title or series" aria-label="Search" name="value">
                 <button class="btn btn-success" type="submit">Search</button>
             </div>
         </div>
