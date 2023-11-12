@@ -80,4 +80,13 @@ public class UserServiceImpl implements UserService{
         scheduleRepository.deleteByUserId(user.getId());
         userRepository.delete(user);
     }
+
+    @Override
+    public void updateLogDate(User user) {
+        User u = userRepository.findById(user.getId()).orElseThrow(RuntimeException::new);
+        if(u != null) {
+            u.setLog_date(user.getLog_date());
+            userRepository.saveAndFlush(u);
+        }
+    }
 }

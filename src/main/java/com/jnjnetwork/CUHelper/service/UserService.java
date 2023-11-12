@@ -12,4 +12,5 @@ public interface UserService {
     boolean isExist(String username);
     int register(User user);
     void removeById(Long user_id);
+    void updateLogDate(User user);
 }

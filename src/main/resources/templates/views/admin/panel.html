@@ -22,21 +22,23 @@
     <table class="table table-hover text-center mt-3">
         <thead class="table-secondary">
             <tr>
-                <th>Username</th>
-                <th>Delete</th>
+                <th class="w-75">Username</th>
+                <th>Last Login</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="user : ${users}">
                 <td class="align-middle" th:text="${user.username}"></td>
+                <td class="align-middle" th:text="${user.formattedLogDate}"></td>
                 <td class="align-middle">
                     <form th:action="@{/user/delete}" method="POST">
                         <input type="hidden" th:value="${user.id}" name="user_id">
                         <a th:if="${user.username == 'sjeaho'}" class="btn btn-outline-danger btn-delete disabled">
-                            Delete
+                            Remove
                         </a>
                         <a th:if="${user.username != 'sjeaho'}" class="btn btn-outline-danger btn-delete">
-                            Delete
+                            Remove
                         </a>
                     </form>
                 </td>

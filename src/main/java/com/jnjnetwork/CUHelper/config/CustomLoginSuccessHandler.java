@@ -1,5 +1,6 @@
 package com.jnjnetwork.CUHelper.config;
 
+import com.jnjnetwork.CUHelper.domain.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,6 +19,11 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
         PrincipalDetails userDetails = (PrincipalDetails)authentication.getPrincipal();
+        LocalDateTime loginTime = LocalDateTime.now();
+        User user = userDetails.getUser();
+        user.setLog_date(loginTime);
+        userDetails.updateLogDate(user);
+
         super.onAuthenticationSuccess(request, response, authentication);
     }
     public static String getClientIp(HttpServletRequest request) {

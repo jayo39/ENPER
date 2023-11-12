@@ -51,6 +51,10 @@ public class PrincipalDetails implements UserDetails {
         return collect;
     }
 
+    public void updateLogDate(User user) {
+        userService.updateLogDate(user);
+    }
+
     @Override
     public String getPassword() {
         return user.getPassword();
