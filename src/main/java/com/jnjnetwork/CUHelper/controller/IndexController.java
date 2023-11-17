@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class IndexController {
 
     BookService bookService;
@@ -22,13 +22,9 @@ public class IndexController {
     }
 
     @RequestMapping("/")
-    public String index() {
-        return "redirect:/index";
-    }
-
-    @RequestMapping("/index")
-    public void index(Integer page, Model model) {
+    public String index(Integer page, Model model) {
         List<Book> books = bookService.findAll(page, model);
         model.addAttribute("books", books);
+        return "/index";
     }
 }
