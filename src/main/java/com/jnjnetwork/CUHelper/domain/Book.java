@@ -35,6 +35,12 @@ public class Book {
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String summary;
 
+    @Column
+    private Double book_level;
+
+    @Column
+    private Double ar_point;
+
     @OneToMany
     @JoinColumn(name = "book_id")
     @ToString.Exclude

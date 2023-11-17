@@ -101,6 +101,8 @@ public class BookServiceImpl implements BookService{
             b.setSeries_formatted(book.getSeries().toLowerCase().replaceAll(" ", ""));
             b.setDescription(book.getDescription());
             b.setSummary(book.getSummary());
+            b.setBook_level(book.getBook_level());
+            b.setAr_point(book.getAr_point());
             bookRepository.saveAndFlush(b);
         }
     }
