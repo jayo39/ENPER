@@ -14,7 +14,7 @@
 <div class="container mt-3">
   <form th:action="@{/book/edit}" method="POST">
     <input type="hidden" name="id" th:value="${book.id}"/>
-    <div class="mt-5 mb-3">
+    <div class="my-3">
       <label for="title">Title:</label>
       <input type="text" class="form-control" id="title" placeholder="Book title" name="title" th:value="${book.title}">
     </div>
@@ -31,7 +31,7 @@
       <input type="number" step="0.1" min="0" class="form-control" id="book-level" placeholder="Book Level" name="book_level" th:value="${book.book_level}">
     </div>
     <div class="my-3">
-      <label for="ar-point">AR Point:</label>
+      <label for="ar-point">AR Points:</label>
       <input type="number" step="0.1" min="0" class="form-control" id="ar-point" placeholder="AR Point" name="ar_point" th:value="${book.ar_point}">
     </div>
     <div class="my-3">
@@ -55,5 +55,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script th:src="@{/js/summernote.js}"></script>
+<script th:src="@{/js/addBook.js}"></script>
 <script src="/js/schedule.js"></script>
 </html>
