@@ -25,6 +25,6 @@ public class IndexController {
     public String index(Integer page, Model model) {
         List<Book> books = bookService.findAll(page, model);
         model.addAttribute("books", books);
-        return "/index";
+        return "index";
     }
 }
