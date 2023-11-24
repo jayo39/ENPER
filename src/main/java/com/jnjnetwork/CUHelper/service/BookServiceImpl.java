@@ -110,6 +110,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<Book> findByKeyword(String keyword) {
         String keywordFormatted = keyword.toLowerCase().replaceAll(" ", "");
-        return bookRepository.findByKeywordInColumns(keywordFormatted);
+        Sort sort = Sort.by(Sort.Order.asc("title"));
+        return bookRepository.findByKeywordInColumns(keywordFormatted, sort);
     }
 }
