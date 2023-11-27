@@ -102,7 +102,7 @@ function buildSchedule(result) {
     }
     if (result.length > 200) {
         alert("Please log in again.");
-        location.href = "https://enper.net/user/login";
+        location.href = "/user/login";
     }
 
     const out = [];
