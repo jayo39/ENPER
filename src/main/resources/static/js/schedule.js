@@ -95,14 +95,14 @@ function loadSchedule() {
 }
 
 function buildSchedule(result) {
-    if (result.length == 0) {
+    if (result.length === 0) {
         $("#schedule-title").text("Checkup - " + 0);
     } else {
         $("#schedule-title").text("Checkup - " + result.length);
     }
     if (result.length > 200) {
-        alert("Please log in again.");
-        location.href = "/user/login";
+        alert("Login session expired.");
+        location.href = "/";
     }
 
     const out = [];
