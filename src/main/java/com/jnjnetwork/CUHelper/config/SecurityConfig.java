@@ -46,7 +46,7 @@ public class SecurityConfig {
                 )
                 .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
                         .logoutUrl("/user/logout")
-                        .invalidateHttpSession(false)
+                        .invalidateHttpSession(true)
                         .logoutSuccessHandler(new CustomLogoutSuccessHandler())
                 )
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
