@@ -19,11 +19,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
@@ -38,15 +33,9 @@ public class SecurityConfig {
                         .successHandler(new CustomLoginSuccessHandler("/"))
                         .failureHandler(new CustomLoginFailureHandler())
                 )
-                .sessionManagement(sessionManagement -> sessionManagement
-                        .maximumSessions(1)
-                        .maxSessionsPreventsLogin(false)
-                        .expiredUrl("/user/login")
-                        .sessionRegistry(sessionRegistry())
-                )
                 .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
                         .logoutUrl("/user/logout")
-                        .invalidateHttpSession(true)
+                        .invalidateHttpSession(false)
                         .logoutSuccessHandler(new CustomLogoutSuccessHandler())
                 )
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
