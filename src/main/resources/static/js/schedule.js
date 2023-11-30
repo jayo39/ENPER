@@ -100,10 +100,6 @@ function buildSchedule(result) {
     } else {
         $("#schedule-title").text("Checkup - " + result.length);
     }
-    if (result.length > 200) {
-        alert("Login session expired.");
-        location.href = "https://enper.net/user/login";
-    }
 
     const out = [];
     result.forEach(schedule => {
