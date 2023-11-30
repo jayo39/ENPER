@@ -102,7 +102,7 @@ function buildSchedule(result) {
     }
     if (result.length > 200) {
         alert("Login session expired.");
-        location.href = "/";
+        location.href = "/user/login";
     }
 
     const out = [];
