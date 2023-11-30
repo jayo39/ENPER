@@ -102,7 +102,7 @@ function buildSchedule(result) {
     }
     if (result.length > 200) {
         alert("Login session expired.");
-        location.href = "/user/login";
+        location.href = "https://enper.net/user/login";
     }
 
     const out = [];
