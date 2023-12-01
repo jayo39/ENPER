@@ -95,7 +95,6 @@ function loadSchedule() {
 }
 
 function buildSchedule(result) {
-    console.log(result);
     if (result.length === 0) {
         $("#schedule-title").text("Checkup - " + 0);
     } else {
