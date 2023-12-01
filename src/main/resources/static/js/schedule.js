@@ -95,13 +95,11 @@ function loadSchedule() {
 }
 
 function buildSchedule(result) {
+    console.log(result);
     if (result.length === 0) {
         $("#schedule-title").text("Checkup - " + 0);
-    } else if (result.length > 0) {
-        $("#schedule-title").text("Checkup - " + result.length);
     } else {
-        alert('Please login again.');
-        location.href = "/user/login";
+        $("#schedule-title").text("Checkup - " + result.length);
     }
 
     const out = [];
