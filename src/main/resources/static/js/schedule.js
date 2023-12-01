@@ -97,8 +97,11 @@ function loadSchedule() {
 function buildSchedule(result) {
     if (result.length === 0) {
         $("#schedule-title").text("Checkup - " + 0);
-    } else {
+    } else if (result.length > 0) {
         $("#schedule-title").text("Checkup - " + result.length);
+    } else {
+        alert('Please login again.');
+        location.href = "/user/login";
     }
 
     const out = [];
