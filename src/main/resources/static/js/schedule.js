@@ -26,6 +26,9 @@ $(function() {
     window.ontouchstart = resetTimer;
     window.onclick = resetTimer;
     window.onkeydown = resetTimer;
+    window.onscroll = resetTimer;
+    window.onmousewheel = resetTimer;
+    window.ontouchmove = resetTimer;
 
     resetTimer();
 
