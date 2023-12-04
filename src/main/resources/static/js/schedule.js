@@ -1,6 +1,3 @@
-const THIRTY_MINUTES = 30 * 60 * 1000;
-let timeout;
-
 $(function() {
     const sidebar = $('#sidebar');
     const openSidebar = $('#schedule');
@@ -20,18 +17,6 @@ $(function() {
             }
         }
     });
-
-    window.onmousemove = resetTimer;
-    window.onmousedown = resetTimer;
-    window.ontouchstart = resetTimer;
-    window.onclick = resetTimer;
-    window.onkeydown = resetTimer;
-    window.onscroll = resetTimer;
-    window.onmousewheel = resetTimer;
-    window.ontouchmove = resetTimer;
-
-    resetTimer();
-
 
     openSidebar.click(function() {
         let screenWidth = $(window).width();
@@ -253,14 +238,3 @@ function listenDelete(result) {
         });
     });
 }
-
-function onIdle() {
-    alert('Please login again.');
-    window.location.href = '/user/login';
-}
-
-function resetTimer() {
-    clearTimeout(timeout);
-    timeout = setTimeout(onIdle, THIRTY_MINUTES);
-}
-
