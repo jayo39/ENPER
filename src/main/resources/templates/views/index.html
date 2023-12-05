@@ -45,7 +45,7 @@
                 <td class="align-middle" th:text="${book.book_level}" colspan="1"></td>
                 <td class="align-middle" th:text="${book.ar_point}" colspan="1"></td>
                 <td class="align-middle" th:text="${#lists.size(book.details)}" colspan="1"></td>
-                <td class="align-middle" th:text="${book.question != null ? '✓' : '✗'}" colspan="1"></td>
+                <td class="align-middle" th:text="${book.question != null ? 'Y' : 'N'}" colspan="1"></td>
             </tr>
             <tr th:if="${not #lists.isEmpty(searchedBooks)}" th:each="book : ${searchedBooks}" class="clickable">
                 <input type="hidden" th:value="${book.id}">
@@ -55,7 +55,7 @@
                 <td class="align-middle" th:text="${book.book_level}" colspan="1"></td>
                 <td class="align-middle" th:text="${book.ar_point}" colspan="1"></td>
                 <td class="align-middle" th:text="${#lists.size(book.details)}" colspan="1"></td>
-                <td class="align-middle" th:text="${book.question != null ? '✓' : '✗'}" colspan="1"></td>
+                <td class="align-middle" th:text="${book.question != null ? 'Y' : 'N'}" colspan="1"></td>
             </tr>
         </tbody>
     </table>
