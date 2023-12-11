@@ -75,11 +75,11 @@ function buildDetail(result) {
         }
 
         const editBtn = (role1 !== 'ROLE_ADMIN' && role2 !== 'ROLE_ADMIN') ? '' : `
-            <button class="btn btn-outline-dark" data-detail-edit-id="${id}">Edit</button>
+            <button class="btn btn-link btn-sm text-primary btn-rounded" data-detail-edit-id="${id}">Edit</button>
         `
 
         const deleteBtn = (role1 !== 'ROLE_ADMIN' && role2 !== 'ROLE_ADMIN') ? '' : `
-            <button class="btn btn-outline-danger" data-detail-id="${id}">Delete</button>
+            <button class="btn btn-link btn-sm text-danger btn-rounded" data-detail-id="${id}">Delete</button>
         `
         const row = `
             <div id="detail-${id}" class="my-2">

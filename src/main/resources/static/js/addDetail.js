@@ -2,7 +2,8 @@ $(function() {
     $('.form-control').keypress(function(e) {
         if(e.which === 13) {
             e.preventDefault();
-            var nextInput = $(this).next().find(".form-control");
+            var nextInputDiv = $(this).closest('.form-outline').nextAll('.form-outline').first();
+            var nextInput = nextInputDiv.find('.form-control');
             if(nextInput.length !== 0) {
                 nextInput.focus();
             }

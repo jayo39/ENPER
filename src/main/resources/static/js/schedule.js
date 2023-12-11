@@ -109,7 +109,7 @@ function buildSchedule(result) {
         let isFinished = schedule.isFinished;
         const row = `
             <div id="schedule-${id}">
-                <div id="schedule-info-${id}" class="d-flex justify-content-between align-items-center text-warning">
+                <div id="schedule-info-${id}" class="d-flex justify-content-between align-items-center text-yellow">
                     <div class="h5">
                       <div>${studentName}</div>
                     </div>
@@ -118,14 +118,14 @@ function buildSchedule(result) {
                     </div>
                 </div>
             </div>
-            <textarea data-schedule-id-note="${id}" class="form-control my-1 note" placeholder="Note..">${content}</textarea>
+            <textarea data-schedule-id-note="${id}" class="form-control my-1 stu-note" placeholder="Note..">${content}</textarea>
             <div class="d-flex justify-content-between mb-3">
                 <div class="form-check me-2">
-                  <input id="check-${id}" data-schedule-id-check="${id}" class="form-check-input" type="checkbox" value="">
                   <span class="text-light">Checkup</span>
+                  <input id="check-${id}" data-schedule-id-check="${id}" class="form-check-input" type="checkbox" value="">
                 </div>
                 <div class="form-check form-switch">
-                    <input data-schedule-id="${id}" class="form-check-input" type="checkbox">
+                  <input id="flexSwitchCheckDefault" data-schedule-id="${id}" class="form-check-input bg-secondary" type="checkbox" role="switch">
                 </div>
             </div>
             <hr class="bg-light border">
@@ -137,20 +137,20 @@ function buildSchedule(result) {
         let id = schedule.id;
         let isFinished = schedule.isFinished;
         if (isFinished == 1) {
-            $("#schedule-info-" + id).removeClass('text-warning');
-            $("#schedule-info-" + id).addClass('text-secondary');
+            $("#schedule-info-" + id).removeClass('text-yellow');
+            $("#schedule-info-" + id).addClass('text-gray');
             $("#check-" + id).prop("checked", true);
         } else if (isFinished == 0) {
-            $("#schedule-info-" + id).removeClass('text-secondary');
-            $("#schedule-info-" + id).addClass('text-warning');
+            $("#schedule-info-" + id).removeClass('text-gray');
+            $("#schedule-info-" + id).addClass('text-yellow');
             $("#check-" + id).prop("checked", false);
         }
     });
-    $('.note').on("input", function() {
+    $('.stu-note').on("input", function() {
         this.style.height = "auto";
         this.style.height = (this.scrollHeight) + "px";
     });
-    $('.note').trigger("input");
+    $('.stu-note').trigger("input");
 }
 
 function listenEdit() {
@@ -194,8 +194,8 @@ function listenDelete(result) {
     $("[data-schedule-id-check]").click(function() {
         const schedule_id = $(this).attr("data-schedule-id-check");
         if($(this).prop("checked")) {
-            $("#schedule-info-" + schedule_id).removeClass('text-warning');
-            $("#schedule-info-" + schedule_id).addClass('text-secondary');
+            $("#schedule-info-" + schedule_id).removeClass('text-yellow');
+            $("#schedule-info-" + schedule_id).addClass('text-gray');
             const data = {
                 "schedule_id": schedule_id,
                 "isFinished": true
@@ -209,8 +209,8 @@ function listenDelete(result) {
                 }
             });
         } else if (!($(this).prop("checked"))) {
-            $("#schedule-info-" + schedule_id).removeClass('text-secondary');
-            $("#schedule-info-" + schedule_id).addClass('text-warning');
+            $("#schedule-info-" + schedule_id).removeClass('text-gray');
+            $("#schedule-info-" + schedule_id).addClass('text-yellow');
             const data = {
                 "schedule_id": schedule_id,
                 "isFinished": false

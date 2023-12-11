@@ -8,8 +8,6 @@
     border-right: none;
     border-top: none;
     border-bottom: none;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #212529;
     transition: right 0.3s ease-in-out;
     overflow: auto;
     z-index: 10;
@@ -21,4 +19,16 @@
 
 body {
     transition: 0.3s ease-in-out;
+}
+
+.btn-light {
+    box-shadow: none;
+}
+
+.text-gray {
+    color: #6c757d
+}
+
+.text-yellow {
+    color: #FFFF00;
 }

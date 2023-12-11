@@ -4,4 +4,9 @@
 
 .page {
     width: 70px;
+    height: 36px;
+}
+
+#searchBtn {
+    height: 36px;
 }

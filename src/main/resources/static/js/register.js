@@ -25,7 +25,7 @@ $(function() {
         localStorage.removeItem('registrationSuccess');
     }
     $(".btn-delete").click(function() {
-        let answer = confirm("Delete this user?");
+        let answer = confirm("Remove this user?");
         if(answer) {
             $(this).closest("form").submit();
         }

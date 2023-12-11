@@ -4,11 +4,19 @@
       xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 
 <th:block th:fragment="header">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav data-mdb-navbar-init class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">ENPER</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                <span class="navbar-toggler-icon"></span>
+            <button
+                    data-mdb-collapse-init
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-target="#mynavbar"
+                    aria-controls="mynavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto">
@@ -32,11 +40,11 @@
                     </li>
                 </ul>
 
-                <a class="btn btn-outline-light" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+                <a class="btn btn-primary" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
 
                 <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
                     <span class="d-flex">
-                      <span><button class="btn btn-outline-light" type="submit">Logout</button></span>
+                      <span><button class="btn btn-secondary" type="submit">Logout</button></span>
                     </span>
                 </form>
             </div>
