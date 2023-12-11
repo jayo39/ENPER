@@ -21,10 +21,6 @@ body {
     transition: 0.3s ease-in-out;
 }
 
-.btn-light {
-    box-shadow: none;
-}
-
 .text-gray {
     color: #6c757d
 }

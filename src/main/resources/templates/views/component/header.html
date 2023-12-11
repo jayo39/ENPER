@@ -40,11 +40,11 @@
                     </li>
                 </ul>
 
-                <a class="btn btn-primary" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+                <a class="btn btn-primary shadow-0" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
 
                 <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
                     <span class="d-flex">
-                      <span><button class="btn btn-secondary" type="submit">Logout</button></span>
+                      <span><button class="btn btn-secondary shadow-0" type="submit">Logout</button></span>
                     </span>
                 </form>
             </div>

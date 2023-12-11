@@ -64,7 +64,7 @@
                 <input type="text" class="form-control page" id="pageEnd" maxlength="5" placeholder="End" name="lastPage">
             </div>
             <div class="mx-2">
-                <button id="searchBtn" class="btn btn-secondary" type="submit"><i class="fas fa-search"></i></button>
+                <button id="searchBtn" class="btn btn-secondary shadow-0" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </div>
         <div>
@@ -81,8 +81,8 @@
 
             <div class="mb-3" th:utext="${question.content}"></div>
             <div class="d-flex justify-content-end">
-                <a class="btn btn-link btn-sm text-primary btn-rounded mx-2" th:href="@{'/question/edit/' + ${question.id}}" sec:authorize="hasRole('ADMIN')">Edit</a>
-                <button type="button" class="btn btn-link btn-sm text-danger btn-rounded" id="btnDelQuestion" sec:authorize="hasRole('ADMIN')">Delete</button>
+                <a class="btn btn-link btn-sm text-primary btn-rounded shadow-0 mx-2" th:href="@{'/question/edit/' + ${question.id}}" sec:authorize="hasRole('ADMIN')">Edit</a>
+                <button type="button" class="btn btn-link btn-sm text-danger shadow-0 btn-rounded" id="btnDelQuestion" sec:authorize="hasRole('ADMIN')">Delete</button>
             </div>
         </section>
     </div>
