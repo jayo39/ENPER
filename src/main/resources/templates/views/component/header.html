@@ -51,12 +51,12 @@
         </div>
     </nav>
     <div class="container-fluid mt-3">
-        <div class="alert alert-secondary alert-dismissible" sec:authorize="isAnonymous()">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <div class="alert alert-secondary alert-dismissible fade show" sec:authorize="isAnonymous()" data-mdb-alert-init>
+            <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
             You are not logged in.<br>
         </div>
-        <div class="alert alert-success alert-dismissible" sec:authorize="isAuthenticated()" th:with="user=${#authentication.principal.user}">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <div class="alert alert-success alert-dismissible fade show" sec:authorize="isAuthenticated()" th:with="user=${#authentication.principal.user}" data-mdb-alert-init>
+            <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
             Logged in as [[${user.username}]].<br>
         </div>
     </div>
