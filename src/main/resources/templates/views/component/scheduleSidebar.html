@@ -6,7 +6,7 @@
   <script th:inline="javascript" sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
     var scheUser_id = [[${logged_user.id}]];
   </script>
-  <div class="sidebar bg-dark" id="sidebar">
+  <div class="sidebar bg-dark d-none" id="sidebar">
     <div class="d-flex justify-content-end">
       <button id="closeSidebar" class="btn-close btn-close-white"></button>
     </div>

@@ -7,6 +7,8 @@ $(function() {
     let isOpen = false;
     let bodyWidth = body.width();
 
+    $("#sidebar").removeClass('d-none');
+
     $(window).resize(function() {
         if(isOpen) {
             let screenWidth = $(window).width();
