@@ -47,10 +47,10 @@
                 <td class="align-middle" th:text="${book.ar_point}" colspan="1"></td>
                 <td class="align-middle" th:text="${#lists.size(book.details)}" colspan="1"></td>
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
-                    <span class="badge badge-success rounded-pill d-inline"><i class="fa-solid fa-check"></i></span>
+                    <span class="badge badge-success rounded-pill d-inline">Y</span>
                 </td>
                 <td class="align-middle" th:if="${book.question == null}" colspan="1">
-                    <span class="badge badge-secondary rounded-pill d-inline"><i class="fa-solid fa-minus"></i></span>
+                    <span class="badge badge-danger rounded-pill d-inline">N</span>
                 </td>
             </tr>
             <tr th:if="${not #lists.isEmpty(searchedBooks)}" th:each="book : ${searchedBooks}" class="clickable">
@@ -62,10 +62,10 @@
                 <td class="align-middle" th:text="${book.ar_point}" colspan="1"></td>
                 <td class="align-middle" th:text="${#lists.size(book.details)}" colspan="1"></td>
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
-                    <span class="badge badge-success rounded-pill d-inline"><i class="fa-solid fa-check"></i></span>
+                    <span class="badge badge-success rounded-pill d-inline">Y</span>
                 </td>
                 <td class="align-middle" th:if="${book.question == null}" colspan="1">
-                    <span class="badge badge-secondary rounded-pill d-inline"><i class="fa-solid fa-minus"></i></span>
+                    <span class="badge badge-danger rounded-pill d-inline">N</span>
                 </td>
             </tr>
         </tbody>
