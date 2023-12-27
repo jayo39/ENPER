@@ -25,6 +25,7 @@ $(function() {
         isOpen = true;
         loadSchedule();
         sidebar.css('right', '0');
+        $('#schedule').addClass('nav-active');
         if (screenWidth > 980) {
             body.css('padding-right', '300px');
         }
@@ -33,6 +34,7 @@ $(function() {
     closeSidebar.click(function() {
         isOpen = false;
         sidebar.css('right', '-300px');
+        $('#schedule').removeClass('nav-active');
         body.css('padding-right', '0px');
     });
 

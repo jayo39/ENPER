@@ -33,7 +33,7 @@
         <hr>
         <div class="mb-3">
             <div class="mb-2 w-25">
-                <select id="select-option" class="form-control category">
+                <select id="select-option" class="form-control category custom-dropdown">
                     <option id="generalinfo">General Info</option>
                     <option id="detailedsummary" th:if="${not #lists.isEmpty(details)}">Detailed Summary</option>
                     <option id="chapterquestion" th:if="${question != null}">Chapter Question</option>

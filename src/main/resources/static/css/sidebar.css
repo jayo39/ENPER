@@ -28,3 +28,23 @@ body {
 .text-yellow {
     color: #FFFF00;
 }
+
+.custom-dropdown {
+        appearance: none;
+        background-image: url('/image/dropdown.png');
+        background-repeat: no-repeat;
+        background-size: 15px;
+        background-position: right 10px center;
+        padding-right: 30px;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        border-radius: 5px;
+}
+
+.nav-active {
+    color: #fff;
+}
+
+.nav-active:hover {
+    color: #fff;
+}

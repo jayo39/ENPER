@@ -19,7 +19,7 @@
     <form name="detailAdd" th:action="@{/detail/editOk}" method="POST">
         <input type="hidden" th:value="${detail.id}" name="id">
         <div class="my-3">
-            <select class="form-control" name="book_id" id="book" size="1" required>
+            <select class="form-control custom-dropdown" name="book_id" id="book" size="1" required>
                 <option value="">Select</option>
                 <option th:each="book : ${books}" th:text="${book.title}" th:value="${book.id}" th:selected="${book.id == thisbook.id}"></option>
             </select>

@@ -18,7 +18,7 @@
 <div class="container my-3">
   <form th:action="@{/question/addOk}" method="post">
     <div class="my-3">
-      <select class="form-control" name="book_id" id="book" size="1" required>
+      <select class="form-control custom-dropdown" name="book_id" id="book" size="1" required>
         <option value="">Select</option>
         <option th:each="book : ${books}" th:if="${book.question == null}" th:text="${book.title}" th:value="${book.id}"></option>
       </select>

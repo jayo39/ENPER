@@ -36,7 +36,9 @@ public class BookController {
     }
 
     @GetMapping("/add")
-    public void add() {;}
+    public void add(Model model) {
+        model.addAttribute("nav", "nav-book-add");
+    }
 
     @PostMapping("/addOk")
     public String addOk(Book book) {

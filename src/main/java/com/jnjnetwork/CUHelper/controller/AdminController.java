@@ -25,5 +25,6 @@ public class AdminController {
     public void panel(Model model) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
+        model.addAttribute("nav", "nav-admin-panel");
     }
 }
