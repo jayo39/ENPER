@@ -41,6 +41,10 @@ body {
         border-radius: 5px;
 }
 
+.nav-link:hover {
+    color: #fff;
+}
+
 .nav-active {
     color: #fff;
 }
