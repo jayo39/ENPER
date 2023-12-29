@@ -16,6 +16,8 @@
 <th:block th:insert="~{component/header.html::header}"></th:block>
 <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
 <div class="container my-3">
+    <h2>Edit Chapter Question</h2>
+    <hr>
   <form th:action="@{/question/edit}" method="POST">
     <input type="hidden" th:value="${question.id}" name="id">
     <input type="hidden" th:value="${question.book.id}" name="book_id">

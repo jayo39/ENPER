@@ -1,5 +1,28 @@
 $(function() {
     $('#content').summernote({
-        height: 400
+        height: 400,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+          ['fontname', ['fontname']],
+          ['fontsize', ['fontsize']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['undo', 'redo']],
+        ],
+        hint: {
+          words: ['→'],
+          match: /\B>(\w*)$/,
+          search: function (keyword, callback) {
+            callback($.grep(this.words, function (item) {
+              return item.indexOf(keyword) == 0;
+            }));
+          },
+          content: function () {
+            return '→';
+          }
+        }
     });
 });
