@@ -4,11 +4,11 @@ $(function() {
         toolbar: [
           ['style', ['style']],
           ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-          ['fontname', ['fontname']],
-          ['fontsize', ['fontsize']],
           ['color', ['color']],
           ['para', ['ul', 'ol', 'paragraph']],
           ['table', ['table']],
+          ['fontname', ['fontname']],
+          ['fontsize', ['fontsize']],
           ['insert', ['link', 'picture', 'video']],
           ['view', ['undo', 'redo']],
         ],
