@@ -9,6 +9,28 @@ $(function() {
 
     $("#sidebar").removeClass('d-none');
 
+    if(localStorage.getItem('barStatus') === 'open') {
+        sidebar.css('transition', 'none');
+        body.css('transition', 'none');
+        openBar();
+
+        setTimeout(function() {
+                sidebar.css('transition', '0.3s');
+                body.css('transition', '0.3s');
+        }, 10);
+    }
+
+    function openBar() {
+        let screenWidth = $(window).width();
+        isOpen = true;
+        loadSchedule();
+        sidebar.css('right', '0');
+        $('#schedule').addClass('nav-active');
+        if (screenWidth > 980) {
+            body.css('padding-right', '300px');
+        }
+    }
+
     $(window).resize(function() {
         if(isOpen) {
             let screenWidth = $(window).width();
@@ -21,18 +43,13 @@ $(function() {
     });
 
     openSidebar.click(function() {
-        let screenWidth = $(window).width();
-        isOpen = true;
-        loadSchedule();
-        sidebar.css('right', '0');
-        $('#schedule').addClass('nav-active');
-        if (screenWidth > 980) {
-            body.css('padding-right', '300px');
-        }
+        localStorage.setItem('barStatus', 'open');
+        openBar();
     });
 
     closeSidebar.click(function() {
         isOpen = false;
+        localStorage.removeItem('barStatus');
         sidebar.css('right', '-300px');
         $('#schedule').removeClass('nav-active');
         body.css('padding-right', '0px');

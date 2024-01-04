@@ -23,40 +23,41 @@
         Successfully added new user.
     </div>
 </div>
+<div>
     <table class="table table-hover text-center mt-3">
         <thead class="table-secondary">
-            <tr>
-                <th class="w-50">Username</th>
-                <th>Last Login</th>
-                <th></th>
-            </tr>
+        <tr>
+            <th class="w-50">Username</th>
+            <th>Last Login</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="user : ${users}">
-                <td class="align-middle" th:text="${user.username}"></td>
-                <td class="align-middle" th:text="${user.formattedLogDate}"></td>
-                <td class="align-middle">
-                    <form th:action="@{/user/delete}" method="POST">
-                        <input type="hidden" th:value="${user.id}" name="user_id">
-                        <button
-                                th:if="${user.username == 'sjeaho'}"
-                                type="button"
-                                class="btn btn-link btn-rounded btn-sm fw-bold text-danger disabled btn-delete"
-                                data-mdb-ripple-color="dark"
-                        >
-                            Remove
-                        </button>
-                        <button
-                                th:if="${user.username != 'sjeaho'}"
-                                type="button"
-                                class="btn btn-link btn-rounded btn-sm fw-bold text-danger btn-delete"
-                                data-mdb-ripple-color="dark"
-                        >
-                            Remove
-                        </button>
-                    </form>
-                </td>
-            </tr>
+        <tr th:each="user : ${users}">
+            <td class="align-middle" th:text="${user.username}"></td>
+            <td class="align-middle" th:text="${user.formattedLogDate}"></td>
+            <td class="align-middle">
+                <form th:action="@{/user/delete}" method="POST">
+                    <input type="hidden" th:value="${user.id}" name="user_id">
+                    <button
+                            th:if="${user.username == 'sjeaho'}"
+                            type="button"
+                            class="btn btn-link btn-rounded btn-sm fw-bold text-danger disabled btn-delete"
+                            data-mdb-ripple-color="dark"
+                    >
+                        Remove
+                    </button>
+                    <button
+                            th:if="${user.username != 'sjeaho'}"
+                            type="button"
+                            class="btn btn-link btn-rounded btn-sm fw-bold text-danger btn-delete"
+                            data-mdb-ripple-color="dark"
+                    >
+                        Remove
+                    </button>
+                </form>
+            </td>
+        </tr>
         </tbody>
     </table>
     <div class="d-flex justify-content-center">
@@ -64,6 +65,7 @@
             <a class="btn btn-primary btn-rounded shadow-0" onclick="openModal()">Add User</a>
         </div>
     </div>
+</div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
