@@ -9,7 +9,7 @@ $(function() {
           ['table', ['table']],
           ['fontname', ['fontname']],
           ['fontsize', ['fontsize']],
-          ['insert', ['link', 'picture', 'video']],
+          ['insert', ['hr', 'link', 'picture', 'video']],
           ['view', ['undo', 'redo']],
         ],
         hint: {
