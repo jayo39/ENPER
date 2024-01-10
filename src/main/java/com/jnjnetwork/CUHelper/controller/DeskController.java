@@ -14,4 +14,9 @@ public class DeskController {
         model.addAttribute("nav", "nav-desk-enroll");
     }
 
+    @GetMapping("/attendance")
+    public void attendance(Model model) {
+        model.addAttribute("nav", "nav-desk-attendance");
+    }
+
 }

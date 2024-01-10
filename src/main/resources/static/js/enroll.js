@@ -2,6 +2,13 @@ let mainBox = $('.main-box');
 let unenroll = $('#unenroll');
 let enroll = $('#enroll');
 
+function reset() {
+    mainBox.addClass('d-none');
+    document.getElementById('yesterday').value = '';
+    document.getElementById('today').value = '';
+    document.getElementById('tomorrow').value = '';
+}
+
 function getResult() {
     let yesterdayInput = $('#yesterday').val();
     let todayInput = $('#today').val();
