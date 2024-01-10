@@ -32,7 +32,6 @@ public class QuestionController {
     public void add(Model model) {
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);
-        model.addAttribute("nav", "nav-question-add");
     }
 
     @PostMapping("/addOk")

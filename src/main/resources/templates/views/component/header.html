@@ -21,16 +21,30 @@
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                        <a th:classappend="${nav == 'nav-admin-panel' ? 'nav-active' : ''}" class="nav-link" href="/admin/panel">User Panel</a>
-                    </li>
-                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                        <a th:classappend="${nav == 'nav-book-add' ? 'nav-active' : ''}" class="nav-link" href="/book/add">Add Book</a>
-                    </li>
-                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                        <a th:classappend="${nav == 'nav-detail-add' ? 'nav-active' : ''}" class="nav-link" href="/detail/add">Add DS</a>
-                    </li>
-                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                        <a th:classappend="${nav == 'nav-question-add' ? 'nav-active' : ''}" class="nav-link" href="/question/add">Add CQ</a>
+                        <a
+                                data-mdb-dropdown-init
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                aria-expanded="false"
+                        >
+                            Admin Panel
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="/admin/panel">Manage Users</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/book/add">Add Book</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/detail/add">Add DS</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/question/add">Add CQ</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a th:classappend="${nav == 'nav-desk-enroll' ? 'nav-active' : ''}" class="nav-link" href="/desk/enroll">Enroll</a>
