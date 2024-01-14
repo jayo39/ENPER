@@ -2,7 +2,6 @@
     font-family: sans-serif;
 }
 
-#studentList {
-    max-height: 250px;
-    overflow-y: auto;
+#select-option {
+    width: 229px;
 }

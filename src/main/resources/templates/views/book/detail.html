@@ -28,7 +28,7 @@
 
     <body>
 
-    <div class="container mt-3">
+    <div class="container-fluid mt-3">
         <h2>[[${book.title}]]</h2>
         <hr>
         <div class="mb-3">
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div id="general" class="container mb-3">
+    <div id="general" class="container-fluid mb-3">
         <section class="border bg-light rounded p-2">
             <form name="frmDelete" th:action="@{/book/delete}" method="POST">
                 <input id="book_id" type="hidden" name="id" th:value="${book.id}">
@@ -54,7 +54,7 @@
             </div>
         </section>
     </div>
-    <div id="detailed" class="container mb-3 d-none">
+    <div id="detailed" class="container-fluid mb-3 d-none">
         <div class="d-flex mb-3">
             <div>
                 <input type="text" class="form-control page" id="pageStart" maxlength="5" placeholder="Start" name="firstPage">
@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-    <div id="questions" th:if="${question != null}" class="container mb-3 d-none">
+    <div id="questions" th:if="${question != null}" class="container-fluid mb-3 d-none">
         <section class="border bg-light rounded p-2">
             <form name="questionDelete" th:action="@{/question/delete}" method="POST">
                 <input id="question_id" type="hidden" name="id" th:value="${question.id}">

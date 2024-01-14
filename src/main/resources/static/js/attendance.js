@@ -1,23 +1,26 @@
-const resultList = document.getElementById('studentList');
-const title = document.getElementById('result-title');
-
-let mainBox = $('.main-box');
+const resultList = document.getElementById('resultData');
+const title = document.getElementById('resultTitle');
+let mainBox = $('.table');
+let resultContainer = $('.resultContainer');
 
 function reset() {
-    mainBox.addClass('d-none');
-    document.getElementById('inputarea').value = '';
+  mainBox.addClass('d-none');
+  resultContainer.addClass('d-none');
 }
 
 function getTop() {
   let unFormattedString = '';
   let oneResultArray = [];
   let resultArray = [];
-  resultList.innerHTML = '';
+  let topStudent = [];
   unFormattedString = document.getElementById("inputarea").value;
   unFormattedString = unFormattedString.replace(/\([^)]*\)|[a-zA-Z]/g, '');
   const regex = /([\u3131-\uD79D]+\s[\s\S]+?)(?=[\u3131-\uD79D]+\s|$)/g;
 
   const formattedStudentArray = [...unFormattedString.matchAll(regex)].map(match => match[0].trim().split(/\s+/));
+  const topNum = document.getElementById("select-option").value;
+
+  resultList.innerHTML = '';
 
   for(let i = 0; i < formattedStudentArray.length; i++) {
     let attendCount = 0;
@@ -32,16 +35,37 @@ function getTop() {
   }
 
   resultArray.sort((a, b) => parseInt(b[1], 10) - parseInt(a[1], 10));
-  const topThirty = resultArray.slice(0, 30);
 
-  if(topThirty.length === 0) {
-    resultList.innerHTML = 'None';
+  if(topNum === 'all') {
+     topStudent = resultArray.slice(0);
+  } else {
+     topStudent = resultArray.slice(0, Number(topNum));
+  }
+
+  if(topStudent.length === 0) {
+    let t1 = document.createElement("td");
+    let t2 = document.createElement("td");
+    let row = document.createElement("tr");
+
+    t1.innerHTML = 'None';
+    t2.innerHTML = 'None';
+    row.append(t1);
+    row.append(t2);
   }
 
   mainBox.removeClass('d-none');
-  title.innerHTML = `Result - ${topThirty.length}`;
+  resultContainer.removeClass('d-none');
 
-  for(let i = 0; i < topThirty.length; i++) {
-    resultList.innerHTML += `<div>${topThirty[i].join(' ')}</div>`;
+  title.innerHTML = `Result - ${topStudent.length}`;
+  for(let i = 0; i < topStudent.length; i++) {
+      let t1 = document.createElement("td");
+      let t2 = document.createElement("td");
+      let row = document.createElement("tr");
+
+      t1.innerHTML = `${topStudent[i][0]}`;
+      t2.innerHTML = `${Math.round(topStudent[i][1])}`;
+      row.append(t1);
+      row.append(t2);
+      resultList.append(row);
   }
 }
