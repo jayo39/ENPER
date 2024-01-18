@@ -15,8 +15,8 @@ $(function() {
         openBar();
 
         setTimeout(function() {
-                sidebar.css('transition', '0.3s');
-                body.css('transition', '0.3s');
+            sidebar.css('transition', '0.3s');
+            body.css('transition', '0.3s');
         }, 10);
     }
 
@@ -42,9 +42,15 @@ $(function() {
         }
     });
 
+    sidebar.click(function() {
+        checkSession();
+    });
+
     openSidebar.click(function() {
-        localStorage.setItem('barStatus', 'open');
-        openBar();
+        checkSession(function() {
+            localStorage.setItem('barStatus', 'open');
+            openBar();
+        });
     });
 
     closeSidebar.click(function() {
@@ -309,3 +315,19 @@ $(document).on('blur', '[data-schedule-id-name-input]', function() {
         });
     }
 });
+
+function checkSession(successCallback) {
+    $.ajax({
+        url: '/checkSession',
+        type: 'GET',
+        success: function(response) {
+            if (typeof successCallback === 'function') {
+                successCallback();
+            }
+        },
+        error: function(xhr, status, error) {
+            alert("Session expired.");
+            location.href = '/user/login';
+        }
+    });
+}
