@@ -1,5 +1,8 @@
 server:
   port: 8093
+  servlet:
+    session:
+      timeout: 1m
 
 spring:
   output:

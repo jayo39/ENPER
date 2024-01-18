@@ -9,7 +9,7 @@ $(function() {
 
     $("#sidebar").removeClass('d-none');
 
-    if(localStorage.getItem('barStatus') === 'open') {
+    if(!(typeof scheUser_id === 'undefined') && localStorage.getItem('barStatus') === 'open') {
         sidebar.css('transition', 'none');
         body.css('transition', 'none');
         openBar();
