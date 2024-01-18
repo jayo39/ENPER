@@ -47,9 +47,9 @@ public class ScheduleController {
 
     @PostMapping("/edit")
     @Transactional
-    public Map<String, Object> editOk(@RequestParam("schedule_id") Long schedule_id, @RequestParam(name = "time", required = false) LocalTime time, @RequestParam(name = "content", required = false) String content, @RequestParam(name = "isFinished", required = false) Boolean isFinished) {
+    public Map<String, Object> editOk(@RequestParam("schedule_id") Long schedule_id, @RequestParam(name = "time", required = false) LocalTime time, @RequestParam(name = "content", required = false) String content, @RequestParam(name = "isFinished", required = false) Boolean isFinished, @RequestParam(name = "name", required = false) String studentName) {
         Map<String, Object> response = new HashMap<>();
-        scheduleService.edit(schedule_id, time, content, isFinished);
+        scheduleService.edit(schedule_id, time, content, isFinished, studentName);
         response.put("status", "success");
         return response;
     }

@@ -53,3 +53,10 @@ body {
 .nav-active:hover {
     color: #fff;
 }
+
+.studentName {
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+}
+

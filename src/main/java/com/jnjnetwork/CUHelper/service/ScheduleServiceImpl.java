@@ -44,7 +44,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void edit(Long id, LocalTime time, String content, Boolean isFinished) {
+    public void edit(Long id, LocalTime time, String content, Boolean isFinished, String studentName) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(RuntimeException::new);
         if (time != null) {
             schedule.setEndTime(time);
@@ -55,6 +55,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         if (isFinished != null) {
             schedule.setIsFinished(isFinished);
+        }
+
+        if (studentName != null && !(studentName.equals(schedule.getStudentName()))) {
+            schedule.setStudentName(studentName);
         }
 
         scheduleRepository.saveAndFlush(schedule);

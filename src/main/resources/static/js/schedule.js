@@ -130,11 +130,11 @@ function buildSchedule(result) {
         let isFinished = schedule.isFinished;
         const row = `
             <div id="schedule-${id}">
-                <div id="schedule-info-${id}" class="d-flex justify-content-between align-items-center text-yellow">
-                    <div class="h5">
-                      <div>${studentName}</div>
+                <div id="schedule-info-${id}" class="d-flex justify-content-between align-items-center text-yellow input-group">
+                    <div class="mb-1 me-1">
+                      <div data-schedule-id-name="${id}" class="studentName">${studentName}</div>
                     </div>
-                    <div class="mb-1">
+                    <div class="mb-1 ms-1">
                       <input data-schedule-id-time="${id}" type="time" class="form-control" id="schedule-endTime" placeholder="" value="${endTime}">
                     </div>
                 </div>
@@ -259,3 +259,53 @@ function listenDelete(result) {
         });
     });
 }
+
+$(document).on('click', '.studentName', function() {
+    const schedule_id = $(this).attr("data-schedule-id-name");
+    var currentText = $(this).text();
+    var input = $('<input>', {
+        val: currentText,
+        type: 'text',
+        'class': 'form-control studentNameInput',
+        'data-schedule-id-name-input': schedule_id,
+        blur: function() {
+            var newText = $(this).val() || currentText;
+            var newDiv = $('<div>', {
+                text: newText,
+                'class': 'studentName',
+                'data-schedule-id-name': schedule_id
+            });
+
+            $(this).replaceWith(newDiv);
+        },
+        keyup: function(e) {
+            if (e.key === 'Enter') {
+                $(this).blur();
+            }
+        }
+    });
+
+    $(this).replaceWith(input);
+    input.focus();
+});
+$(document).on('blur', '[data-schedule-id-name-input]', function() {
+    const schedule_id = $(this).attr("data-schedule-id-name-input");
+    const name = $(this).val();
+
+    if (name !== '') {
+        const data = {
+            "schedule_id": schedule_id,
+            "name": name
+        };
+
+        $.ajax({
+            url: "/schedule/edit",
+            type: "POST",
+            cache: false,
+            data: data,
+            success: function(data, status, xhr) {
+                loadSchedule();
+            }
+        });
+    }
+});

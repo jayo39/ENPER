@@ -11,5 +11,5 @@ public interface ScheduleService {
     void save(Schedule schedule);
     void deleteById(Long id);
     void deleteAll();
-    void edit(Long id, LocalTime time, String content, Boolean isFinished);
+    void edit(Long id, LocalTime time, String content, Boolean isFinished, String studentName);
 }
