@@ -141,7 +141,7 @@ function buildSchedule(result) {
                       <div data-schedule-id-name="${id}" class="studentName">${studentName}</div>
                     </div>
                     <div class="mb-1 ms-1">
-                      <input data-schedule-id-time="${id}" type="time" class="form-control" id="schedule-endTime" placeholder="" value="${endTime}">
+                      <input data-schedule-id-time="${id}" type="time" class="form-control" id="schedule-endTime-${id}" placeholder="" value="${endTime}">
                     </div>
                 </div>
             </div>
@@ -152,7 +152,7 @@ function buildSchedule(result) {
                   <input id="check-${id}" data-schedule-id-check="${id}" class="form-check-input" type="checkbox" value="">
                 </div>
                 <div class="form-check form-switch">
-                  <input id="flexSwitchCheckDefault" data-schedule-id="${id}" class="form-check-input bg-secondary" type="checkbox" role="switch">
+                  <input data-schedule-id="${id}" class="form-check-input bg-secondary" type="checkbox" role="switch">
                 </div>
             </div>
             <hr class="bg-light border">
