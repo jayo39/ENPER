@@ -55,13 +55,13 @@ body {
 }
 
 .studentName {
-    font-weight: 650;
+    font-weight: 660;
     font-size: 16px;
     cursor: pointer;
 }
 
 .time-input {
-    width: 133px;
+    width: 135px;
 }
 
 .top-input {
