@@ -98,13 +98,6 @@ $(function() {
         $('#schedule-studentName').val('');
         $('#schedule-endTime-initial').val('');
     });
-
-    $('#schedule-studentName').on("input", function() {
-        var maxLength = 8;
-        if ($(this).val().length > maxLength) {
-          $(this).val($(this).val().substring(0, maxLength));
-        }
-    });
 });
 
 function loadSchedule() {
@@ -141,7 +134,7 @@ function buildSchedule(result) {
                       <div data-schedule-id-name="${id}" class="studentName">${studentName}</div>
                     </div>
                     <div class="mb-1 ms-1">
-                      <input data-schedule-id-time="${id}" type="time" class="form-control time-input" id="schedule-endTime-${id}" placeholder="" value="${endTime}">
+                      <input data-schedule-id-time="${id}" type="time" class="form-control time-input top-input" id="schedule-endTime-${id}" placeholder="" value="${endTime}">
                     </div>
                 </div>
             </div>
@@ -272,7 +265,7 @@ $(document).on('click', '.studentName', function() {
     var input = $('<input>', {
         val: currentText,
         type: 'text',
-        'class': 'form-control studentNameInput',
+        'class': 'form-control studentNameInput name-input top-input',
         'data-schedule-id-name-input': schedule_id,
         blur: function() {
             var newText = $(this).val() || currentText;
@@ -313,6 +306,12 @@ $(document).on('change', '[data-schedule-id-name-input]', function() {
                 loadSchedule();
             }
         });
+    }
+});
+
+$(document).on('input', '.name-input', function() {
+    if (this.value.length > 8) {
+        this.value = this.value.slice(0, 8);
     }
 });
 
