@@ -55,8 +55,8 @@ body {
 }
 
 .studentName {
-    font-weight: 660;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 19px;
     cursor: pointer;
 }
 
@@ -65,5 +65,5 @@ body {
 }
 
 .top-input {
-    height: 30px;
+    height: 31px;
 }
