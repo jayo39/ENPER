@@ -27,7 +27,7 @@ $(function() {
         sidebar.css('right', '0');
         $('#schedule').addClass('nav-active');
         if (screenWidth > 980) {
-            body.css('padding-right', '300px');
+            body.css('padding-right', '270px');
         }
     }
 
@@ -37,7 +37,7 @@ $(function() {
             if (screenWidth <= 980) {
                 body.css('padding-right', '0px');
             } else if (screenWidth > 980) {
-                body.css('padding-right', '300px');
+                body.css('padding-right', '270px');
             }
         }
     });
@@ -56,7 +56,7 @@ $(function() {
     closeSidebar.click(function() {
         isOpen = false;
         localStorage.removeItem('barStatus');
-        sidebar.css('right', '-300px');
+        sidebar.css('right', '-270px');
         $('#schedule').removeClass('nav-active');
         body.css('padding-right', '0px');
     });
@@ -294,7 +294,7 @@ $(document).on('click', '.studentName', function() {
     $(this).replaceWith(input);
     input.focus();
 });
-$(document).on('blur', '[data-schedule-id-name-input]', function() {
+$(document).on('change', '[data-schedule-id-name-input]', function() {
     const schedule_id = $(this).attr("data-schedule-id-name-input");
     const name = $(this).val();
 
