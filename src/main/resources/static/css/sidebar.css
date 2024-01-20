@@ -60,3 +60,6 @@ body {
     cursor: pointer;
 }
 
+.time-input {
+    width: 125px;
+}

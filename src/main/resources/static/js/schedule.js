@@ -141,7 +141,7 @@ function buildSchedule(result) {
                       <div data-schedule-id-name="${id}" class="studentName">${studentName}</div>
                     </div>
                     <div class="mb-1 ms-1">
-                      <input data-schedule-id-time="${id}" type="time" class="form-control" id="schedule-endTime-${id}" placeholder="" value="${endTime}">
+                      <input data-schedule-id-time="${id}" type="time" class="form-control time-input" id="schedule-endTime-${id}" placeholder="" value="${endTime}">
                     </div>
                 </div>
             </div>
