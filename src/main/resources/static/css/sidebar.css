@@ -8,7 +8,7 @@
     border-right: none;
     border-top: none;
     border-bottom: none;
-    transition: right 0.3s ease-in-out;
+    transition: right 0.2s ease-in-out;
     overflow: auto;
     z-index: 10;
 }

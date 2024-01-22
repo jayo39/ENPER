@@ -15,8 +15,8 @@ $(function() {
         openBar();
 
         setTimeout(function() {
-            sidebar.css('transition', '0.3s');
-            body.css('transition', '0.3s');
+            sidebar.css('transition', '0.2s');
+            body.css('transition', '0.2s');
         }, 10);
     }
 
