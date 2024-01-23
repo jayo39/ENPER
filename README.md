@@ -16,7 +16,11 @@ ENPER is a website for English teachers to easily look up study guides and book 
 - MDB - Material Design for Bootstrap
 - Java, Spring Boot 3.1.2, Spring Security
 - Gradle, JDBC, MySQL, Lombok, JPA, Validator
+- Ubuntu (VPS)
 - SummerNote API
+
+## Live Website
+- https://www.enper.net/
 
 ## Contact Information
 
