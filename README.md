@@ -7,7 +7,7 @@ ENPER is a website for English teachers to easily look up study guides and book 
 - View book contents.
 - Add summaries and chapter questions.
 - Manage student schedules.
-- Count students' total attendance.
+- Count and rank students' attendance.
 
 ## Technologies Used
 
