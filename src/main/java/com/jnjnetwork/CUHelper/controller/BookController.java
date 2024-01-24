@@ -88,6 +88,7 @@ public class BookController {
         }
         List<Book> books = bookService.findByKeyword(keyword);
         model.addAttribute("searchedBooks", books);
+        model.addAttribute("keyword", keyword);
         return "index";
     }
 }

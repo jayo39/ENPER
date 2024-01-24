@@ -38,6 +38,9 @@
             </tr>
         </thead>
         <tbody>
+            <tr th:if="${#lists.isEmpty(searchedBooks) && #lists.isEmpty(books)}">
+                <td colspan="12">No results were found for <b>[[${keyword}]]</b></td>
+            </tr>
             <tr th:if="${#lists.isEmpty(searchedBooks)}" th:each="book : ${books}" class="clickable">
                 <input type="hidden" th:value="${book.id}">
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
