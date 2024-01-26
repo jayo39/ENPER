@@ -33,6 +33,6 @@ out/
 /nbdist/
 /.nb-gradle/
 
-### VS Codee ###
+### VS Code ###
 .vscode/
 
