@@ -25,7 +25,7 @@ $(function() {
         isOpen = true;
         loadSchedule();
         sidebar.css('right', '0');
-        $('#schedule').addClass('nav-active');
+        $('#schedule').addClass('header-active');
         if (screenWidth > 980) {
             body.css('padding-right', '270px');
         }

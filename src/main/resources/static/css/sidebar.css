@@ -41,16 +41,16 @@ body {
         border-radius: 5px;
 }
 
-.nav-link:hover {
+.header-link:hover {
     color: #fff;
     transition: color 0.3s;
 }
 
-.nav-active {
+.header-active {
     color: #fff;
 }
 
-.nav-active:hover {
+.header-active:hover {
     color: #fff;
 }
 
