@@ -14,6 +14,12 @@ $(function() {
         if($('#book').val() === "") {
             $('#book').focus();
             return;
+        } else if($('#pageStart').val() === "") {
+            $('#pageStart').focus();
+            return;
+        } else if($('#pageEnd').val() === "") {
+            $('#pageEnd').focus();
+            return;
         }
         $("form[name='detailAdd']").submit();
     });
