@@ -13,6 +13,7 @@
     white-space: nowrap;
     width: 100%;
     margin-top: -5px;
+    scrollbar-width: none;
 }
 
 #ex1 {
