@@ -57,7 +57,7 @@ $(function() {
         isOpen = false;
         localStorage.removeItem('barStatus');
         sidebar.css('right', '-270px');
-        $('#schedule').removeClass('nav-active');
+        $('#schedule').removeClass('header-active');
         body.css('padding-right', '0px');
     });
 
