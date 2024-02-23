@@ -26,12 +26,6 @@ public class Book {
 
     private String description;
 
-    @Column(nullable = false)
-    private String title_formatted;
-
-    @Column(nullable = false)
-    private String series_formatted;
-
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String summary;
 

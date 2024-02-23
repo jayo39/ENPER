@@ -96,9 +96,7 @@ public class BookServiceImpl implements BookService{
         Book b = bookRepository.findById(book.getId()).orElseThrow(RuntimeException::new);
         if (b != null) {
             b.setTitle(book.getTitle());
-            b.setTitle_formatted(book.getTitle().toLowerCase().replaceAll(" ", ""));
             b.setSeries(book.getSeries());
-            b.setSeries_formatted(book.getSeries().toLowerCase().replaceAll(" ", ""));
             b.setDescription(book.getDescription());
             b.setSummary(book.getSummary());
             b.setBook_level(book.getBook_level());
@@ -109,7 +107,7 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<Book> findByKeyword(String keyword) {
-        String keywordFormatted = keyword.toLowerCase().replaceAll(" ", "");
+        String keywordFormatted = keyword.toLowerCase().replaceAll("\\s", "");
         Sort sort = Sort.by(Sort.Order.asc("title"));
         return bookRepository.findByKeywordInColumns(keywordFormatted, sort);
     }

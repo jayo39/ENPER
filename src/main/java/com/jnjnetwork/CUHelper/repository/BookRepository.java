@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    @Query("SELECT e FROM Book e WHERE e.title_formatted LIKE %:keyword% OR e.series_formatted LIKE %:keyword%")
+    @Query("SELECT e FROM Book e WHERE e.title LIKE %:keyword% OR e.series LIKE %:keyword%")
     List<Book> findByKeywordInColumns(@Param("keyword") String keyword, Sort sort);
 }

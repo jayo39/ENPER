@@ -40,8 +40,6 @@ public class BookController {
 
     @PostMapping("/addOk")
     public String addOk(Book book) {
-        book.setTitle_formatted(book.getTitle().toLowerCase().replaceAll(" ", ""));
-        book.setSeries_formatted(book.getSeries().toLowerCase().replaceAll(" ", ""));
         bookService.save(book);
         return "book/addOk";
     }
