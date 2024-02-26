@@ -75,14 +75,6 @@
     </table>
 
     <th:block th:insert="~{component/pagination::pagination}"></th:block>
-
-    <div class="d-flex justify-content-center mb-3">
-        <div>
-            <a class="btn btn-primary btn-rounded shadow-0" th:href="@{/book/add}" sec:authorize="hasRole('ADMIN')">Add Book</a>
-            <a class="btn btn-secondary btn-rounded shadow-0 mx-2" th:href="@{/detail/add}" sec:authorize="hasRole('ADMIN')">Add DS</a>
-            <a class="btn btn-secondary btn-rounded shadow-0" th:href="@{/question/add}" sec:authorize="hasRole('ADMIN')">Add CQ</a>
-        </div>
-    </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
