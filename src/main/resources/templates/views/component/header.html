@@ -22,12 +22,12 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                         <a
-                                data-mdb-dropdown-init
-                                class="header-link nav-link dropdown-toggle"
-                                href="#"
-                                id="navbarDropdownMenuLink"
-                                role="button"
-                                aria-expanded="false"
+                            data-mdb-dropdown-init
+                            class="header-link nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            aria-expanded="false"
                         >
                             Admin Panel
                         </a>
@@ -47,10 +47,24 @@
                         </ul>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a th:classappend="${nav == 'nav-desk-enroll' ? 'header-active' : ''}" class="header-link nav-link" href="/desk/enroll">Enroll</a>
-                    </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a th:classappend="${nav == 'nav-desk-attendance' ? 'header-active' : ''}" class="header-link nav-link" href="/desk/attendance">Attendance</a>
+                        <a
+                            data-mdb-dropdown-init
+                            class="header-link nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdownMenuLink2"
+                            role="button"
+                            aria-expanded="false"
+                        >
+                            Desk Tools
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="/desk/enroll">Enroll</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/desk/attendance">Attendance</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a id="schedule" class="header-link nav-link">Schedule</a>
