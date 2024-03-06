@@ -82,7 +82,12 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public Book findById(Long id) {
-        return bookRepository.findById(id).orElseThrow(RuntimeException::new);
+        try {
+            return bookRepository.findById(id).orElseThrow(RuntimeException::new);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     @Override

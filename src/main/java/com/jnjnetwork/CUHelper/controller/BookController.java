@@ -47,7 +47,12 @@ public class BookController {
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable long id, Model model) {
         Book book = bookService.findById(id);
-        List<Detail> details = book.getDetails();
+        List<Detail> details;
+        if (book != null) {
+            details = book.getDetails();
+        } else {
+            details = null;
+        }
         Question question = questionService.findByBookId(id);
         model.addAttribute("book", book);
         model.addAttribute("details", details);

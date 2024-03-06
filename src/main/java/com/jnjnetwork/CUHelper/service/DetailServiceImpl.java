@@ -47,9 +47,13 @@ public class DetailServiceImpl implements DetailService{
 
     @Override
     public List<Detail> findByBook(Book book) {
-        Long book_id = book.getId();
-        Sort sort = Sort.by(Sort.Order.asc("firstPage"));
-        return detailRepository.findByBookId(book_id, sort);
+        if (book != null) {
+            Long book_id = book.getId();
+            Sort sort = Sort.by(Sort.Order.asc("firstPage"));
+            return detailRepository.findByBookId(book_id, sort);
+        } else {
+            return null;
+        }
     }
 
     @Override

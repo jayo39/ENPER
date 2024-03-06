@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
 <script th:unless="${book}">
-  alert("This book no longer exists.");
+  alert("Invalid URL.");
   history.back();
 </script>
 
