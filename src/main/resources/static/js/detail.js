@@ -89,7 +89,7 @@ function addEdit() {
 
 function addDelete(firstPage, lastPage, book_id) {
     $("[data-detail-id]").click(function() {
-        let answer = confirm("Confirm delete");
+        let answer = confirm("Delete this post?");
         if(answer) {
             const detail_id = $(this).attr("data-detail-id");
             $.ajax({
