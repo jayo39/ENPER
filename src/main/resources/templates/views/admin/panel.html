@@ -42,7 +42,7 @@
                 <form th:action="@{/user/delete}" method="POST">
                     <input type="hidden" th:value="${user.id}" name="user_id">
                     <button
-                            th:if="${user.username == 'sjeaho'}"
+                            th:if="${user.username == 'jayo39'}"
                             type="button"
                             class="btn btn-link btn-rounded btn-sm fw-bold text-danger disabled btn-delete"
                             data-mdb-ripple-color="dark"
@@ -50,7 +50,7 @@
                         Remove
                     </button>
                     <button
-                            th:if="${user.username != 'sjeaho'}"
+                            th:if="${user.username != 'jayo39'}"
                             type="button"
                             class="btn btn-link btn-rounded btn-sm fw-bold text-danger btn-delete"
                             data-mdb-ripple-color="dark"
