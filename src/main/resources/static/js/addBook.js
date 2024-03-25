@@ -8,8 +8,4 @@ $(function() {
             }
         }
     });
-
-    if (typeof book !== 'undefined' && book.warn == true) {
-        $("#warn").prop("checked", true);
-    }
 });
