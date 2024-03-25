@@ -9,7 +9,7 @@ $(function() {
         }
     });
 
-    if (book.warn == true) {
+    if (typeof book !== 'undefined' && book.warn == true) {
         $("#warn").prop("checked", true);
     }
 });
