@@ -35,6 +35,9 @@ public class Book {
     @Column
     private Double ar_point;
 
+    @Column
+    private Boolean warn;
+
     @OneToMany
     @JoinColumn(name = "book_id")
     @ToString.Exclude

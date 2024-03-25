@@ -106,6 +106,7 @@ public class BookServiceImpl implements BookService{
             b.setSummary(book.getSummary());
             b.setBook_level(book.getBook_level());
             b.setAr_point(book.getAr_point());
+            b.setWarn(book.getWarn());
             bookRepository.saveAndFlush(b);
         }
     }

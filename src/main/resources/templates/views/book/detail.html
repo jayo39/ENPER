@@ -28,6 +28,12 @@
 
     <body>
         <div class="container-fluid mt-3">
+            <div class="alert alert-info fade show" th:if="${book.warn}" data-mdb-alert-init>
+                <div class="d-flex align-items-center">
+                    <div><i class="fas fa-triangle-exclamation fa-lg"></i></div>
+                    <div class="ms-3">The page numbers for 'Detailed Summary' may be inaccurate due to multiple print editions of the book. Consider checking the chapter numbers instead.</div><br>
+                </div>
+            </div>
             <h2>[[${book.title}]]</h2>
             <hr>
             <div id="ex1-wrapper">

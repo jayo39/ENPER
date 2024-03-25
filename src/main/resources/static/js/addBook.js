@@ -8,4 +8,8 @@ $(function() {
             }
         }
     });
+
+    if (book.warn == true) {
+        $("#warn").prop("checked", true);
+    }
 });
