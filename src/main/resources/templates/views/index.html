@@ -19,10 +19,11 @@
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col d-flex input-group">
-                <input class="form-control" type="search" placeholder="Search by title or series" aria-label="Search" name="value">
-                <button class="btn btn-primary shadow-0" type="submit"><i class="fas fa-search"></i></button>
+                <input class="form-control" type="search" id="searchBar" oninput="checkKeyword()" placeholder="Search by title or series" aria-label="Search" name="value">
+                <button class="btn btn-primary shadow-0" id="searchBtn" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </div>
+        <div id="keywordErr" class="d-none text-danger">Please enter a keyword that is at least 2 characters long.</div>
     </div>
 </form>
     <table class="table table-hover text-center mt-3">
@@ -80,4 +81,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script th:src="@{/js/booklist.js}"></script>
 <script src="/js/schedule.js"></script>
+<script src="/js/searchBar.js"></script>
 </html>
