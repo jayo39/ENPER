@@ -68,7 +68,7 @@ body {
     height: 31px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .table th, .table td {
         padding: 13px;
         font-size: 13px;
