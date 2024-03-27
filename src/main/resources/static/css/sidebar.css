@@ -67,3 +67,10 @@ body {
 .top-input {
     height: 31px;
 }
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        padding: 15px;
+        font-size: 13px;
+    }
+}
