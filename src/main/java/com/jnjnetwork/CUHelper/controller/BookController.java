@@ -88,6 +88,8 @@ public class BookController {
     public String searchOk(@RequestParam("value") String keyword, Model model) {
         if (keyword.isEmpty()) {
             return "redirect:/";
+        } else if (keyword.length() == 1) {
+            return "error/404";
         }
         List<Book> books = bookService.findByKeyword(keyword);
         model.addAttribute("searchedBooks", books);
