@@ -68,6 +68,10 @@ body {
     height: 31px;
 }
 
+#page {
+    overflow: hidden;
+}
+
 @media (max-width: 768px) {
     .table th, .table td {
         padding: 13px;
