@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="pagination">
-    <div class="container mt-1">
+    <div id="page" class="container mt-1">
         <ul class="pagination pagination-circle justify-content-center">
             <li class="page-item" th:if="${page > 1}"><a class="page-link" th:href="${url }" title="First">«</a></li>
             <li class="page-item" th:if="${startPage > 1 }"><a class="page-link" th:href="@{${url }(page=${startPage - 1 })}">‹</a></li>
