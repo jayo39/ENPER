@@ -535,7 +535,7 @@ function updateHandAndDisplay(angle) {
         hourButton.textContent = hour < 10 ? `0${hour}` : hour;
         updateActiveMarker(Math.floor(hour % 12), 'hour');
     } else {
-        const minute = snappedAngle / 6;
+        const minute = snappedAngle / 6 % 60;
         minuteButton.textContent = minute < 10 ? `0${minute}` : minute;
         updateActiveMarker(minute / 5, 'minute');
     }
