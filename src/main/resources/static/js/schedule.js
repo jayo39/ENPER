@@ -14,7 +14,6 @@ let mode = 'hour';
 let lastClickedTimeInput = null;
 let savehour = null;
 let saveminute = null;
-let minute_switch = false;
 let hour_switch = false;
 
 $(function() {
@@ -108,7 +107,7 @@ $(function() {
             $('#schedule-studentName').focus();
             return;
         } else if (!endTime) {
-            $('#schedule-endTime-initial').focus();
+            $("#initial").addClass('border border-2 border-primary rounded rounded-1');
             return;
         }
         const data = {
@@ -128,6 +127,7 @@ $(function() {
         $('#schedule-endTime-initial').val('');
         lastClickedTimeInput.getElementsByClassName("display-time")[0].textContent = '';
         lastClickedTimeInput = null;
+        $("#initial").removeClass('border border-2 border-primary rounded rounded-1');
     });
 });
 
@@ -471,19 +471,15 @@ $(document).on('click', '.timepicker-button.timepicker-submit', function() {
 
 
 function toggleToMinuteSelection() {
-    const newminute = minuteButton.textContent;
+    saveminute = minuteButton.textContent;
     $('#hour').addClass('d-none');
     $('#minute').removeClass('d-none');
     $('.timepicker-hour').removeClass('active');
     $('.timepicker-minute').addClass('active');
     mode = 'minute';
-    if (saveminute && !minute_switch) {
+    if (saveminute) {
         const minuteDegrees = saveminute * 6;
         updateActiveMarker(saveminute / 5, 'minute');
-        setHandRotation(minuteDegrees, 'minute');
-    } else if (newminute) {
-        const minuteDegrees = newminute * 6;
-        updateActiveMarker(newminute / 5, 'minute');
         setHandRotation(minuteDegrees, 'minute');
     } else {
         updateActiveMarker(0, 'minute');
