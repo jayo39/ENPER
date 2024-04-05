@@ -104,10 +104,8 @@ $(function() {
         const studentName = $('#schedule-studentName').val().trim();
         const endTime = $('#schedule-endTime-initial').val().trim();
         if(!studentName) {
-            $('#schedule-studentName').focus();
             return;
         } else if (!endTime) {
-            $("#initial").addClass('border border-2 border-primary rounded rounded-1');
             return;
         }
         const data = {
@@ -127,7 +125,6 @@ $(function() {
         $('#schedule-endTime-initial').val('');
         lastClickedTimeInput.getElementsByClassName("display-time")[0].textContent = '';
         lastClickedTimeInput = null;
-        $("#initial").removeClass('border border-2 border-primary rounded rounded-1');
     });
 });
 
