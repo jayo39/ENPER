@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+
+<th:block th:fragment="clock">
+  <div class="timepicker-modal d-none" role="dialog" tabindex="-1" id="clock-modal"><div class="timepicker-wrapper h-100 d-flex align-items-center justify-content-center flex-column position-fixed animation fade-in" style="animation-duration: 300ms;">
+    <div class="d-flex align-items-center justify-content-center flex-column timepicker-container">
+      <div class="d-flex flex-column timepicker-elements justify-content-around">
+        <div class="timepicker-head d-flex flex-row align-items-center justify-content-center" style="padding-right:0px">
+          <div class="timepicker-head-content d-flex w-100 justify-content-evenly">
+            <div class="timepicker-current-wrapper">
+                 <span class="position-relative h-100">
+                   <button type="button" class="timepicker-current timepicker-hour active" tabindex="0">12</button>
+                 </span>
+              <button type="button" class="timepicker-dot" disabled="">:</button>
+              <span class="position-relative h-100">
+                 <button type="button" class="timepicker-current timepicker-minute" tabindex="0">00</button>
+               </span>
+            </div>
+            <div class="d-flex flex-column justify-content-center timepicker-mode-wrapper">
+              <button type="button" class="timepicker-hour-mode timepicker-am" tabindex="0">AM</button>
+              <button class="timepicker-hour-mode timepicker-pm active" tabindex="0">PM</button>
+            </div>
+          </div>
+        </div>
+        <div id="hour" class=" timepicker-clock-wrapper d-flex justify-content-center flex-column align-items-center">
+          <div class="timepicker-clock timepicker-clock-animation">
+            <span class="timepicker-middle-dot position-absolute"></span>
+            <div id="handHour" class="timepicker-hand-pointer position-absolute" style="transform: rotateZ(360deg);">
+              <div class="timepicker-circle position-absolute active"></div>
+            </div>
+
+            <span class="timepicker-time-tips-hours active" style="left: 114px; bottom: 224px;"><span class="timepicker-tips-element">12</span></span><span class="timepicker-time-tips-hours" style="left: 169px; bottom: 209.263px;"><span class="timepicker-tips-element">1</span></span><span class="timepicker-time-tips-hours" style="left: 209.263px; bottom: 169px;"><span class="timepicker-tips-element">2</span></span><span class="timepicker-time-tips-hours" style="left: 224px; bottom: 114px;"><span class="timepicker-tips-element">3</span></span><span class="timepicker-time-tips-hours" style="left: 209.263px; bottom: 59px;"><span class="timepicker-tips-element">4</span></span><span class="timepicker-time-tips-hours" style="left: 169px; bottom: 18.7372px;"><span class="timepicker-tips-element">5</span></span><span class="timepicker-time-tips-hours" style="left: 114px; bottom: 4px;"><span class="timepicker-tips-element">6</span></span><span class="timepicker-time-tips-hours" style="left: 59px; bottom: 18.7372px;"><span class="timepicker-tips-element">7</span></span><span class="timepicker-time-tips-hours" style="left: 18.7372px; bottom: 59px;"><span class="timepicker-tips-element">8</span></span><span class="timepicker-time-tips-hours" style="left: 4px; bottom: 114px;"><span class="timepicker-tips-element">9</span></span><span class="timepicker-time-tips-hours" style="left: 18.7372px; bottom: 169px;"><span class="timepicker-tips-element">10</span></span><span class="timepicker-time-tips-hours" style="left: 59px; bottom: 209.263px;"><span class="timepicker-tips-element">11</span></span>
+          </div>
+        </div>
+        <div id="minute" class="d-none timepicker-clock-wrapper d-flex justify-content-center flex-column align-items-center">
+          <div class="timepicker-clock timepicker-clock-animation">
+            <span class="timepicker-middle-dot position-absolute"></span>
+            <div id="handMin" class="timepicker-hand-pointer position-absolute" style="transform: rotateZ(360deg); height: calc(40% + 1px);">
+              <div class="timepicker-circle position-absolute active"></div>
+            </div>
+
+            <span class="timepicker-time-tips-minutes active" style="left: 114px; bottom: 224px;"><span class="timepicker-tips-element">00</span></span><span class="timepicker-time-tips-minutes" style="left: 169px; bottom: 209.263px;"><span class="timepicker-tips-element">05</span></span><span class="timepicker-time-tips-minutes" style="left: 209.263px; bottom: 169px;"><span class="timepicker-tips-element">10</span></span><span class="timepicker-time-tips-minutes" style="left: 224px; bottom: 114px;"><span class="timepicker-tips-element">15</span></span><span class="timepicker-time-tips-minutes" style="left: 209.263px; bottom: 59px;"><span class="timepicker-tips-element">20</span></span><span class="timepicker-time-tips-minutes" style="left: 169px; bottom: 18.7372px;"><span class="timepicker-tips-element">25</span></span><span class="timepicker-time-tips-minutes" style="left: 114px; bottom: 4px;"><span class="timepicker-tips-element">30</span></span><span class="timepicker-time-tips-minutes" style="left: 59px; bottom: 18.7372px;"><span class="timepicker-tips-element">35</span></span><span class="timepicker-time-tips-minutes" style="left: 18.7372px; bottom: 59px;"><span class="timepicker-tips-element">40</span></span><span class="timepicker-time-tips-minutes" style="left: 4px; bottom: 114px;"><span class="timepicker-tips-element">45</span></span><span class="timepicker-time-tips-minutes" style="left: 18.7372px; bottom: 169px;"><span class="timepicker-tips-element">50</span></span><span class="timepicker-time-tips-minutes" style="left: 59px; bottom: 209.263px;"><span class="timepicker-tips-element">55</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="timepicker-footer">
+        <div class="w-100 d-flex justify-content-between">
+          <button type="button" class="timepicker-button timepicker-clear" tabindex="0">Clear</button>
+          <button type="button" class="timepicker-button timepicker-cancel" tabindex="0">Cancel</button>
+          <button type="button" class="timepicker-button timepicker-submit" tabindex="0">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</th:block>

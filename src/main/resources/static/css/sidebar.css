@@ -61,7 +61,8 @@ body {
 }
 
 .time-input {
-    width: 135px;
+    width: 128px;
+    cursor: pointer;
 }
 
 .top-input {

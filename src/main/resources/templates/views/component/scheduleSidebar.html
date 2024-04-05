@@ -22,7 +22,13 @@
               <input type="text" class="form-control name-input top-input" id="schedule-studentName" placeholder="Name">
             </div>
             <div class="ms-1">
-              <input type="time" class="form-control time-input top-input" id="schedule-endTime-initial">
+              <div id="initial" class="top-input form-control time-input d-flex justify-content-end align-items-center column-gap-3">
+                <div class="display-time"></div>
+                <div>
+                  <i class="far fa-clock"></i>
+                </div>
+              </div>
+              <input type="text" id="schedule-endTime-initial" hidden>
             </div>
           </div>
         </div>

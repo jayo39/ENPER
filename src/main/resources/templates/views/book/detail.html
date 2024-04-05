@@ -9,6 +9,7 @@
 <th:block th:if="${book}" th:with="logged_user=${#authentication.principal.user}">
     <th:block th:insert="~{component/header.html::header}"></th:block>
     <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
+    <th:block th:insert="~{component/clock.html::clock}"></th:block>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +17,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/modules/0a348b55c7b346c6205166c353ec4c44.min.css">
         <link href="/css/sidebar.css" rel="stylesheet">
         <link href="/css/detail.css" rel="stylesheet">
         <meta property="og:image" content="/image/enper.png">
