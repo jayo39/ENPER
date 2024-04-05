@@ -14,6 +14,8 @@ let mode = 'hour';
 let lastClickedTimeInput = null;
 let savehour = null;
 let saveminute = null;
+let minute_switch = false;
+let hour_switch = false;
 
 $(function() {
     const sidebar = $('#sidebar');
@@ -381,6 +383,8 @@ function openClockModal() {
 }
 
 function closeClockModal() {
+    hour_switch = false;
+    minute_switch = false;
     clockmodal.addClass('d-none');
 }
 
@@ -435,10 +439,12 @@ $(document).on('click', '.timepicker-pm', function() {
 });
 
 $(document).on('click', '.timepicker-hour', function() {
+    hour_switch = true;
     toggleToHourSelection();
 });
 
 $(document).on('click', '.timepicker-minute', function() {
+    minute_switch = true;
     toggleToMinuteSelection();
 });
 
@@ -465,14 +471,19 @@ $(document).on('click', '.timepicker-button.timepicker-submit', function() {
 
 
 function toggleToMinuteSelection() {
+    const newminute = minuteButton.textContent;
     $('#hour').addClass('d-none');
     $('#minute').removeClass('d-none');
     $('.timepicker-hour').removeClass('active');
     $('.timepicker-minute').addClass('active');
     mode = 'minute';
-    if (saveminute) {
+    if (saveminute && !minute_switch) {
         const minuteDegrees = saveminute * 6;
         updateActiveMarker(saveminute / 5, 'minute');
+        setHandRotation(minuteDegrees, 'minute');
+    } else if (newminute) {
+        const minuteDegrees = newminute * 6;
+        updateActiveMarker(newminute / 5, 'minute');
         setHandRotation(minuteDegrees, 'minute');
     } else {
         updateActiveMarker(0, 'minute');
@@ -481,14 +492,19 @@ function toggleToMinuteSelection() {
 }
 
 function toggleToHourSelection() {
+    const newhour = hourButton.textContent;
     $('#minute').addClass('d-none');
     $('#hour').removeClass('d-none');
     $('.timepicker-minute').removeClass('active');
     $('.timepicker-hour').addClass('active');
     mode = 'hour';
-    if (savehour) {
+    if (savehour && !hour_switch) {
         updateActiveMarker(Math.floor(savehour % 12), 'hour');
         const hourDegrees = ((savehour % 12) / 12) * 360;
+        setHandRotation(hourDegrees, 'hour');
+    } else if (newhour) {
+        updateActiveMarker(Math.floor(newhour % 12), 'hour');
+        const hourDegrees = ((newhour % 12) / 12) * 360;
         setHandRotation(hourDegrees, 'hour');
     } else {
         updateActiveMarker(0, 'hour');
