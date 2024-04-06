@@ -14,7 +14,6 @@ let mode = 'hour';
 let lastClickedTimeInput = null;
 let savehour = null;
 let saveminute = null;
-let hour_switch = false;
 
 $(function() {
     const sidebar = $('#sidebar');
@@ -485,19 +484,15 @@ function toggleToMinuteSelection() {
 }
 
 function toggleToHourSelection() {
-    const newhour = hourButton.textContent;
+    savehour = hourButton.textContent;
     $('#minute').addClass('d-none');
     $('#hour').removeClass('d-none');
     $('.timepicker-minute').removeClass('active');
     $('.timepicker-hour').addClass('active');
     mode = 'hour';
-    if (savehour && !hour_switch) {
+    if (savehour) {
         updateActiveMarker(Math.floor(savehour % 12), 'hour');
         const hourDegrees = ((savehour % 12) / 12) * 360;
-        setHandRotation(hourDegrees, 'hour');
-    } else if (newhour) {
-        updateActiveMarker(Math.floor(newhour % 12), 'hour');
-        const hourDegrees = ((newhour % 12) / 12) * 360;
         setHandRotation(hourDegrees, 'hour');
     } else {
         updateActiveMarker(0, 'hour');
