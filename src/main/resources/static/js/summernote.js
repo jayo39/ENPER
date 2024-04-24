@@ -13,15 +13,15 @@ $(function() {
           ['view', ['undo', 'redo']],
         ],
         hint: {
-          words: ['→'],
-          match: /\B>(\w*)$/,
+          words: ['→', '★'],
+          match: /([>*])$/,
           search: function (keyword, callback) {
             callback($.grep(this.words, function (item) {
-              return item.indexOf(keyword) == 0;
+              return (keyword === '>' && item === '→') || (keyword === '*' && item === '★');
             }));
           },
-          content: function () {
-            return '→';
+          content: function (item) {
+            return item;
           }
         }
     });
