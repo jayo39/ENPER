@@ -62,7 +62,7 @@ function buildDetail(result) {
         const row = `
             <div id="detail-${id}" class="my-2">
                 <div class="border bg-light rounded p-2">
-                    <p class="fw-bold">${firstPage} - ${lastPage}</p>
+                    <div class="badge badge-pill badge-info">Page Numbers: ${firstPage}‒${lastPage}</div>
                     <p>${content}</p>
                     <div class="d-flex justify-content-end">
                         <div class="mx-2">
