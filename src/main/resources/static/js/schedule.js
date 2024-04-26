@@ -339,10 +339,7 @@ $(document).on('change', '[data-schedule-id-name-input]', function() {
             url: "/schedule/edit",
             type: "POST",
             cache: false,
-            data: data,
-            success: function(data, status, xhr) {
-                loadSchedule();
-            }
+            data: data
         });
     }
 });
