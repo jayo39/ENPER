@@ -48,17 +48,13 @@ function processInput(input) {
   }
 
 function getUnenroll(yesterdayArray, todayArray, tomorrowArray) {
-    const combinedSet = new Set([...todayArray, ...tomorrowArray]);
+    const combinedSet = new Set([...yesterdayArray, ...todayArray]);
 
-    const newArray = yesterdayArray.filter(item => !combinedSet.has(item));
+    const newArray = Array.from(combinedSet).filter(item => !tomorrowArray.includes(item));
 
     return newArray;
 }
 
 function getEnroll(yesterdayArray, todayArray, tomorrowArray) {
-    const combinedSet = new Set([...yesterdayArray, ...todayArray]);
-
-    const newArray = tomorrowArray.filter(item => !combinedSet.has(item));
-
-    return newArray;
+    return tomorrowArray;
 }

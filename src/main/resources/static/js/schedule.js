@@ -89,14 +89,17 @@ $(function() {
     });
 
     clearBtn.click(function() {
-        $.ajax({
-            url: "/schedule/clear",
-            type: "POST",
-            cache: false,
-            success: function(data, status, xhr) {
-                loadSchedule();
-            }
-        });
+        let answer = confirm("Clear all?");
+        if(answer) {
+            $.ajax({
+                url: "/schedule/clear",
+                type: "POST",
+                cache: false,
+                success: function(data, status, xhr) {
+                    loadSchedule();
+                }
+            });
+        }
     });
 
     $("#add-btn").click(function() {
