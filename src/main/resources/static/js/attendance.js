@@ -24,12 +24,18 @@ function getTop() {
 
   for(let i = 0; i < formattedStudentArray.length; i++) {
     let attendCount = 0;
-    const isTimeStamp = (str) => /^\d{2}:\d{2}$/.test(str);
+    const isSymbols = (str) => /^[△○\s]*$/.test(str);
     const isKoreanName = (str) => /[\u3131-\uD79D]+/.test(str);
 
-    const filteredArray = formattedStudentArray[i].filter(item => isKoreanName(item) || isTimeStamp(item));
+    const filteredArray = formattedStudentArray[i].filter(item => isKoreanName(item) || isSymbols(item));
     formattedStudentArray[i] = filteredArray;
-    attendCount = (formattedStudentArray[i].length - 1) / 3;
+    for (const item of filteredArray) {
+        if (isSymbols(item)) {
+            const triangles = (item.match(/△/g) || []).length;
+            const circles = (item.match(/○/g) || []).length;
+            attendCount += triangles * 1 + circles * 2;
+        }
+    }
     oneResultArray = [formattedStudentArray[i][0], attendCount];
     resultArray = [...resultArray, oneResultArray];
   }
