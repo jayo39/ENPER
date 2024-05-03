@@ -54,7 +54,7 @@ $(function() {
         sidebar.css('right', '0');
         $('#schedule').addClass('header-active');
         if (screenWidth > 980) {
-            body.css('padding-right', '270px');
+            body.css('padding-right', '265px');
         }
     }
 
@@ -64,7 +64,7 @@ $(function() {
             if (screenWidth <= 980) {
                 body.css('padding-right', '0px');
             } else if (screenWidth > 980) {
-                body.css('padding-right', '270px');
+                body.css('padding-right', '265px');
             }
         }
     });
@@ -83,7 +83,7 @@ $(function() {
     closeSidebar.click(function() {
         isOpen = false;
         localStorage.removeItem('barStatus');
-        sidebar.css('right', '-270px');
+        sidebar.css('right', '-265px');
         $('#schedule').removeClass('header-active');
         body.css('padding-right', '0px');
     });

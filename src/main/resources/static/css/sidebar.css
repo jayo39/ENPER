@@ -1,8 +1,8 @@
 .sidebar {
     position: fixed;
     top: 0;
-    right: -270px;
-    width: 270px;
+    right: -265px;
+    width: 265px;
     padding: 20px;
     height: 100%;
     border-right: none;
@@ -54,6 +54,10 @@ body {
     color: #fff;
 }
 
+.title-border {
+    margin-top: -12px;
+}
+
 .studentName {
     font-weight: 600;
     font-size: 19px;
@@ -61,8 +65,13 @@ body {
 }
 
 .time-input {
-    width: 128px;
+    width: 125px;
     cursor: pointer;
+    text-wrap: nowrap;
+}
+
+.stu-note {
+    font-size: 14px;
 }
 
 .top-input {
