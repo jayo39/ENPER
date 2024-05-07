@@ -11,6 +11,7 @@
     transition: right 0.2s ease-in-out;
     overflow: auto;
     z-index: 10;
+    background-color: #212121;
 }
 
 #schedule {

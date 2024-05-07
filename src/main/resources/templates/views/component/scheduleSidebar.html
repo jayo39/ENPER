@@ -6,13 +6,13 @@
   <script th:inline="javascript" sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
     var scheUser_id = [[${logged_user.id}]];
   </script>
-  <div class="sidebar bg-dark d-none" id="sidebar">
+  <div class="sidebar d-none" id="sidebar">
     <div class="d-flex justify-content-end">
       <button id="closeSidebar" class="btn-close btn-close-white"></button>
     </div>
     <div id="schedule-wrap">
       <div id="schedule-title" class="h4 text-light"></div>
-      <hr class="title-border bg-light border">
+      <hr class="border">
       <div id="schedule-list">
         <!-- Load from JS -->
       </div>

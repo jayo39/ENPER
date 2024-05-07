@@ -192,7 +192,7 @@ function buildSchedule(result) {
                   <input data-schedule-id="${id}" class="form-check-input bg-secondary" type="checkbox" role="switch">
                 </div>
             </div>
-            <hr class="bg-light border">
+            <hr class="border">
         `;
         out.push(row);
     });
