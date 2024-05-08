@@ -10,6 +10,6 @@ public interface ScheduleService {
     List<Schedule> findByUserId(Long user_id);
     void save(Schedule schedule);
     void deleteById(Long id);
-    void deleteAll();
+    void deleteByUserId(Long user_id);
     void edit(Long id, LocalTime time, String content, Boolean isFinished, String studentName);
 }

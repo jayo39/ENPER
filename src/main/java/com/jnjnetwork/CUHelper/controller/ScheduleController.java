@@ -63,6 +63,7 @@ public class ScheduleController {
     @PostMapping("/clear")
     @Transactional
     public void clearOk() {
-        scheduleService.deleteAll();
+        User user = U.getLoggedUser();
+        scheduleService.deleteByUserId(user.getId());
     }
 }

@@ -39,8 +39,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void deleteAll() {
-        scheduleRepository.deleteAll();
+    public void deleteByUserId(Long user_id) {
+        scheduleRepository.deleteByUserId(user_id);
     }
 
     @Override
