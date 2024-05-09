@@ -42,7 +42,7 @@
         </thead>
         <tbody>
             <tr th:if="${#lists.isEmpty(searchedBooks) && #lists.isEmpty(books)}">
-                <td colspan="12">No results found - <b>[[${keyword}]]</b></td>
+                <td colspan="12">No results found - <b>[[${keyword}]]</b>.</td>
             </tr>
             <tr th:if="${#lists.isEmpty(searchedBooks)}" th:each="book : ${books}" class="clickable">
                 <input type="hidden" th:value="${book.id}">
@@ -82,6 +82,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script th:src="@{/js/booklist.js}"></script>
+<script th:src="@{/js/addHistory.js}"></script>
 <script src="/js/schedule.js"></script>
 <script src="/js/searchBar.js"></script>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/modules/0a348b55c7b346c6205166c353ec4c44.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/booklist.css}">
+    <link href="/css/sidebar.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+    <meta property="og:image" content="/image/enper.png">
+    <meta property="og:title" content="ENPER">
+    <title>ENPER</title>
+</head>
+<body>
+<th:block th:insert="~{component/header.html::header}"></th:block>
+<th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
+<th:block th:insert="~{component/clock.html::clock}"></th:block>
+<div class="container-fluid">
+    <h2>View History</h2>
+    <hr>
+</div>
+<div>
+    <div class="container-fluid d-flex">
+        <div class="w-25">
+            <select id="select-option" class="form-control custom-dropdown" onchange="handleUserChange(this)">
+                <option value="" selected>All Users</option>
+                <option th:each="user : ${users}" th:text="${user.username}" th:value="${user.id}"></option>
+            </select>
+        </div>
+    </div>
+    <div id="history-table" class="my-3">
+        <table class="table text-center">
+            <thead class="table-secondary">
+            <tr>
+                <th>Username</th>
+                <th>Book Title</th>
+                <th>Book Series</th>
+                <th>Access Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="info-body"></tbody>
+        </table>
+    </div>
+    <div class="container-fluid d-flex justify-content-center mb-3">
+        <button type="button" id="purgeBtn" class="btn btn-rounded btn-danger fw-bold shadow-0">Purge</button>
+    </div>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="/js/schedule.js"></script>
+<script src="/js/userInfo.js"></script>
+</html>

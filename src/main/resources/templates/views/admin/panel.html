@@ -28,34 +28,42 @@
     <hr>
 </div>
 <div>
-    <table class="table table-hover text-center mt-3">
+    <table class="table text-center mt-3">
         <thead class="table-secondary">
         <tr>
-            <th class="w-50">Username</th>
+            <th>Username</th>
             <th>Last Login</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${users}">
-            <td class="align-middle" th:text="${user.username}"></td>
-            <td class="align-middle" th:text="${user.formattedLogDate}"></td>
+            <td class="align-middle">
+                <div class="d-flex justify-content-center gap-1" th:if="${user.username == 'jayo39'}">
+                    <div th:text="${user.username}"></div>
+                    <div>
+                        <span class="badge rounded-pill badge-danger"><i class="fas fa-gear"></i></span>
+                    </div>
+                </div>
+                <div th:if="${user.username != 'jayo39'}">
+                    <div th:text="${user.username}"></div>
+                </div>
+            </td>
+            <td th:text="${user.formattedLogDate}"></td>
             <td class="align-middle">
                 <form th:action="@{/user/delete}" method="POST">
                     <input type="hidden" th:value="${user.id}" name="user_id">
                     <button
-                            th:if="${user.username == 'jayo39'}"
                             type="button"
-                            class="btn btn-link btn-rounded btn-sm fw-bold text-danger disabled btn-delete"
-                            data-mdb-ripple-color="dark"
+                            th:if="${user.username == 'jayo39'}"
+                            class="btn btn-link btn-rounded btn-sm text-danger fw-bold disabled btn-delete"
                     >
                         Remove
                     </button>
                     <button
-                            th:if="${user.username != 'jayo39'}"
                             type="button"
-                            class="btn btn-link btn-rounded btn-sm fw-bold text-danger btn-delete"
-                            data-mdb-ripple-color="dark"
+                            th:if="${user.username != 'jayo39'}"
+                            class="btn btn-link btn-rounded btn-sm text-danger fw-bold btn-delete"
                     >
                         Remove
                     </button>

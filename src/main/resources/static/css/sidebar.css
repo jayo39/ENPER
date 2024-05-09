@@ -30,6 +30,11 @@ body {
     color: #FFFF00;
 }
 
+#history-table {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
 .custom-dropdown {
     appearance: none;
     background-image: url('/image/dropdown.png');

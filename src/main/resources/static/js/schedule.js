@@ -89,7 +89,7 @@ $(function() {
     });
 
     clearBtn.click(function() {
-        let answer = confirm("Clear all?");
+        let answer = confirm("This will clear your schedule!");
         if(answer) {
             $.ajax({
                 url: "/schedule/clear",
@@ -280,9 +280,7 @@ function listenDelete(result) {
                 url: "/schedule/edit",
                 type: "POST",
                 cache: false,
-                data: data,
-                success: function(data, status, xhr) {
-                }
+                data: data
             });
         }
     });

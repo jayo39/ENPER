@@ -26,4 +26,10 @@ public class AdminController {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
     }
+
+    @GetMapping("/history")
+    public void history(Model model) {
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+    }
 }
