@@ -2,6 +2,7 @@ package com.jnjnetwork.CUHelper.service;
 
 import com.jnjnetwork.CUHelper.domain.Role;
 import com.jnjnetwork.CUHelper.domain.User;
+import com.jnjnetwork.CUHelper.repository.HistoryRepository;
 import com.jnjnetwork.CUHelper.repository.RoleRepository;
 import com.jnjnetwork.CUHelper.repository.ScheduleRepository;
 import com.jnjnetwork.CUHelper.repository.UserRepository;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
     RoleRepository roleRepository;
     ScheduleRepository scheduleRepository;
+    HistoryRepository historyRepository;
 
     @Autowired
     public void setScheduleRepository(ScheduleRepository scheduleRepository) {
@@ -33,6 +35,10 @@ public class UserServiceImpl implements UserService{
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+    @Autowired
+    public void setHistoryRepository(HistoryRepository historyRepository) {
+        this.historyRepository = historyRepository;
     }
 
     @Override
@@ -78,6 +84,7 @@ public class UserServiceImpl implements UserService{
     public void removeById(Long user_id) {
         User user = userRepository.findById(user_id).orElseThrow(RuntimeException::new);
         scheduleRepository.deleteByUserId(user.getId());
+        historyRepository.deleteByUserId(user.getId());
         userRepository.delete(user);
     }
 
