@@ -14,4 +14,7 @@ public class DeskController {
     @GetMapping("/attendance")
     public void attendance() {}
 
+    @GetMapping("/worksheet")
+    public void worksheet() {}
+
 }

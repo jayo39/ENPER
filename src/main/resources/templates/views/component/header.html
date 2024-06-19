@@ -4,94 +4,99 @@
       xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 
 <th:block th:fragment="header">
-    <nav data-mdb-navbar-init class="navbar navbar-expand-sm navbar-dark bg-dark shadow-0">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">ENPER</a>
-            <button
-                    data-mdb-collapse-init
-                    class="navbar-toggler"
-                    type="button"
-                    data-mdb-target="#mynavbar"
-                    aria-controls="mynavbar"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                        <a
-                            data-mdb-dropdown-init
-                            class="header-link nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            aria-expanded="false"
-                        >
-                            Admin Panel
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="/admin/panel">Manage Users</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/admin/history">View History</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/book/add">Add Book</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/detail/add">Add Detailed Summary</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/question/add">Add Chapter Question</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a
-                            data-mdb-dropdown-init
-                            class="header-link nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink2"
-                            role="button"
-                            aria-expanded="false"
-                        >
-                            Desk Tools
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="/desk/enroll">Enroll</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/desk/attendance">Attendance</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a id="schedule" class="header-link nav-link">Schedule</a>
-                    </li>
-                </ul>
+    <div class="hide">
+        <nav data-mdb-navbar-init class="navbar navbar-expand-sm navbar-dark bg-dark shadow-0">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">ENPER</a>
+                <button
+                        data-mdb-collapse-init
+                        class="navbar-toggler"
+                        type="button"
+                        data-mdb-target="#mynavbar"
+                        aria-controls="mynavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                            <a
+                                    data-mdb-dropdown-init
+                                    class="header-link nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdownMenuLink"
+                                    role="button"
+                                    aria-expanded="false"
+                            >
+                                Admin Panel
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="/admin/panel">Manage Users</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/admin/history">View History</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/book/add">Add Book</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/detail/add">Add Detailed Summary</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/question/add">Add Chapter Question</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <a
+                                    data-mdb-dropdown-init
+                                    class="header-link nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdownMenuLink2"
+                                    role="button"
+                                    aria-expanded="false"
+                            >
+                                Desk Tools
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="/desk/enroll">Enroll</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/desk/attendance">Attendance</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/desk/worksheet">Create Worksheet</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <a id="schedule" class="header-link nav-link">Schedule</a>
+                        </li>
+                    </ul>
 
-                <a class="btn btn-primary shadow-0" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+                    <a class="btn btn-primary shadow-0" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
 
-                <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
+                    <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
                     <span class="d-flex">
                       <span><button class="btn btn-secondary shadow-0" type="submit">Logout</button></span>
                     </span>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-    </nav>
-    <div class="container-fluid mt-3">
-        <div class="alert alert-secondary alert-dismissible fade show" sec:authorize="isAnonymous()" data-mdb-alert-init>
-            <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
-            You are not logged in.<br>
-        </div>
-        <div class="alert alert-success alert-dismissible fade show" sec:authorize="isAuthenticated()" th:with="user=${#authentication.principal.user}" data-mdb-alert-init>
-            <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
-            Logged in as [[${user.username}]].<br>
+        </nav>
+        <div class="container-fluid mt-3">
+            <div class="alert alert-secondary alert-dismissible fade show" sec:authorize="isAnonymous()" data-mdb-alert-init>
+                <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
+                You are not logged in.<br>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show" sec:authorize="isAuthenticated()" th:with="user=${#authentication.principal.user}" data-mdb-alert-init>
+                <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
+                Logged in as [[${user.username}]].<br>
+            </div>
         </div>
     </div>
 </th:block>
