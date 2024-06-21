@@ -64,7 +64,6 @@ function printDocument() {
     let foundEmpty = false;
     $('.worksheet-form').each(function() {
         if ($(this).val().trim() === '') {
-            alert("You must fill in all the fields.")
             $(this).focus();
             foundEmpty = true;
             return false;
