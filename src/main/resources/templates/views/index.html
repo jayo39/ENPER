@@ -49,8 +49,8 @@
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
                 <td class="align-middle" th:text="${book.series}" colspan="2"></td>
                 <td class="align-middle" th:utext="${book.description}" colspan="4"></td>
-                <td class="align-middle" th:text="${book.book_level}" colspan="1"></td>
-                <td class="align-middle" th:text="${book.ar_point}" colspan="1"></td>
+                <td class="align-middle" th:text="${book.book_level != null ? book.book_level : '-'}" colspan="1"></td>
+                <td class="align-middle" th:text="${book.ar_point != null ? book.book_level : '-'}" colspan="1"></td>
                 <td class="align-middle" th:text="${#lists.size(book.details)}" colspan="1"></td>
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
                     <span class="badge badge-success rounded-pill d-inline">Y</span>
@@ -64,8 +64,8 @@
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
                 <td class="align-middle" th:text="${book.series}" colspan="2"></td>
                 <td class="align-middle" th:utext="${book.description}" colspan="4"></td>
-                <td class="align-middle" th:text="${book.book_level}" colspan="1"></td>
-                <td class="align-middle" th:text="${book.ar_point}" colspan="1"></td>
+                <td class="align-middle" th:text="${book.book_level != null ? book.book_level : '-'}" colspan="1"></td>
+                <td class="align-middle" th:text="${book.ar_point != null ? book.book_level : '-'}" colspan="1"></td>
                 <td class="align-middle" th:text="${#lists.size(book.details)}" colspan="1"></td>
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
                     <span class="badge badge-success rounded-pill d-inline">Y</span>
