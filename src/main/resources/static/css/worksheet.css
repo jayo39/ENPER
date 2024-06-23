@@ -122,7 +122,7 @@
   }
 
   .page-container {
-    position: absolute;
+    position: static !important;
     transform: none !important;
     top: 0;
     left: 0;
