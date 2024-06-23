@@ -97,7 +97,8 @@ function printDocument() {
             }
             $('#word-' + i).html(content);
         }
-        $('.page-text-footer').text($('#book-title').val())
+        $('.page-text-footer').text($('#book-title').val());
+        window.scrollTo(0, 0);
         window.print();
     }
 
