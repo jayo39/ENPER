@@ -114,9 +114,6 @@
   body, html {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
-    position: absolute;
-    top: 0;
-    left: 0;
   }
 
   .hide {
@@ -126,6 +123,7 @@
 
   .page-container {
     position: absolute;
+    transform: none !important;
     top: 0;
     left: 0;
     display: block;
