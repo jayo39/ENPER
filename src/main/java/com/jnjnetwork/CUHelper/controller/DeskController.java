@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/desk")
 public class DeskController {
 
-    @GetMapping("/enroll")
-    public void enroll() {}
-
     @GetMapping("/attendance")
     public void attendance() {}
 

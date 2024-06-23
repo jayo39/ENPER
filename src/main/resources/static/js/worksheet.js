@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var isComposing = false;
+    let isComposing = false;
 
     $('.worksheet-form').on('compositionstart', function() {
         isComposing = true;
@@ -12,8 +12,8 @@ $(document).ready(function() {
     $('.worksheet-form').keydown(function(e) {
         if (e.key === "Enter" && !isComposing) {
             e.preventDefault();
-            var currentIndex = $('.worksheet-form').index(this);
-            var nextInput = $('.worksheet-form').eq(currentIndex + 1);
+            let currentIndex = $('.worksheet-form').index(this);
+            let nextInput = $('.worksheet-form').eq(currentIndex + 1);
             if (nextInput.length) {
                 nextInput.focus();
             }
@@ -62,7 +62,7 @@ function generateString(word) {
 
 function printDocument() {
     let foundEmpty = false;
-    $('.worksheet-form').each(function() {
+    $('.required').each(function() {
         if ($(this).val().trim() === '') {
             $(this).focus();
             foundEmpty = true;
@@ -89,7 +89,13 @@ function printDocument() {
                 scrambleDiv.append(span);
             });
 
-            $('#word-' + i).html('<b>' + word + '</b> - ' + meaning);
+            let content = '<b>' + word + '</b>';
+            if (meaning) {
+                content += '<span class="mx-3">-</span>' + meaning;
+            } else {
+                content += '<span class="mx-3">-</span>____________________';
+            }
+            $('#word-' + i).html(content);
         }
         $('.page-text-footer').text($('#book-title').val())
         window.print();
