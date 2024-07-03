@@ -1,8 +1,8 @@
 .sidebar {
     position: fixed;
     top: 0;
-    right: -265px;
-    width: 265px;
+    right: -260px;
+    width: 260px;
     padding: 20px;
     height: 100%;
     border-right: none;
@@ -61,13 +61,13 @@ body {
 }
 
 .studentName {
-    font-weight: 600;
+    font-weight: 580;
     font-size: 19px;
     cursor: pointer;
 }
 
 .time-input {
-    width: 125px;
+    width: 123px;
     cursor: pointer;
     text-wrap: nowrap;
 }
