@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script th:inline="javascript">
-    alert("Server error.");
+    alert("Server error: " + [[${errorMessage}]]);
     history.back();
 </script>
 </html>
