@@ -5,9 +5,8 @@
 
 <th:block th:fragment="header">
     <div class="hide">
-        <nav data-mdb-navbar-init class="navbar navbar-expand-sm navbar-dark bg-dark shadow-0">
+        <nav data-mdb-navbar-init class="navbar navbar-expand-sm shadow-0" style="background-color: #F1F1F1">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">ENPER</a>
                 <button
                         data-mdb-collapse-init
                         class="navbar-toggler"
@@ -19,20 +18,24 @@
                 >
                     <i class="fas fa-bars"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="mynavbar">
-                    <ul class="navbar-nav me-auto">
+                <div class="collapse navbar-collapse me-auto" id="mynavbar">
+                    <a class="navbar-brand" href="/">
+                        <img style="display:inline" alt="logo" src="/image/enper.png" width="20" height="20">
+                        <span>ENPER</span>
+                    </a>
+                    <ul class="navbar-nav mb-2 mb-lg-0 my-sm-0">
                         <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                             <a
                                     data-mdb-dropdown-init
                                     class="header-link nav-link dropdown-toggle"
                                     href="#"
-                                    id="navbarDropdownMenuLink"
+                                    id="adminDropdownMenuLink"
                                     role="button"
                                     aria-expanded="false"
                             >
                                 Admin Panel
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <ul class="dropdown-menu" aria-labelledby="adminDropdownMenuLink">
                                 <li>
                                     <a class="dropdown-item" href="/admin/panel">Manage Users</a>
                                 </li>
@@ -55,13 +58,13 @@
                                     data-mdb-dropdown-init
                                     class="header-link nav-link dropdown-toggle"
                                     href="#"
-                                    id="navbarDropdownMenuLink2"
+                                    id="deskToolsDropdownMenuLink"
                                     role="button"
                                     aria-expanded="false"
                             >
                                 Desk Tools
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <ul class="dropdown-menu" aria-labelledby="deskToolsDropdownMenuLink">
                                 <li>
                                     <a class="dropdown-item" href="/desk/attendance">Attendance</a>
                                 </li>
@@ -74,25 +77,35 @@
                             <a id="schedule" class="header-link nav-link">Schedule</a>
                         </li>
                     </ul>
-
-                    <a class="btn btn-primary shadow-0" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
-
-                    <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
-                    <span class="d-flex">
-                      <span><button class="btn btn-secondary shadow-0" type="submit">Logout</button></span>
-                    </span>
-                    </form>
                 </div>
+                <div class="d-flex align-items-center" sec:authorize="isAuthenticated()">
+                    <div class="dropdown">
+                        <a
+                                data-mdb-dropdown-init
+                                class="header-link nav-link dropdown-toggle"
+                                href="#"
+                                id="userDropdownMenuLink"
+                                role="button"
+                                aria-expanded="false"
+                                th:with="user=${#authentication.principal.user}"
+                        >
+                            [[${user.username}]]
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdownMenuLink">
+                            <li>
+                                <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
+                                    <button class="dropdown-item" type="submit">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="nav-item nav-link header-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
             </div>
         </nav>
         <div class="container-fluid mt-3">
-            <div class="alert alert-secondary alert-dismissible fade show" sec:authorize="isAnonymous()" data-mdb-alert-init>
-                <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
+            <div class="alert alert-light fade show" sec:authorize="isAnonymous()" data-mdb-alert-init>
                 You are not logged in.<br>
-            </div>
-            <div class="alert alert-success alert-dismissible fade show" sec:authorize="isAuthenticated()" th:with="user=${#authentication.principal.user}" data-mdb-alert-init>
-                <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
-                Logged in as [[${user.username}]].<br>
             </div>
         </div>
     </div>

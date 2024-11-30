@@ -48,16 +48,16 @@ body {
 }
 
 .header-link:hover {
-    color: #fff;
+    color: #212529;
     transition: color 0.3s;
 }
 
 .header-active {
-    color: #fff;
+    color: #212529;
 }
 
 .header-active:hover {
-    color: #fff;
+    color: #212529;
 }
 
 .studentName {
