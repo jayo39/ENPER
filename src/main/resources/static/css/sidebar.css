@@ -84,6 +84,11 @@ body {
     overflow: hidden;
 }
 
+#worksheet-table {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
 @media (max-width: 768px) {
     .table th, .table td {
         padding: 11px;

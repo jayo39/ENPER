@@ -4,7 +4,10 @@ import com.jnjnetwork.CUHelper.domain.Book;
 import com.jnjnetwork.CUHelper.domain.Question;
 import com.jnjnetwork.CUHelper.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class QuestionServiceImpl implements QuestionService{
@@ -16,6 +19,11 @@ public class QuestionServiceImpl implements QuestionService{
         this.questionRepository = questionRepository;
     }
 
+
+    @Override
+    public List<Question> findAllSortedByBookArPoint() {
+        return questionRepository.findAllSortedByBookArPoint();
+    }
 
     @Override
     public Question findById(Long id) {
