@@ -20,7 +20,7 @@
 <th:block th:insert="~{component/header.html::header}"></th:block>
 <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
 <th:block th:insert="~{component/clock.html::clock}"></th:block>
-<div class="container-fluid my-3 hide">
+<div class="container-fluid my-3">
     <div class="alert alert-danger fade show" data-mdb-alert-init>
         <div class="d-flex align-items-center">
             <div><i class="fas fa-wrench fa-lg"></i></div>
@@ -32,9 +32,17 @@
     <div class="d-flex gap-3 justify-content-between table-container">
         <div class="flex-equal">
             <h5>All Worksheets</h5>
-            <div class="worksheet-table">
-                <table class="table text-center mt-3">
-                    <thead class="table-light" colspan="1">
+            <div class="mt-3">
+                <div class="row">
+                    <div class="col d-flex input-group">
+                        <input class="form-control" type="search" id="searchBar" oninput="checkKeyword()" placeholder="Search by title or series" aria-label="Search" name="value">
+                        <button class="btn btn-primary shadow-0" id="searchBtn" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="worksheet-table mt-3">
+                <table class="table text-center">
+                    <thead class="table-light">
                     <tr>
                         <th>
                             <div class="align-middle form-check">
@@ -45,6 +53,7 @@
                         <th class="align-middle" colspan="2">Series</th>
                         <th class="align-middle" colspan="1">BL</th>
                         <th class="align-middle" colspan="1">AR</th>
+                        <th class="align-middle" colspan="1">File</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,6 +68,7 @@
                         <td class="align-middle" th:text="${question.book.series}" colspan="2"></td>
                         <td class="align-middle" th:text="${question.book.book_level != null ? question.book.book_level : '-'}" colspan="1"></td>
                         <td class="align-middle" th:text="${question.book.ar_point != null ? question.book.ar_point : '-'}" colspan="1"></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -69,10 +79,13 @@
             <button class="btn btn-danger shadow-0"><i class="fas fa-backward"></i></button>
         </div>
         <div class="flex-equal">
-            <h5>My List</h5>
+            <h5>My Workspace</h5>
+            <div class="mt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-rounded ms-1 shadow-0">Print List</button>
+            </div>
             <div class="worksheet-table">
                 <table class="table text-center mt-3">
-                    <thead class="table-light" colspan="1">
+                    <thead class="table-light">
                     <tr>
                         <th>
                             <div class="align-middle form-check">
@@ -83,20 +96,17 @@
                         <th class="align-middle" colspan="2">Series</th>
                         <th class="align-middle" colspan="1">BL</th>
                         <th class="align-middle" colspan="1">AR</th>
+                        <th class="align-middle" colspan="1">File</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td colspan="7">No worksheet have been added.</td>
+                        <td colspan="8">No worksheet have been added.</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="d-flex justify-content-end">
-        <button class="btn btn-primary shadow-0">Print My List</button>
     </div>
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
