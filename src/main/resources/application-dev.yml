@@ -8,6 +8,10 @@ spring:
   output:
     ansi:
       enabled: always
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
   thymeleaf:
     cache: false
@@ -28,3 +32,6 @@ app:
   pagination:
     write_pages: 10
     page_rows: 10
+
+  upload:
+    path: /opt/uploads/worksheets

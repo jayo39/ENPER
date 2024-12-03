@@ -121,6 +121,7 @@
                         <form name="questionDelete" th:action="@{/question/delete}" method="POST">
                             <input id="question_id" type="hidden" name="id" th:value="${question.id}">
                             <input id="question_book_id" type="hidden" name="book_id" th:value="${question.book.id}">
+                            <input id="question_file" type="hidden" name="fileName" th:value="${question.worksheet}">
                         </form>
 
                         <div class="mb-3" th:utext="${question.content}"></div>

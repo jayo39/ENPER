@@ -19,4 +19,6 @@ public class Question {
     @OneToOne
     @ToString.Exclude
     private Book book;
+
+    private String worksheet;
 }

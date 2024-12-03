@@ -77,7 +77,7 @@ public class BookController {
     public String deleteOk(long id) {
         Question question = questionService.findByBookId(id);
         if (question != null) {
-            questionService.deleteById(question.getId());
+            questionService.deleteById(question.getId(), question.getWorksheet());
         }
         detailService.deleteByBookId(id);
         bookService.deleteById(id);

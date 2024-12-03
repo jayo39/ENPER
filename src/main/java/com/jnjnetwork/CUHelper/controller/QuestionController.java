@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -36,16 +37,17 @@ public class QuestionController {
 
     @PostMapping("/addOk")
     @Transactional
-    public String addOk(@RequestParam("book_id") Long book_id
-            ,@RequestParam("question") String content
+    public String addOk(@RequestParam("upfile") MultipartFile file, @RequestParam("book_id") Long book_id
+            , @RequestParam("question") String content
             , Model model) {
         Book book = bookService.findById(book_id);
         Question questionBuilder = Question.builder()
                 .book(book)
                 .content(content)
+                .worksheet(file.toString())
                 .build();
 
-        questionService.add(questionBuilder);
+        questionService.add(questionBuilder, file);
         book.setQuestion(questionBuilder);
         bookService.save(book);
         model.addAttribute("book", bookService.findById(book_id));
@@ -54,11 +56,11 @@ public class QuestionController {
 
     @PostMapping("/delete")
     @Transactional
-    public String deleteOk(long id, long book_id, Model model) {
+    public String deleteOk(long id, long book_id, String fileName, Model model) {
         Book book = bookService.findById(book_id);
         book.setQuestion(null);
         bookService.save(book);
-        questionService.deleteById(id);
+        questionService.deleteById(id, fileName);
         model.addAttribute("book", bookService.findById(book_id));
         return "question/deleteOk";
     }
@@ -73,12 +75,21 @@ public class QuestionController {
     }
 
     @PostMapping("/edit")
-    public String updateOk(@RequestParam("book_id") Long book_id,
+    public String updateOk(@RequestParam("upfile") MultipartFile file,
+                           @RequestParam("book_id") Long book_id,
                            @RequestParam("id") Long id,
                            @RequestParam("question") String content,
                            Model model) {
         Book book = bookService.findById(book_id);
-        questionService.edit(id, book, content);
+        Question originalQuestion = questionService.findById(id);
+
+        if(file == null) {
+            questionService.edit(id, book, content);
+        } else {
+            originalQuestion.setContent(content);
+            originalQuestion.setWorksheet(file.toString());
+            questionService.add(originalQuestion, file);
+        }
         model.addAttribute("book", book);
         return "question/editOk";
     }

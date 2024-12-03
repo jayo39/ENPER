@@ -68,7 +68,13 @@
                         <td class="align-middle" th:text="${question.book.series}" colspan="2"></td>
                         <td class="align-middle" th:text="${question.book.book_level != null ? question.book.book_level : '-'}" colspan="1"></td>
                         <td class="align-middle" th:text="${question.book.ar_point != null ? question.book.ar_point : '-'}" colspan="1"></td>
-                        <td></td>
+                        <td class="align-middle" colspan="1">
+                            <span th:if="${question.worksheet == null}" th:text="'-'"></span>
+                            <a th:if="${question.worksheet != null}"
+                               th:href="@{/worksheets/{fileName}(fileName=${question.worksheet})}"
+                               th:text="${question.worksheet}"
+                               target="_blank"></a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
