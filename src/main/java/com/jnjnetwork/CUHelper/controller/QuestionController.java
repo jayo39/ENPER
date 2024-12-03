@@ -85,7 +85,6 @@ public class QuestionController {
 
         if(file == null) {
             originalQuestion.setContent(content);
-            originalQuestion.setWorksheet(null);
             questionService.add(originalQuestion, null);
         } else {
             originalQuestion.setContent(content);

@@ -63,14 +63,16 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     private void upload(Question question, MultipartFile file) {
-        delFile(file.toString());
         String originalFileName = file.getOriginalFilename();
         if(originalFileName == null || originalFileName.isEmpty()) {
+            delFile(question.getWorksheet());
             question.setWorksheet(null);
             questionRepository.saveAndFlush(question);
             return;
         }
 
+        delFile(file.toString());
+        
         String sourceName = StringUtils.cleanPath(originalFileName);
         String fileName = sourceName;
 
