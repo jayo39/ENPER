@@ -84,7 +84,9 @@ public class QuestionController {
         Question originalQuestion = questionService.findById(id);
 
         if(file == null) {
-            questionService.edit(id, book, content);
+            originalQuestion.setContent(content);
+            originalQuestion.setWorksheet(null);
+            questionService.add(originalQuestion, null);
         } else {
             originalQuestion.setContent(content);
             originalQuestion.setWorksheet(file.toString());

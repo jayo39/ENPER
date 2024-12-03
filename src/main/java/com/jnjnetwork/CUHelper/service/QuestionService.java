@@ -13,5 +13,4 @@ public interface QuestionService {
     void add(Question question);
     void add(Question question, MultipartFile file);
     void deleteById(Long id, String fileName);
-    void edit(Long id, Book book, String content);
 }

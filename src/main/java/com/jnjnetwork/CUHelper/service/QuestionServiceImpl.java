@@ -62,14 +62,6 @@ public class QuestionServiceImpl implements QuestionService{
         questionRepository.deleteById(id);
     }
 
-    @Override
-    public void edit(Long id, Book book, String content) {
-        Question question = questionRepository.findById(id).orElseThrow(RuntimeException::new);
-        question.setContent(content);
-        question.setBook(book);
-        questionRepository.save(question);
-    }
-
     private void upload(Question question, MultipartFile file) {
         delFile(file.toString());
         String originalFileName = file.getOriginalFilename();
