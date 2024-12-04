@@ -47,7 +47,12 @@ public class QuestionController {
                 .worksheet(file.toString())
                 .build();
 
-        questionService.add(questionBuilder, file);
+        if(file.isEmpty()) {
+            questionService.add(questionBuilder, null);
+        } else {
+            questionBuilder.setWorksheet(file.toString());
+            questionService.add(questionBuilder, file);
+        }
         book.setQuestion(questionBuilder);
         bookService.save(book);
         model.addAttribute("book", bookService.findById(book_id));
