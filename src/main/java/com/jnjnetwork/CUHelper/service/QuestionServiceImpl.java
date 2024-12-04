@@ -64,14 +64,14 @@ public class QuestionServiceImpl implements QuestionService{
 
     private void upload(Question question, MultipartFile file) {
         String originalFileName = file.getOriginalFilename();
-        if(originalFileName == null || originalFileName.isEmpty()) {
+        if(file == null || originalFileName == null || originalFileName.isEmpty()) {
             delFile(question.getWorksheet());
             question.setWorksheet(null);
             questionRepository.saveAndFlush(question);
             return;
         }
 
-        delFile(file.toString());
+        delFile(question.getWorksheet());
         
         String sourceName = StringUtils.cleanPath(originalFileName);
         String fileName = sourceName;
@@ -107,9 +107,14 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     private void delFile(String fileName) {
+        if(fileName == null || fileName.isEmpty()) {
+            return;
+        }
         String saveDirectory = new File(uploadDir).getAbsolutePath();
         File f = new File(saveDirectory, fileName);
-        f.delete();
+        if(f.exists()) {
+            f.delete();
+        }
     }
 }
 
