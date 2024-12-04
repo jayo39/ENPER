@@ -37,7 +37,7 @@ public class QuestionController {
 
     @PostMapping("/addOk")
     @Transactional
-    public String addOk(@RequestParam("upfile") MultipartFile file, @RequestParam("book_id") Long book_id
+    public String addOk(@RequestParam(value = "upfile", required = false) MultipartFile file, @RequestParam("book_id") Long book_id
             , @RequestParam("question") String content
             , Model model) {
         Book book = bookService.findById(book_id);
@@ -80,7 +80,7 @@ public class QuestionController {
     }
 
     @PostMapping("/edit")
-    public String updateOk(@RequestParam("upfile") MultipartFile file,
+    public String updateOk(@RequestParam(value = "upfile", required = false) MultipartFile file,
                            @RequestParam("book_id") Long book_id,
                            @RequestParam("id") Long id,
                            @RequestParam("question") String content,
@@ -88,12 +88,13 @@ public class QuestionController {
                            Model model) {
         Book book = bookService.findById(book_id);
         Question originalQuestion = questionService.findById(id);
-
-        if(remove || file == null) {
-            originalQuestion.setContent(content);
+        originalQuestion.setContent(content);
+        if(remove) {
             questionService.add(originalQuestion, null);
+        } else if(file == null) {
+            originalQuestion.setWorksheet(originalQuestion.getWorksheet());
+            questionService.add(originalQuestion);
         } else {
-            originalQuestion.setContent(content);
             questionService.add(originalQuestion, file);
         }
         model.addAttribute("book", book);
