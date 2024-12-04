@@ -79,16 +79,16 @@ public class QuestionController {
                            @RequestParam("book_id") Long book_id,
                            @RequestParam("id") Long id,
                            @RequestParam("question") String content,
+                           @RequestParam(value = "removeFile", required = false) boolean remove,
                            Model model) {
         Book book = bookService.findById(book_id);
         Question originalQuestion = questionService.findById(id);
 
-        if(file == null) {
+        if(remove || file == null) {
             originalQuestion.setContent(content);
             questionService.add(originalQuestion, null);
         } else {
             originalQuestion.setContent(content);
-            originalQuestion.setWorksheet(file.toString());
             questionService.add(originalQuestion, file);
         }
         model.addAttribute("book", book);

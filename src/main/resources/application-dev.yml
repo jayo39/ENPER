@@ -34,4 +34,4 @@ app:
     page_rows: 10
 
   upload:
-    path: /opt/uploads/worksheets
+    path: worksheets

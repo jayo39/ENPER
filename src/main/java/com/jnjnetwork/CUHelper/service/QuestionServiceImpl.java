@@ -63,47 +63,48 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     private void upload(Question question, MultipartFile file) {
-        String originalFileName = file.getOriginalFilename();
-        if(file == null || originalFileName == null || originalFileName.isEmpty()) {
+        if(file == null) {
             delFile(question.getWorksheet());
             question.setWorksheet(null);
             questionRepository.saveAndFlush(question);
-            return;
-        }
+        } else {
+            String originalFileName = file.getOriginalFilename();
+            delFile(question.getWorksheet());
+            question.setWorksheet(file.toString());
 
-        delFile(question.getWorksheet());
-        
-        String sourceName = StringUtils.cleanPath(originalFileName);
-        String fileName = sourceName;
+            String sourceName = StringUtils.cleanPath(originalFileName);
+            String fileName = sourceName;
 
-        File file1 = new File(uploadDir + File.separator + sourceName);
-        if(file1.exists()) {
-            int pos = fileName.lastIndexOf(".");
-            if(pos > -1) {
-                String name = fileName.substring(0, pos);
-                String ext = fileName.substring(pos + 1);
-                fileName = name + "_" + System.currentTimeMillis() + "." + ext;
-            } else {
-                fileName += "_" + System.currentTimeMillis();
+            File file1 = new File(uploadDir + File.separator + sourceName);
+            if(file1.exists()) {
+                int pos = fileName.lastIndexOf(".");
+                if(pos > -1) {
+                    String name = fileName.substring(0, pos);
+                    String ext = fileName.substring(pos + 1);
+                    fileName = name + "_" + System.currentTimeMillis() + "." + ext;
+                } else {
+                    fileName += "_" + System.currentTimeMillis();
+                }
+            }
+            question.setWorksheet(fileName);
+            Path copyOfLocation = Paths.get(new File(uploadDir + File.separator + fileName).getAbsolutePath());
+            try {
+                Files.copy(
+                        file.getInputStream(),
+                        copyOfLocation,
+                        StandardCopyOption.REPLACE_EXISTING
+                );
+            } catch(IOException error) {
+                error.printStackTrace();
+            }
+
+            try {
+                questionRepository.saveAndFlush(question);
+            } catch(Exception error) {
+                error.printStackTrace();
             }
         }
-        question.setWorksheet(fileName);
-        Path copyOfLocation = Paths.get(new File(uploadDir + File.separator + fileName).getAbsolutePath());
-        try {
-            Files.copy(
-                    file.getInputStream(),
-                    copyOfLocation,
-                    StandardCopyOption.REPLACE_EXISTING
-            );
-        } catch(IOException error) {
-            error.printStackTrace();
-        }
 
-        try {
-            questionRepository.saveAndFlush(question);
-        } catch(Exception error) {
-            error.printStackTrace();
-        }
     }
 
     private void delFile(String fileName) {
