@@ -45,8 +45,8 @@
                     <tbody>
                     <tr th:each="question, iter : ${questions}" class="clickable" th:attr="data-original-index=${iter.index}">
                         <input type="hidden" th:value="${question.id}">
-                        <td class="no-print">
-                            <div class="align-middle form-check">
+                        <td class="align-middle no-print">
+                            <div class="form-check">
                                 <input class="form-check-input leftRowCheckbox" type="checkbox" value=""/>
                             </div>
                         </td>
@@ -80,8 +80,8 @@
                 <table class="table text-center" id="rightTable">
                     <thead class="table-light">
                     <tr>
-                        <th class="no-print">
-                            <div class="align-middle form-check">
+                        <th class="align-middle no-print">
+                            <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="rightSelectAll"/>
                             </div>
                         </th>

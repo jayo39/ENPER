@@ -6,11 +6,12 @@ $(function() {
     }
 
     function addCheckboxListeners(tableId, checkboxClass, selectAllId) {
-        var checkboxes = document.querySelectorAll(`#${tableId} tbody .${checkboxClass}`);
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                updateSelectAll(tableId, checkboxClass, selectAllId);
-            });
+        // Remove any previous event handlers to prevent duplicates
+        $(`#${tableId}`).off('change', `.${checkboxClass}`);
+
+        // Use event delegation
+        $(`#${tableId}`).on('change', `.${checkboxClass}`, function() {
+            updateSelectAll(tableId, checkboxClass, selectAllId);
         });
     }
 
@@ -18,6 +19,7 @@ $(function() {
         window.print();
     });
 
+    // Initialize checkbox listeners
     addCheckboxListeners('leftTable', 'leftRowCheckbox', 'leftSelectAll');
     addCheckboxListeners('rightTable', 'rightRowCheckbox', 'rightSelectAll');
 
