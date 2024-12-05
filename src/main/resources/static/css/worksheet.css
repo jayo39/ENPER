@@ -29,6 +29,10 @@
         visibility: hidden;
     }
 
+    #rightTable, #rightTable tr, #rightTable tbody, #rightTable thead {
+        break-inside: auto;
+    }
+
     #printableArea, #printableArea * {
         visibility: visible;
     }
