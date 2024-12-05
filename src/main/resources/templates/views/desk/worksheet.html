@@ -21,32 +21,18 @@
 <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
 <th:block th:insert="~{component/clock.html::clock}"></th:block>
 <div class="container-fluid my-3">
-    <div class="alert alert-danger fade show" data-mdb-alert-init>
-        <div class="d-flex align-items-center">
-            <div><i class="fas fa-wrench fa-lg"></i></div>
-            <div class="ms-3">THIS PAGE IS CURRENTLY UNDER DEVELOPMENT.</div><br>
-        </div>
-    </div>
     <h2>Worksheet</h2>
     <hr>
     <div class="d-flex gap-3 justify-content-between table-container">
         <div class="flex-equal">
             <h5>All Worksheets</h5>
-            <div class="mt-3">
-                <div class="row">
-                    <div class="col d-flex input-group">
-                        <input class="form-control" type="search" id="searchBar" oninput="checkKeyword()" placeholder="Search by title or series" aria-label="Search" name="value">
-                        <button class="btn btn-primary shadow-0" id="searchBtn" type="submit"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="worksheet-table mt-3">
-                <table class="table text-center">
+            <div class="worksheet-table mt-3" >
+                <table class="table text-center" id="leftTable">
                     <thead class="table-light">
                     <tr>
                         <th>
                             <div class="align-middle form-check">
-                                <input class="form-check-input" type="checkbox" value=""/>
+                                <input class="form-check-input" type="checkbox" value="" id="leftSelectAll"/>
                             </div>
                         </th>
                         <th class="align-middle" colspan="2">Title</th>
@@ -57,18 +43,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="question : ${questions}" class="clickable">
+                    <tr th:each="question, iter : ${questions}" class="clickable" th:attr="data-original-index=${iter.index}">
                         <input type="hidden" th:value="${question.id}">
-                        <td>
+                        <td class="no-print">
                             <div class="align-middle form-check">
-                                <input class="form-check-input" type="checkbox" value=""/>
+                                <input class="form-check-input leftRowCheckbox" type="checkbox" value=""/>
                             </div>
                         </td>
                         <td class="align-middle" colspan="2" th:text="${question.book.title}"></td>
                         <td class="align-middle" th:text="${question.book.series}" colspan="2"></td>
                         <td class="align-middle" th:text="${question.book.book_level != null ? question.book.book_level : '-'}" colspan="1"></td>
                         <td class="align-middle" th:text="${question.book.ar_point != null ? question.book.ar_point : '-'}" colspan="1"></td>
-                        <td class="align-middle" colspan="3">
+                        <td class="align-middle print-only-row" colspan="1"><i class="far fa-square"></i></td>
+                        <td class="align-middle no-print" colspan="3">
                             <span th:if="${question.worksheet == null}" th:text="'-'"></span>
                             <a th:if="${question.worksheet != null}"
                                th:href="@{/worksheets/{fileName}(fileName=${question.worksheet})}"
@@ -81,36 +68,40 @@
             </div>
         </div>
         <div class="d-flex flex-column gap-3 justify-content-center w-10 align-items-center align-self-stretch">
-            <button class="btn btn-primary shadow-0"><i class="fas fa-forward"></i></button>
-            <button class="btn btn-danger shadow-0"><i class="fas fa-backward"></i></button>
+            <button class="btn btn-primary shadow-0" id="moveRightBtn"><i class="fas fa-forward"></i></button>
+            <button class="btn btn-danger shadow-0" id="moveLeftBtn"><i class="fas fa-backward"></i></button>
         </div>
         <div class="flex-equal">
             <h5>My Workspace</h5>
-            <div class="mt-3 d-flex justify-content-end">
-                <button class="btn btn-primary btn-rounded ms-1 shadow-0">Print List</button>
-            </div>
-            <div class="worksheet-table mt-3">
-                <table class="table text-center">
+            <div class="worksheet-table mt-3" id="printableArea">
+                <h1 class="print-only text-center">
+                        <span>My Reading List</span>
+                </h1>
+                <table class="table text-center" id="rightTable">
                     <thead class="table-light">
                     <tr>
-                        <th>
+                        <th class="no-print">
                             <div class="align-middle form-check">
-                                <input class="form-check-input" type="checkbox" value="" />
+                                <input class="form-check-input" type="checkbox" value="" id="rightSelectAll"/>
                             </div>
                         </th>
                         <th class="align-middle" colspan="2">Title</th>
                         <th class="align-middle" colspan="2">Series</th>
                         <th class="align-middle" colspan="1">BL</th>
                         <th class="align-middle" colspan="1">AR</th>
-                        <th class="align-middle" colspan="3">File</th>
+                        <th class="align-middle print-only-row" colspan="1">Progress</th>
+                        <th class="align-middle no-print" colspan="3">File</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr class="no-worksheet">
                         <td colspan="8">No worksheet have been added.</td>
                     </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary btn-rounded ms-1 shadow-0" id="printButton">Print List</button>
             </div>
         </div>
     </div>

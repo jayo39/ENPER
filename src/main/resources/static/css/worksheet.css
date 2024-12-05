@@ -1,148 +1,68 @@
-.page-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 50px auto;
-}
-
-
-.mini-page {
-  border: 2px solid #000;
-  padding: 5px;
-  overflow: hidden;
-  background: white;
-  box-sizing: border-box;
-}
-
-.page-title {
-  margin-top: -15px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 650;
-  font-size: 50px;
-  font-style: normal;
-}
-
-.page-subtitle {
-  font-family: "Open Sans", sans-serif;
-  margin-top: -23px;
-  font-weight: 500;
-  font-size: 30px;
-  font-style: normal;
-}
-
-.page-text {
-  font-family: "Open Sans", sans-serif;
-  margin-top: -5px;
-  font-weight: 400;
-  font-size: 23px;
-  font-style: normal;
-}
-
-.page-text-sm {
-  font-size: 20px;
-}
-
-.page-text-footer {
-  font-size: 18px;
-}
-
-.icon {
-  font-size: 35px;
-}
-
-#describe {
-    margin-top: -5px;
-}
-
-.circle-number {
-  display: flex;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 500;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  width: 60px;
-  height: 60px;
-  font-size: 25px;
-  border: turquoise 4px solid;
-  background-color: lightseagreen;
-}
-
-.line-margin {
-  margin: 27px 0;
-}
-
-.canvas {
-  height: 435px;
-  border: 1px solid lightseagreen;
-  border-radius: 3px;
-}
-
-.first-element {
-  margin-top: 30px;
-}
-
-.dotted {
-  border: none;
-  height: 1px;
-  background: transparent;
-  border-top: 1px dotted #000;
-}
-
-.word {
-  background-color: white;
-  border: 4px solid lightseagreen;
-  border-radius: 25px;
-  width: 210px;
-  height: 60px;
-}
-
-
-@media screen {
-  .page-container {
+.print-only {
     display: none;
-  }
+}
 
-  .mini-page {
-    transform: scale(0.5);
-    transform-origin: top center;
-  }
+.print-only-row {
+    display: none;
+}
+
+.no-print {
+    display: table-cell;
+}
+
+.worksheet-table {
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.flex-equal {
+    flex: 1 1 0%;
 }
 
 @media print {
-  body, html {
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-  }
+    body * {
+        visibility: hidden;
+    }
 
-  .hide {
-    visibility: hidden;
-    display: none;
-  }
+    #printableArea, #printableArea * {
+        visibility: visible;
+    }
 
-  .page-container {
-    display: block;
-    width: 210mm;
-    margin: 0;
-  }
+    #printableArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
 
-  .mini-page {
-    border: none;
-    box-shadow: none;
-    height: 297mm;
-    width: 210mm;
-    margin: 0;
-    overflow: hidden;
-    page-break-after: auto;
-    transform: none;
-  }
+    #rightTable {
+        border: 1px solid #dee2e6;
+        border-collapse: collapse;
+    }
 
-  .header, .footer, .navigation, .sidebar, .non-print {
-    display: none;
-  }
+    #rightTable th, #rightTable td {
+        border: 1px solid #dee2e6;
+    }
+
+    .print-only {
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .print-only-row {
+        display: table-cell;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    .worksheet-table {
+        max-height: 100%;
+    }
 }
