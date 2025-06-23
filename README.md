@@ -7,7 +7,7 @@ ENPER is a website for English teachers to easily look up study guides and book 
 - View book contents.
 - Add summaries and chapter questions.
 - Manage student schedules.
-- Count and rank students' attendance.
+- Automatic feedback/comment generator using Gemini API.
 
 ## Technologies Used
 
@@ -18,6 +18,7 @@ ENPER is a website for English teachers to easily look up study guides and book 
 - Gradle, JDBC, MySQL, Lombok, JPA, Validator
 - Ubuntu (VPS)
 - SummerNote API
+- Gemini API
 
 ## Live Website
 - https://www.enper.net/
