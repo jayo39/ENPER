@@ -1,6 +1,6 @@
 # ENPER
 
-ENPER is a website for English teachers to easily look up study guides and book summaries. The contents of the books are organized efficiently, divided into chapters and pages.
+ENPER is a website for English teachers to easily look up study guides and book summaries. The users can also manage their schedules and generate clear, concise comments using AI.
 
 ## Features
 
