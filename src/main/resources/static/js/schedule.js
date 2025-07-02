@@ -89,7 +89,7 @@ $(function() {
     });
 
     clearBtn.click(function() {
-        let answer = confirm("This will clear your schedule!");
+        let answer = confirm("This will clear all students!");
         if(answer) {
             $.ajax({
                 url: "/schedule/clear",
@@ -155,7 +155,8 @@ function buildSchedule(result) {
         let id = schedule.id;
         let studentName = schedule.studentName;
         let endTime = schedule.endTime;
-        let content = schedule.note === null ? "" : schedule.note;
+        let writingNotes  = schedule.noteWriting  || '';
+        let speakingNotes = schedule.note        || '';
         let isFinished = schedule.isFinished;
         let [hours, minutes] = endTime.split(':').map(num => parseInt(num, 10));
 
@@ -168,10 +169,10 @@ function buildSchedule(result) {
         const row = `
             <div id="schedule-${id}">
                 <div id="schedule-info-${id}" class="d-flex justify-content-between align-items-center text-yellow input-group">
-                    <div class="mb-1 me-1">
+                    <div class="me-1">
                       <div data-schedule-id-name="${id}" class="studentName">${studentName}</div>
                     </div>
-                    <div class="mb-1 ms-1">
+                    <div class="ms-1">
                       <div class="top-input form-control time-input d-flex justify-content-end align-items-center column-gap-3">
                         <div class="display-time">${newTime}</div>
                         <div>
@@ -181,15 +182,25 @@ function buildSchedule(result) {
                       <input data-schedule-id-time="${id}" type="time" class="form-control" id="schedule-endTime-${id}" value="" hidden>
                     </div>
                 </div>
+                <textarea
+                  data-schedule-id="${id}"
+                  class="form-control my-1 stu-note-writing stu-note"
+                  placeholder="Writing"
+                >${writingNotes}</textarea>
+
+                <textarea
+                  data-schedule-id="${id}"
+                  class="form-control my-1 stu-note-speaking stu-note"
+                  placeholder="Speaking"
+                >${speakingNotes}</textarea>
             </div>
-            <textarea data-schedule-id-note="${id}" class="form-control my-1 stu-note" placeholder="Note..">${content}</textarea>
-            <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex justify-content-between mb-2">
                 <div class="form-check me-2">
-                  <span class="text-light">Checkup</span>
+                  <span class="text-light">Mark complete</span>
                   <input id="check-${id}" data-schedule-id-check="${id}" class="form-check-input" type="checkbox" value="">
                 </div>
                 <div class="form-check form-switch">
-                  <input data-schedule-id="${id}" class="form-check-input bg-secondary" type="checkbox" role="switch">
+                  <input data-schedule-id-delete="${id}" class="form-check-input bg-secondary" type="checkbox" role="switch">
                 </div>
             </div>
             <hr class="border">
@@ -209,6 +220,9 @@ function buildSchedule(result) {
             $("#schedule-info-" + id).addClass('text-yellow');
             $("#check-" + id).prop("checked", false);
         }
+        $(`#schedule-${id}`)
+          .find('textarea')
+          .prop('disabled', isFinished);
     });
     $('.stu-note').on("input", function() {
         this.style.height = "auto";
@@ -218,74 +232,64 @@ function buildSchedule(result) {
 }
 
 function listenEdit() {
-    $("[data-schedule-id-time]").on('change', function() {
-        const schedule_id = $(this).attr("data-schedule-id-time");
-        const time = $(this).val();
-        const data = {
-            "schedule_id": schedule_id,
-            "time": time
-        };
-        $.ajax({
-            url: "/schedule/edit",
-            type: "POST",
-            cache: false,
-            data: data,
-            success: function(data, status, xhr) {
-                loadSchedule();
-            }
-        });
+  // Writing textarea
+  $('.stu-note-writing').off('change').on('change', function() {
+    const scheduleId   = $(this).data('schedule-id');
+    const writingText  = $(this).val();
+    $.ajax({
+      url:    '/schedule/edit',
+      type:   'POST',
+      data:   {
+        schedule_id: scheduleId,
+        noteWriting: writingText
+      },
+      cache:  false
     });
-    $("[data-schedule-id-note]").on('change', function() {
-        const schedule_id = $(this).attr("data-schedule-id-note");
-        const content = $(this).val();
-        const data = {
-            "schedule_id": schedule_id,
-            "content": content
-        };
-        $.ajax({
-            url: "/schedule/edit",
-            type: "POST",
-            cache: false,
-            data: data
-        });
+  });
+
+  // Speaking textarea
+  $('.stu-note-speaking').off('change').on('change', function() {
+    const scheduleId   = $(this).data('schedule-id');
+    const speakingText = $(this).val();
+    $.ajax({
+      url:    '/schedule/edit',
+      type:   'POST',
+      data:   {
+        schedule_id: scheduleId,
+        note:        speakingText
+      },
+      cache:  false
     });
+  });
 }
 
 function listenDelete(result) {
     $("[data-schedule-id-check]").click(function() {
         const schedule_id = $(this).attr("data-schedule-id-check");
+        const done = $(this).prop("checked");
         if($(this).prop("checked")) {
             $("#schedule-info-" + schedule_id).removeClass('text-yellow');
             $("#schedule-info-" + schedule_id).addClass('text-gray');
-            const data = {
-                "schedule_id": schedule_id,
-                "isFinished": true
-            };
-            $.ajax({
-                url: "/schedule/edit",
-                type: "POST",
-                cache: false,
-                data: data,
-                success: function(data, status, xhr) {
-                }
-            });
         } else if (!($(this).prop("checked"))) {
             $("#schedule-info-" + schedule_id).removeClass('text-gray');
             $("#schedule-info-" + schedule_id).addClass('text-yellow');
-            const data = {
-                "schedule_id": schedule_id,
-                "isFinished": false
-            };
-            $.ajax({
-                url: "/schedule/edit",
-                type: "POST",
-                cache: false,
-                data: data
-            });
         }
+        $.ajax({
+            url: "/schedule/edit",
+            type: "POST",
+            cache: false,
+            data: {
+              schedule_id: schedule_id,
+              isFinished: done,
+              polishedWriting: "",
+              polishedSpeaking: ""
+            }
+        });
+        $(`textarea[data-schedule-id="${schedule_id}"]`)
+          .prop('disabled', done);
     });
-    $("[data-schedule-id]").click(function() {
-        const schedule_id = $(this).attr("data-schedule-id");
+    $("[data-schedule-id-delete]").click(function() {
+        const schedule_id = $(this).attr("data-schedule-id-delete");
         $.ajax({
             url: "/schedule/delete",
             type: "POST",
@@ -459,7 +463,6 @@ $(document).on('click', '.timepicker-button.timepicker-submit', function() {
     }
     closeClockModal();
 });
-
 
 function toggleToMinuteSelection() {
     saveminute = minuteButton.textContent;

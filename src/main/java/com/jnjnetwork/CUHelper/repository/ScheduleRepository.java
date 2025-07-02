@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Schedule> findByUserId(Long user_id, Sort sort);
+    List<Schedule> findByUserIdAndIsFinished(Long user_id, boolean isFinished, Sort sort);
     void deleteByUserId(Long user_id);
 }

@@ -26,7 +26,16 @@ public class Schedule {
     private LocalTime endTime;
 
     @Column(columnDefinition = "LONGTEXT")
+    private String noteWriting;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String note;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String polishedWriting;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String polishedSpeaking;
 
     @ManyToOne
     @ToString.Exclude

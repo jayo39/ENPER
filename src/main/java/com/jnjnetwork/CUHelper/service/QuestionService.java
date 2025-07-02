@@ -1,6 +1,5 @@
 package com.jnjnetwork.CUHelper.service;
 
-import com.jnjnetwork.CUHelper.domain.Book;
 import com.jnjnetwork.CUHelper.domain.Question;
 import org.springframework.web.multipart.MultipartFile;
 

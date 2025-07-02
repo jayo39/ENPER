@@ -28,6 +28,11 @@ spring:
     hibernate:
       ddl-auto: update
 
+google:
+  palm:
+    api:
+      key: "AIzaSyDUn7kkmUS3tFkGyRm3pcXZIvCLXNEzSjA"
+
 app:
   pagination:
     write_pages: 10

@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface ScheduleService {
     List<Schedule> findByUserId(Long user_id);
+    List<Schedule> findByUserIdAndIsFinished(Long user_id, boolean isFinished);
     void save(Schedule schedule);
     void deleteById(Long id);
     void deleteByUserId(Long user_id);
-    void edit(Long id, LocalTime time, String content, Boolean isFinished, String studentName);
+    void edit(Long id, LocalTime time, String noteWriting, String note, Boolean isFinished, String studentName, String polishedWriting, String polishedSpeaking);
 }

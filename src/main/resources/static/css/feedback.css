@@ -1,0 +1,29 @@
+.contents {
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+
+.content-container {
+    overflow-x: auto;
+}
+
+.polished {
+  transition: filter 0.2s ease, background-color 0.2s ease;
+  cursor: pointer
+}
+
+.polished.copied {
+  background-color: #d4f8d4;  /* light green */
+}
+
+
+.polished:hover {
+    filter: brightness(0.85);
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+  filter: brightness(0.95);
+}
