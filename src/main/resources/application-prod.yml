@@ -30,7 +30,7 @@ spring:
 google:
   palm:
     api:
-      key: "AIzaSyDUn7kkmUS3tFkGyRm3pcXZIvCLXNEzSjA"
+      key: ${rds.gemini}
 
 app:
   pagination:
