@@ -45,7 +45,10 @@ $('#convert-all').on('click', function() {
     const $orig = $(this);
     const $convRow = $convRows.eq(i);
     const id = $convRow.data('schedule-id');
-    const studentName = $orig.find('h6').text().trim();
+    const fullName    = $orig.find('h6').text().trim();
+    const studentName = fullName.length > 1
+      ? fullName.slice(1)
+      : fullName;
     const writingNote = $orig.find('.stu-note-writing').val().trim();
     const speakingNote = $orig.find('.stu-note-speaking').val().trim();
 
