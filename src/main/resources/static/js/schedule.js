@@ -232,6 +232,24 @@ function buildSchedule(result) {
 }
 
 function listenEdit() {
+    // end time
+    $("[data-schedule-id-time]").on('change', function() {
+        const schedule_id = $(this).attr("data-schedule-id-time");
+        const time = $(this).val();
+        const data = {
+            "schedule_id": schedule_id,
+            "time": time
+        };
+        $.ajax({
+            url: "/schedule/edit",
+            type: "POST",
+            cache: false,
+            data: data,
+            success: function(data, status, xhr) {
+                loadSchedule();
+            }
+        });
+    });
   // Writing textarea
   $('.stu-note-writing').off('change').on('change', function() {
     const scheduleId   = $(this).data('schedule-id');

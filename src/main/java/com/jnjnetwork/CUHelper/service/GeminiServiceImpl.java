@@ -48,7 +48,7 @@ public class GeminiServiceImpl implements GeminiService {
                 
                 Since the student’s name isn’t provided, do not assume their gender. If you need a third-person reference, use <name>.
                         
-                Before providing a response, think ONCE MORE about these things before you provide a response: 1. Is the student being mentioned as <name>? 2. Did you check that the student's name should always be <name>? 3. Is the feedback length limited to 100 words? 4. Does the feedback follow the example provided, which is a one-paragraph continuous form without listing? 5. Are you using third-person and not using "you"? 6. Is the feedback is primarily based on the provided information? 7. Does the feedback contain any made up contents by you when it should not?
+                Before providing a response, think ONCE MORE about these things before you provide a response: 1. Is the student being mentioned as <name>? 2. Did you check that the student's name should always be <name>? 3. Is the feedback length limited to 80 words? 4. Does the feedback follow the example provided, which is a one-paragraph continuous form without listing? 5. Are you using third-person and not using "you"? 6. Is the feedback is primarily based on the provided information? 7. Does the feedback contain any made up contents by you when it should not?
             """;
 
     @Override
