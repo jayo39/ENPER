@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/desk")
-public class DeskController {
+@RequestMapping("/main")
+public class MainController {
 
     QuestionService questionService;
 
