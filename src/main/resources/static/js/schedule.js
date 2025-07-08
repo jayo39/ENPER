@@ -185,7 +185,7 @@ function buildSchedule(result) {
             <textarea data-schedule-id-note="${id}" class="form-control my-1 stu-note" placeholder="Note..">${content}</textarea>
             <div class="d-flex justify-content-between mb-3">
                 <div class="form-check me-2">
-                  <span class="text-light">Checkup</span>
+                  <span class="text-light">Mark Complete</span>
                   <input id="check-${id}" data-schedule-id-check="${id}" class="form-check-input" type="checkbox" value="">
                 </div>
                 <div class="form-check form-switch">
