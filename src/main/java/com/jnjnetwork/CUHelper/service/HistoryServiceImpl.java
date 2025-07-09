@@ -40,6 +40,11 @@ public class HistoryServiceImpl implements HistoryService{
     }
 
     @Override
+    public void deleteByBookId(Long book_id) {
+        historyRepository.deleteByBookId(book_id);
+    }
+
+    @Override
     public void deleteAll() {
         historyRepository.deleteAll();
     }

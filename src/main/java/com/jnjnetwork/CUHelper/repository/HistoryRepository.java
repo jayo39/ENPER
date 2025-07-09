@@ -9,4 +9,5 @@ import java.util.List;
 public interface HistoryRepository extends JpaRepository<History, Long> {
     List<History> findByUserId(Long user_id, Sort sort);
     void deleteByUserId(Long user_id);
+    void deleteByBookId(Long book_id);
 }

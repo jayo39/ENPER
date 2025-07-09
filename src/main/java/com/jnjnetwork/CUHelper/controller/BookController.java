@@ -3,9 +3,7 @@ package com.jnjnetwork.CUHelper.controller;
 import com.jnjnetwork.CUHelper.domain.Book;
 import com.jnjnetwork.CUHelper.domain.Detail;
 import com.jnjnetwork.CUHelper.domain.Question;
-import com.jnjnetwork.CUHelper.service.BookService;
-import com.jnjnetwork.CUHelper.service.DetailService;
-import com.jnjnetwork.CUHelper.service.QuestionService;
+import com.jnjnetwork.CUHelper.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +19,7 @@ public class BookController {
     BookService bookService;
     QuestionService questionService;
     DetailService detailService;
+    HistoryService historyService;
 
     @Autowired
     public void setBookService(BookService bookService) {
@@ -33,6 +32,10 @@ public class BookController {
     @Autowired
     public void setDetailService(DetailService detailService) {
         this.detailService = detailService;
+    }
+    @Autowired
+    public void setHistoryService(HistoryService historyService) {
+        this.historyService = historyService;
     }
 
     @GetMapping("/add")
@@ -79,6 +82,7 @@ public class BookController {
         if (question != null) {
             questionService.deleteById(question.getId(), question.getWorksheet());
         }
+        historyService.deleteByBookId(id);
         detailService.deleteByBookId(id);
         bookService.deleteById(id);
         return "book/deleteOk";

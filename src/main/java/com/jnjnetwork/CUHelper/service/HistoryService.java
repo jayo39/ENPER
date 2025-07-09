@@ -9,5 +9,6 @@ public interface HistoryService {
     List<History> findByUserId(Long user_id);
     void save(History history);
     void deleteById(Long id);
+    void deleteByBookId(Long book_id);
     void deleteAll();
 }
