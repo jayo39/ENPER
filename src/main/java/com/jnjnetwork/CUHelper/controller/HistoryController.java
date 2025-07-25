@@ -35,29 +35,6 @@ public class HistoryController {
         this.bookService = bookService;
     }
 
-    @PostMapping("/add")
-    @Transactional
-    public Map<String, Object> addOk(@RequestParam("book_id") Long bookId, History history, BindingResult result) {
-        User user;
-        try {
-            user = U.getLoggedUser();
-        } catch (Exception e) {
-            return null;
-        }
-        Book book = bookService.findById(bookId);
-        Map<String, Object> response = new HashMap<>();
-        if(result.hasErrors()) {
-            response.put("status", "fail");
-            return response;
-        }
-        response.put("status", "success");
-        history.setUser(user);
-        history.setBook(book);
-        history.setAccessDate(LocalDateTime.now());
-        historyService.save(history);
-        return response;
-    }
-
     @GetMapping("/list")
     public List<HistoryDTO> list(@RequestParam(value="user_id",required = false) Long userId) {
         List<History> histories;

@@ -1,15 +1,15 @@
 package com.jnjnetwork.CUHelper.controller;
 
-import com.jnjnetwork.CUHelper.domain.Book;
-import com.jnjnetwork.CUHelper.domain.Detail;
-import com.jnjnetwork.CUHelper.domain.Question;
+import com.jnjnetwork.CUHelper.domain.*;
 import com.jnjnetwork.CUHelper.service.*;
+import com.jnjnetwork.CUHelper.util.U;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -57,6 +57,26 @@ public class BookController {
             details = null;
         }
         Question question = questionService.findByBookId(id);
+
+        // Log history here
+        try {
+            User user;
+            try {
+                user = U.getLoggedUser();
+            } catch (Exception e) {
+                return null;
+            }
+            if (user != null && book != null) {
+                History history = new History();
+                history.setUser(user);
+                history.setBook(book);
+                history.setAccessDate(LocalDateTime.now());
+                historyService.save(history);
+            }
+        } catch (Exception e) {
+            // user not logged in, do nothing for now
+        }
+
         model.addAttribute("book", book);
         model.addAttribute("details", details);
         model.addAttribute("question", question);
