@@ -4,6 +4,9 @@ server:
     session:
       timeout: 1h
 
+recaptcha:
+  secret: ${RECAPTCHA_SECRET}
+
 spring:
   output:
     ansi:

@@ -1,5 +1,6 @@
 package com.jnjnetwork.CUHelper.config;
 
+import com.jnjnetwork.CUHelper.exception.CaptchaInvalidException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,9 +10,11 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Component
 public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
 
     private final String DEFAULT_FAILURE_FORWARD_URL = "/user/loginError";
@@ -20,7 +23,10 @@ public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         String errorMessage = null;
 
-        if(exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException) {
+        if(exception instanceof CaptchaInvalidException) {
+            errorMessage = "reCAPTCHA verification failed.";
+        }
+        else if(exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException) {
             errorMessage = "Incorrect username or password.";
         }
         else if(exception instanceof DisabledException) {

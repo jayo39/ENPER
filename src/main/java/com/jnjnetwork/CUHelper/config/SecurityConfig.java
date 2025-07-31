@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -17,9 +18,10 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, RecaptchaFilter recaptchaFilter) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+                .addFilterBefore(recaptchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/schedule/**", "/book/detail/**", "/desk/**").authenticated()
                         .requestMatchers("/admin/**", "/book/add/**", "/book/edit/**", "/detail/add/**", "/detail/delete/**", "/detail/edit/**", "/book/delete/**", "/user/delete/**", "/question/**", "/user/delete", "/book/delete", "/detail/delete", "/book/edit", "/detail/edit").hasRole("ADMIN")

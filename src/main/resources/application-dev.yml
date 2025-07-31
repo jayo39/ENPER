@@ -4,6 +4,9 @@ server:
     session:
       timeout: 1h
 
+recaptcha:
+  secret: 6LfV-JUrAAAAAM4lIUm6VWofnvOT380pULGXNA2r
+
 spring:
   output:
     ansi:
