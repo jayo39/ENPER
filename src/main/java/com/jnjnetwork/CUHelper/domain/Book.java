@@ -47,4 +47,24 @@ public class Book {
     @ToString.Exclude
     private Question question;
 
+    @Column(name = "title_normalized")
+    private String titleNormalized;
+
+    @Column(name = "series_normalized")
+    private String seriesNormalized;
+
+    @PrePersist
+    @PreUpdate
+    public void prepareNormalizedData() {
+        String regex = "[^a-zA-Z0-9]";
+
+        if (this.title != null) {
+            this.titleNormalized = this.title.toLowerCase().replaceAll(regex, "");
+        }
+
+        if (this.series != null) {
+            this.seriesNormalized = this.series.toLowerCase().replaceAll(regex, "");
+        }
+    }
+
 }
