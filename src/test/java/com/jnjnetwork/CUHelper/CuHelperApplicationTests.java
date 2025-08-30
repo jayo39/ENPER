@@ -8,6 +8,7 @@ class CuHelperApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

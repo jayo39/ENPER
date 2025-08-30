@@ -6,7 +6,6 @@ import com.jnjnetwork.CUHelper.service.BookService;
 import com.jnjnetwork.CUHelper.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +35,6 @@ public class QuestionController {
     }
 
     @PostMapping("/addOk")
-    @Transactional
     public String addOk(@RequestParam(value = "upfile", required = false) MultipartFile file, @RequestParam("book_id") Long book_id
             , @RequestParam("question") String content
             , Model model) {
@@ -60,7 +58,6 @@ public class QuestionController {
     }
 
     @PostMapping("/delete")
-    @Transactional
     public String deleteOk(long id, long book_id, String fileName, Model model) {
         Book book = bookService.findById(book_id);
         book.setQuestion(null);

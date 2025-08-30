@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
@@ -40,7 +39,6 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseBody
-    @Transactional
     public ResponseEntity<String> registerOk(@Valid User user, BindingResult result) {
         if (userService.isExist(user.getUsername())) {
             return ResponseEntity.badRequest().body("This username already exists.");
@@ -61,7 +59,6 @@ public class UserController {
     }
 
     @PostMapping("/delete")
-    @Transactional
     public String deleteOk(@RequestParam("user_id") Long id) {
         User logged_user = U.getLoggedUser();
         userService.removeById(id);

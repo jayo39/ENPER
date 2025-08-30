@@ -9,6 +9,7 @@ import com.jnjnetwork.CUHelper.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public int register(User user) {
         try {
             user.setUsername(user.getUsername());
@@ -81,6 +83,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public void removeById(Long user_id) {
         User user = userRepository.findById(user_id).orElseThrow(RuntimeException::new);
         scheduleRepository.deleteByUserId(user.getId());
@@ -89,6 +92,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public void updateLogDate(User user) {
         User u = userRepository.findById(user.getId()).orElseThrow(RuntimeException::new);
         if(u != null) {

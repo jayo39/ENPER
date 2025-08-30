@@ -6,6 +6,7 @@ import com.jnjnetwork.CUHelper.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -28,22 +29,26 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    @Transactional
     public void save(Schedule schedule) {
         schedule.setIsFinished(false);
         scheduleRepository.saveAndFlush(schedule);
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         scheduleRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public void deleteByUserId(Long user_id) {
         scheduleRepository.deleteByUserId(user_id);
     }
 
     @Override
+    @Transactional
     public void edit(Long id, LocalTime time, String content, Boolean isFinished, String studentName) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(RuntimeException::new);
         if (time != null) {

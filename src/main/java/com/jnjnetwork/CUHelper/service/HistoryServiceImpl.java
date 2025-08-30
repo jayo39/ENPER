@@ -5,6 +5,7 @@ import com.jnjnetwork.CUHelper.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,21 +31,25 @@ public class HistoryServiceImpl implements HistoryService{
     }
 
     @Override
+    @Transactional
     public void save(History history) {
         historyRepository.saveAndFlush(history);
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         historyRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public void deleteByBookId(Long book_id) {
         historyRepository.deleteByBookId(book_id);
     }
 
     @Override
+    @Transactional
     public void deleteAll() {
         historyRepository.deleteAll();
     }

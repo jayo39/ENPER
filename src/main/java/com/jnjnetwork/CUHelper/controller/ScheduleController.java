@@ -5,7 +5,6 @@ import com.jnjnetwork.CUHelper.domain.User;
 import com.jnjnetwork.CUHelper.service.ScheduleService;
 import com.jnjnetwork.CUHelper.util.U;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +30,6 @@ public class ScheduleController {
     }
 
     @PostMapping("/add")
-    @Transactional
     public Map<String, Object> addOk(Schedule schedule, BindingResult result) {
         User user = U.getLoggedUser();
         Map<String, Object> response = new HashMap<>();
@@ -46,7 +44,6 @@ public class ScheduleController {
     }
 
     @PostMapping("/edit")
-    @Transactional
     public Map<String, Object> editOk(@RequestParam("schedule_id") Long schedule_id, @RequestParam(name = "time", required = false) LocalTime time, @RequestParam(name = "content", required = false) String content, @RequestParam(name = "isFinished", required = false) Boolean isFinished, @RequestParam(name = "name", required = false) String studentName) {
         Map<String, Object> response = new HashMap<>();
         scheduleService.edit(schedule_id, time, content, isFinished, studentName);
@@ -55,13 +52,11 @@ public class ScheduleController {
     }
 
     @PostMapping("/delete")
-    @Transactional
     public void deleteOk(Long id) {
         scheduleService.deleteById(id);
     }
 
     @PostMapping("/clear")
-    @Transactional
     public void clearOk() {
         User user = U.getLoggedUser();
         scheduleService.deleteByUserId(user.getId());

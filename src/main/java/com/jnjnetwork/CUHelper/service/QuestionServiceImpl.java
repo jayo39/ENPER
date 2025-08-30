@@ -6,6 +6,7 @@ import com.jnjnetwork.CUHelper.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,16 +48,19 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
+    @Transactional
     public void add(Question question) {
         questionRepository.save(question);
     }
 
     @Override
+    @Transactional
     public void add(Question question, MultipartFile file) {
         upload(question, file);
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id, String fileName) {
         delFile(fileName);
         questionRepository.deleteById(id);

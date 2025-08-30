@@ -7,6 +7,7 @@ import com.jnjnetwork.CUHelper.repository.DetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class DetailServiceImpl implements DetailService{
     }
 
     @Override
+    @Transactional
     public void add(Long book_id, Detail detail) {
         Book book = bookRepository.findById(book_id).orElseThrow(RuntimeException::new);
         detail.setBook(book);
@@ -35,6 +37,7 @@ public class DetailServiceImpl implements DetailService{
     }
 
     @Override
+    @Transactional
     public void deleteById(Long detail_id) {
         detailRepository.deleteById(detail_id);
     }
@@ -62,6 +65,7 @@ public class DetailServiceImpl implements DetailService{
     }
 
     @Override
+    @Transactional
     public void edit(Detail detail, Book book) {
         Detail newDetail = detailRepository.findById(detail.getId()).orElseThrow(RuntimeException::new);
         newDetail.setDetail(detail.getDetail());
@@ -72,6 +76,7 @@ public class DetailServiceImpl implements DetailService{
     }
 
     @Override
+    @Transactional
     public void deleteByBookId(Long book_id) {
         detailRepository.deleteByBookId(book_id);
     }

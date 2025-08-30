@@ -96,10 +96,12 @@ public class BookController {
     }
 
     @PostMapping("/delete")
-    @Transactional
     public String deleteOk(long id) {
+        Book book = bookService.findById(id);
         Question question = questionService.findByBookId(id);
         if (question != null) {
+            book.setQuestion(null);
+            bookService.save(book);
             questionService.deleteById(question.getId(), question.getWorksheet());
         }
         historyService.deleteByBookId(id);

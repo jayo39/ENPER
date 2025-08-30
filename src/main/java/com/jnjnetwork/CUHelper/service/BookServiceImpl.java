@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import java.util.List;
@@ -76,6 +77,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    @Transactional
     public void save(Book book) {
         bookRepository.saveAndFlush(book);
     }
@@ -91,12 +93,14 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         Book book = bookRepository.findById(id).orElseThrow(RuntimeException::new);
         bookRepository.delete(book);
     }
 
     @Override
+    @Transactional
     public void edit(Book book) {
         Book b = bookRepository.findById(book.getId()).orElseThrow(RuntimeException::new);
         if (b != null) {
