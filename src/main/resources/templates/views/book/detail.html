@@ -102,11 +102,11 @@
                 <div id="detailed" class="container-fluid mb-3">
                     <div class="row mb-2">
                         <div class="col d-flex input-group" style="max-width: 300px;">
-                            <input style="height: 36px;" type="text" class="form-control text-center" id="pageStart" maxlength="5" placeholder="Start" name="firstPage">
+                            <input style="height: 36px;" type="text" class="form-control text-center" id="pageStart" maxlength="5" placeholder="Start" name="firstPage" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
                             <span style="height: 36px;" class="input-group-text bg-light text-muted">to</span>
 
-                            <input style="height: 36px;" type="text" class="form-control text-center" id="pageEnd" maxlength="5" placeholder="End" name="lastPage">
+                            <input style="height: 36px;" type="text" class="form-control text-center" id="pageEnd" maxlength="5" placeholder="End" name="lastPage" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
                             <button style="height: 36px;" class="btn btn-secondary shadow-0 py-1" type="submit" id="searchBtn">
                                 <i class="fas fa-search"></i>
