@@ -52,12 +52,16 @@ function buildDetail(result) {
             role2 = roles[1].name;
         }
 
+//        const suggestBtn = (role1 !== 'ROLE_ADMIN' && role2 !== 'ROLE_ADMIN') ? `
+//            <button class="btn btn-link btn-sm text-primary btn-rounded shadow-0"><i class="fas fa-pen-to-square"></i> Suggest an Edit</button>
+//        ` : ''
+
         const editBtn = (role1 !== 'ROLE_ADMIN' && role2 !== 'ROLE_ADMIN') ? '' : `
-            <button class="btn btn-link btn-sm text-primary btn-rounded" data-detail-edit-id="${id}">Edit</button>
+            <button class="btn btn-link btn-sm text-primary btn-rounded shadow-0 me-2 data-detail-edit-id="${id}">Edit</button>
         `
 
         const deleteBtn = (role1 !== 'ROLE_ADMIN' && role2 !== 'ROLE_ADMIN') ? '' : `
-            <button class="btn btn-link btn-sm text-danger btn-rounded" data-detail-id="${id}">Delete</button>
+            <button class="btn btn-link btn-sm text-danger btn-rounded shadow-0" data-detail-id="${id}">Delete</button>
         `
         const row = `
             <div id="detail-${id}" class="my-2">
@@ -65,7 +69,7 @@ function buildDetail(result) {
                     <div class="badge badge-pill badge-info">Page Numbers: ${firstPage}‒${lastPage}</div>
                     <p>${content}</p>
                     <div class="d-flex justify-content-end">
-                        <div class="mx-2">
+                        <div>
                             ${editBtn}
                         </div>
                         <div>
