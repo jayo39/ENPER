@@ -29,16 +29,28 @@
             </select>
         </div>
 
-        <div class="form-group d-flex justify-content-start">
-            <div class="form-outline" data-mdb-input-init>
-                <input type="number" class="form-control" id="pageStart" maxlength="5" placeholder="Start" name="firstPage" th:value="${detail.firstPage}" required>
-                <label class="form-label" for="pageStart">Start Page</label>
-            </div>
-            <span class="mx-2 mt-1">‒</span>
-            <div class="form-outline" data-mdb-input-init>
-                <input type="number" class="form-control" id="pageEnd" maxlength="5" placeholder="End" name="lastPage" th:value="${detail.lastPage}" required>
-                <label class="form-label" for="pageEnd">End Page</label>
-            </div>
+        <div class="d-flex input-group">
+            <input type="text"
+                   class="form-control text-center"
+                   id="pageStart"
+                   maxlength="5"
+                   placeholder="Start"
+                   name="firstPage"
+                   th:value="${detail.firstPage}"
+                   required
+                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+            <span class="input-group-text bg-light text-muted">to</span>
+
+            <input type="text"
+                   class="form-control text-center"
+                   id="pageEnd"
+                   maxlength="5"
+                   placeholder="End"
+                   name="lastPage"
+                   th:value="${detail.lastPage}"
+                   required
+                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
         </div>
 
         <div class="my-3">

@@ -28,6 +28,7 @@
         <div id="keywordErr" class="d-none text-danger">Please enter a keyword that is at least 2 characters long.</div>
     </div>
 </form>
+<div class="container-fluid mt-3">
     <table class="table table-hover text-center mt-3">
         <thead class="table-light">
             <tr>
@@ -44,14 +45,14 @@
             <tr th:if="${#lists.isEmpty(searchedBooks) && #lists.isEmpty(books)}">
                 <td colspan="12">No results found - <b>[[${keyword}]]</b>.</td>
             </tr>
-            <tr th:if="${#lists.isEmpty(searchedBooks)}" th:each="book : ${books}" class="clickable">
+            <tr th:each="book : ${books}" th:if="${#lists.isEmpty(searchedBooks)}" class="clickable">
                 <input type="hidden" th:value="${book.id}">
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
                 <td class="align-middle" th:text="${book.series}" colspan="2"></td>
                 <td class="align-middle" th:utext="${book.description}" colspan="4"></td>
-                <td class="align-middle" th:text="${book.book_level != null ? book.book_level : '-'}" colspan="1"></td>
-                <td class="align-middle" th:text="${book.ar_point != null ? book.ar_point : '-'}" colspan="1"></td>
-                <td class="align-middle" th:text="${#lists.size(book.details)}" colspan="1"></td>
+                <td class="align-middle" colspan="1" th:text="${book.book_level != null ? book.book_level : '-'}"></td>
+                <td class="align-middle" colspan="1" th:text="${book.ar_point != null ? book.ar_point : '-'}"></td>
+                <td class="align-middle" colspan="1" th:text="${#lists.size(book.details)}"></td>
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
                     <span class="badge badge-success rounded-pill d-inline">Y</span>
                 </td>
@@ -59,14 +60,14 @@
                     <span class="badge badge-danger rounded-pill d-inline">N</span>
                 </td>
             </tr>
-            <tr th:if="${not #lists.isEmpty(searchedBooks)}" th:each="book : ${searchedBooks}" class="clickable">
+            <tr th:each="book : ${searchedBooks}" th:if="${not #lists.isEmpty(searchedBooks)}" class="clickable">
                 <input type="hidden" th:value="${book.id}">
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
                 <td class="align-middle" th:text="${book.series}" colspan="2"></td>
                 <td class="align-middle" th:utext="${book.description}" colspan="4"></td>
-                <td class="align-middle" th:text="${book.book_level != null ? book.book_level : '-'}" colspan="1"></td>
-                <td class="align-middle" th:text="${book.ar_point != null ? book.ar_point : '-'}" colspan="1"></td>
-                <td class="align-middle" th:text="${#lists.size(book.details)}" colspan="1"></td>
+                <td class="align-middle" colspan="1" th:text="${book.book_level != null ? book.book_level : '-'}"></td>
+                <td class="align-middle" colspan="1" th:text="${book.ar_point != null ? book.ar_point : '-'}"></td>
+                <td class="align-middle" colspan="1" th:text="${#lists.size(book.details)}"></td>
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
                     <span class="badge badge-success rounded-pill d-inline">Y</span>
                 </td>
@@ -76,7 +77,7 @@
             </tr>
         </tbody>
     </table>
-
+</div>
     <th:block th:insert="~{component/pagination::pagination}"></th:block>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
 </body>
