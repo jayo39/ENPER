@@ -8,17 +8,17 @@
   </script>
   <div class="sidebar d-none hide" id="sidebar">
     <div class="d-flex justify-content-end">
-      <button id="closeSidebar" class="btn-close btn-close-white"></button>
+      <button id="closeSidebar" class="btn-close btn-close"></button>
     </div>
     <div id="schedule-wrap">
-      <div id="schedule-title" class="h4 text-light"></div>
-      <hr class="border">
+      <div id="schedule-title" class="h4"></div>
+      <hr class="border border-secondary">
       <div id="schedule-list">
         <!-- Load from JS -->
       </div>
       <div id="schedule-content-input" class="d-flex flex-column">
         <div class="input-group">
-          <div class="d-flex mb-1">
+          <div class="d-flex">
             <div class="me-1">
               <input type="text" class="form-control name-input top-input" id="schedule-studentName" placeholder="Name">
             </div>
@@ -34,11 +34,11 @@
           </div>
         </div>
         <div class="d-flex justify-content-end mt-2">
-          <button id="add-btn" class="w-100 btn btn-outline-light shadow-0 btn-rounded">+ Add</button>
+          <button id="add-btn" class="w-100 btn btn-primary shadow-0 btn">Add Student <i class="fas fa-plus ms-2"></i></button>
         </div>
       </div>
       <div class="d-flex justify-content-end">
-        <button id="clear-all" class="btn btn-danger btn-rounded shadow-0 mt-2">Clear All</button>
+        <button id="clear-all" class="btn btn-secondary btn-rounded shadow-0 mt-2"><i class="fas fa-trash-can"></i></button>
       </div>
     </div>
 

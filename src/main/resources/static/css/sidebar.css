@@ -8,10 +8,15 @@
     border-right: none;
     border-top: none;
     border-bottom: none;
+    border-left: 1px solid #E3E9F1;
     transition: right 0.2s ease-in-out;
     overflow: auto;
     z-index: 10;
-    background-color: #212121;
+    background: #F8FAFE
+}
+
+#schedule-title {
+    color: #4F4F4F
 }
 
 #schedule {
@@ -23,11 +28,11 @@ body {
 }
 
 .text-gray {
-    color: #6c757d
+    color: #D3DBE6;
 }
 
 .text-yellow {
-    color: #FFFF00;
+    color: #1F74C1;
 }
 
 #history-table {
