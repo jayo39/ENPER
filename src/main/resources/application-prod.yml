@@ -15,14 +15,14 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-#  web:
-#    resources:
-#      cache:
-#        period: 365d
-#        cachecontrol:
-#          max-age: 31536000
-#          cache-public: true
-#          immutable: true
+  web:
+    resources:
+      cache:
+        period: 365d
+        cachecontrol:
+          max-age: 31536000
+          cache-public: true
+          immutable: true
 
   thymeleaf:
     cache: false
