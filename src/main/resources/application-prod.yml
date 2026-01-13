@@ -23,6 +23,11 @@ spring:
           max-age: 31536000
           cache-public: true
           immutable: true
+      chain:
+        strategy:
+          content:
+            enabled: true
+            path: /**
 
   thymeleaf:
     cache: false
