@@ -2,11 +2,8 @@ $(function() {
     $('.form-control').keypress(function(e) {
         if(e.which === 13) {
             e.preventDefault();
-            var nextInputDiv = $(this).closest('.form-outline').nextAll('.form-outline').first();
-            var nextInput = nextInputDiv.find('.form-control');
-            if(nextInput.length !== 0) {
-                nextInput.focus();
-            }
+            var inputs = $(this).closest('form').find('.form-control');
+            inputs.eq(inputs.index(this) + 1).focus();
         }
     });
 
