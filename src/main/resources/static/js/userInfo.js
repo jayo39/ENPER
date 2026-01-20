@@ -1,8 +1,15 @@
 let userId = '';
+let historyData = [];
+let currentSortOrder = 'desc';
 
 $(function() {
     const purgeBtn = $('#purgeBtn');
     loadHistory();
+
+    $(document).on('click', '#sort-date-header', function() {
+        toggleSortDate();
+    });
+
     purgeBtn.click(function() {
          let answer = confirm("This will purge ALL history!");
          if(answer) {
@@ -38,10 +45,36 @@ function loadHistory(paramId) {
         type: "GET",
         cache: false,
         success: function(data, status, xhr) {
-            buildHistory(data);
-            deleteHistory();
+            historyData = data;
+            sortAndBuild();
         }
     });
+}
+
+function toggleSortDate() {
+    currentSortOrder = (currentSortOrder === 'desc') ? 'asc' : 'desc';
+
+    // update sort icon
+    const icon = $('#sort-icon');
+    if (currentSortOrder === 'asc') {
+        icon.attr('class', 'fas fa-sort-up ms-1');
+    } else {
+        icon.attr('class', 'fas fa-sort-down ms-1');
+    }
+
+    sortAndBuild();
+}
+
+function sortAndBuild() {
+    historyData.sort((a, b) => {
+        const dateA = new Date(a.accessDate);
+        const dateB = new Date(b.accessDate);
+
+        return currentSortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+
+    buildHistory(historyData);
+    deleteHistory();
 }
 
 function buildHistory(result) {

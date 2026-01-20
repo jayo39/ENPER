@@ -37,7 +37,10 @@
                 <th class="align-middle">Username</th>
                 <th class="align-middle">Book Title</th>
                 <th class="align-middle">Book Series</th>
-                <th class="align-middle">Access Date</th>
+                <th id="sort-date-header" class="align-middle" style="cursor: pointer;">
+                    Access Date
+                    <i id="sort-icon" class="fas fa-sort-down ms-1"></i>
+                </th>
                 <th class="align-middle">Actions</th>
             </tr>
             </thead>
@@ -52,5 +55,5 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="/js/schedule.js"></script>
-<script src="/js/userInfo.js"></script>
+<script th:src="@{/js/userInfo.js}"></script>
 </html>
