@@ -1,3 +1,28 @@
 .clickable {
     cursor: pointer;
 }
+
+.bl-block {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    padding: 10px 0;
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+    line-height: 1;
+    font-size: 0.85rem;
+}
+
+.table td.bl-col-padding {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+/* Color levels: High = Red/Dark, Low = Blue */
+.level-low { background-color: #0C6DFD; }      /* Bright Blue */
+.level-mid-low { background-color: #54B4D3; }  /* Light Blue/Teal */
+.level-mid { background-color: #14A44D; }      /* Greenish */
+.level-mid-high { background-color: #EBA83A; } /* Yellow/Orange */
+.level-high { background-color: #B23B3B; }     /* Dark Red */

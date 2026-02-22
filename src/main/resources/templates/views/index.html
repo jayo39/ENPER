@@ -50,7 +50,25 @@
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
                 <td class="align-middle" th:text="${book.series}" colspan="2"></td>
                 <td class="align-middle" th:utext="${book.description}" colspan="4"></td>
-                <td class="align-middle" colspan="1" th:text="${book.book_level != null ? book.book_level : '-'}"></td>
+                <td class="align-middle bl-col-padding" colspan="1">
+                    <div th:if="${book.book_level != null}"
+                         class="bl-block"
+                         th:with="level=${book.book_level},
+                  hue=${level < 4.0 ? 210 :
+                       (level < 5.0 ? 120 :
+                       (level < 6.0 ? 55 - ((level - 5.0) * 35) :
+                       (level < 15.0 ? 5 : 0)))},
+                  light=${level >= 20 ? 0 :
+                         (level < 4.0 ? 45 :
+                         (level < 5.0 ? 40 :
+                         (level < 6.0 ? 50 :
+                         (level < 15.0 ? 45 - ((level - 6.0) * 4) : 15)) ))}"
+                         th:style="'background-color: hsl(' + ${hue} + ', 100%, ' + ${light} + '%);'"
+                         th:classappend="${level >= 5.0 && level < 5.8} ? 'text-dark-ovr' : ''"
+                         th:text="${#numbers.formatDecimal(level, 1, 1)}">
+                    </div>
+                    <span th:if="${book.book_level == null}">-</span>
+                </td>
                 <td class="align-middle" colspan="1" th:text="${book.ar_point != null ? book.ar_point : '-'}"></td>
                 <td class="align-middle" colspan="1" th:text="${#lists.size(book.details)}"></td>
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
@@ -65,7 +83,25 @@
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
                 <td class="align-middle" th:text="${book.series}" colspan="2"></td>
                 <td class="align-middle" th:utext="${book.description}" colspan="4"></td>
-                <td class="align-middle" colspan="1" th:text="${book.book_level != null ? book.book_level : '-'}"></td>
+                <td class="align-middle bl-col-padding" colspan="1">
+                    <div th:if="${book.book_level != null}"
+                         class="bl-block"
+                         th:with="level=${book.book_level},
+                  hue=${level < 4.0 ? 210 :
+                       (level < 5.0 ? 120 :
+                       (level < 6.0 ? 55 - ((level - 5.0) * 35) :
+                       (level < 15.0 ? 5 : 0)))},
+                  light=${level >= 20 ? 0 :
+                         (level < 4.0 ? 45 :
+                         (level < 5.0 ? 40 :
+                         (level < 6.0 ? 50 :
+                         (level < 15.0 ? 45 - ((level - 6.0) * 4) : 15)) ))}"
+                         th:style="'background-color: hsl(' + ${hue} + ', 100%, ' + ${light} + '%);'"
+                         th:classappend="${level >= 5.0 && level < 5.8} ? 'text-dark-ovr' : ''"
+                         th:text="${#numbers.formatDecimal(level, 1, 1)}">
+                    </div>
+                    <span th:if="${book.book_level == null}">-</span>
+                </td>
                 <td class="align-middle" colspan="1" th:text="${book.ar_point != null ? book.ar_point : '-'}"></td>
                 <td class="align-middle" colspan="1" th:text="${#lists.size(book.details)}"></td>
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
