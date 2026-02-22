@@ -54,15 +54,15 @@
                     <div th:if="${book.book_level != null}"
                          class="bl-block"
                          th:with="level=${book.book_level},
-              hue=${level < 4.0 ? 210 :
-                   (level < 5.0 ? 142 :
-                   (level < 6.0 ? 51 - ((level - 5.0) * 31) :
-                   (level < 15.0 ? 5 : 0)))},
-              light=${level >= 20 ? 0 :
-                     (level < 4.0 ? 70 - (level * 6) :
-                     (level < 5.0 ? 50 - ((level - 4.0) * 20) :
-                     (level < 6.0 ? 50 - ((level - 5.0) * 10) :
-                     (level < 15.0 ? 45 - ((level - 6.0) * 4) : 15)) ))}"
+                              hue=${level < 4.0 ? 210 :
+                                   (level < 5.0 ? 143 :
+                                   (level < 6.0 ? 51 - ((level - 5.0) * 31) :
+                                   (level < 15.0 ? 5 : 0)))},
+                              light=${level >= 20 ? 0 :
+                                     (level < 4.0 ? 70 - (level * 6) :
+                                     (level < 5.0 ? 42 - ((level - 4.0) * 18) :
+                                     (level < 6.0 ? 50 - ((level - 5.0) * 10) :
+                                     (level < 15.0 ? 45 - ((level - 6.0) * 4) : 15)) ))}"
                          th:style="'background-color: hsl(' + ${hue} + ', 100%, ' + ${light} + '%);'"
                          th:classappend="${level >= 3.5 && level < 10} ? 'text-dark-ovr' : ''"
                          th:text="${#numbers.formatDecimal(level, 1, 1)}">
@@ -87,15 +87,15 @@
                     <div th:if="${book.book_level != null}"
                          class="bl-block"
                          th:with="level=${book.book_level},
-              hue=${level < 4.0 ? 210 :
-                   (level < 5.0 ? 142 :
-                   (level < 6.0 ? 51 - ((level - 5.0) * 31) :
-                   (level < 15.0 ? 5 : 0)))},
-              light=${level >= 20 ? 0 :
-                     (level < 4.0 ? 70 - (level * 6) :
-                     (level < 5.0 ? 50 - ((level - 4.0) * 20) :
-                     (level < 6.0 ? 50 - ((level - 5.0) * 10) :
-                     (level < 15.0 ? 45 - ((level - 6.0) * 4) : 15)) ))}"
+                              hue=${level < 4.0 ? 210 :
+                                   (level < 5.0 ? 143 :
+                                   (level < 6.0 ? 51 - ((level - 5.0) * 31) :
+                                   (level < 15.0 ? 5 : 0)))},
+                              light=${level >= 20 ? 0 :
+                                     (level < 4.0 ? 70 - (level * 6) :
+                                     (level < 5.0 ? 42 - ((level - 4.0) * 18) :
+                                     (level < 6.0 ? 50 - ((level - 5.0) * 10) :
+                                     (level < 15.0 ? 45 - ((level - 6.0) * 4) : 15)) ))}"
                          th:style="'background-color: hsl(' + ${hue} + ', 100%, ' + ${light} + '%);'"
                          th:classappend="${level >= 3.5 && level < 10} ? 'text-dark-ovr' : ''"
                          th:text="${#numbers.formatDecimal(level, 1, 1)}">
