@@ -1,4 +1,40 @@
 $(function() {
+    $('#btnBookmark').on('click', function(e) {
+        e.preventDefault();
+
+        if (!isUserLoggedIn) {
+            window.location.href = '/user/login';
+            return false;
+        }
+
+        const bookId = $('#book_id').val();
+        const $star = $('#detailStar');
+        const $btn = $(this);
+
+        $.ajax({
+            url: '/favorite/toggle/' + bookId,
+            type: 'POST',
+            success: function(isFavorite) {
+                if (isFavorite) {
+                    $star.removeClass('fa-regular').addClass('fa-solid');
+                    $btn.addClass('row-highlight');
+                    setTimeout(() => $btn.removeClass('row-highlight'), 500);
+                } else {
+                    $star.removeClass('fa-solid').addClass('fa-regular');
+                }
+            },
+            error: function(err) {
+                if(err.status === 401) {
+                    alert("Please log in to bookmark books!");
+                } else {
+                    console.error("Error toggling favorite:", err);
+                }
+            }
+        });
+    });
+});
+
+$(function() {
     $('#pageStart').keypress(function(e) {
         if(e.which === 13) {
             e.preventDefault();

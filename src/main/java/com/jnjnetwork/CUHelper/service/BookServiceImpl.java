@@ -1,7 +1,9 @@
 package com.jnjnetwork.CUHelper.service;
 
 import com.jnjnetwork.CUHelper.domain.Book;
+import com.jnjnetwork.CUHelper.domain.User;
 import com.jnjnetwork.CUHelper.repository.BookRepository;
+import com.jnjnetwork.CUHelper.repository.UserRepository;
 import com.jnjnetwork.CUHelper.util.U;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,14 @@ public class BookServiceImpl implements BookService{
     @Value("${app.pagination.page_rows}")
     private int PAGE_ROWS;
     private BookRepository bookRepository;
+    private UserRepository userRepository;
 
     @Autowired
     public void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
 
     @Override
     public List<Book> findAll() {
@@ -47,7 +52,9 @@ public class BookServiceImpl implements BookService{
 
         session.setAttribute("page", page);
 
-        Page<Book> pageWrites = bookRepository.findAll(PageRequest.of(page - 1, pageRows, Sort.by(Sort.Order.asc("title"))));
+        User sessionUser = U.getLoggedUser();
+        Long userId = (sessionUser != null) ? sessionUser.getId() : -1L;
+        Page<Book> pageWrites = bookRepository.findAllFavoritesFirst(userId, PageRequest.of(page - 1, pageRows));
 
         long cnt = pageWrites.getTotalElements();
         int totalPage =  pageWrites.getTotalPages();
@@ -69,6 +76,14 @@ public class BookServiceImpl implements BookService{
         model.addAttribute("writePages", writePages);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+
+
+        if (sessionUser != null) {
+            User freshUser = userRepository.findById(sessionUser.getId()).orElse(null);
+            model.addAttribute("currentUser", freshUser);
+        } else {
+            model.addAttribute("currentUser", null);
+        }
 
         List<Book> list = pageWrites.getContent();
         model.addAttribute("list", list);
@@ -119,7 +134,9 @@ public class BookServiceImpl implements BookService{
     public List<Book> findByKeyword(String rawKeyword) {
         String processedKeyword = rawKeyword.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
 
-        Sort sort = Sort.by("title").ascending();
-        return bookRepository.findByNormalizedKeyword(processedKeyword, sort);
+        User currentUser = U.getLoggedUser();
+        Long userId = (currentUser != null) ? currentUser.getId() : -1L;
+
+        return bookRepository.findByKeywordFavoritesFirst(processedKeyword, userId);
     }
 }

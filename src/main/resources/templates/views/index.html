@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<script th:inline="javascript">
+    const isUserLoggedIn = [[${currentUser != null}]];
+</script>
 <head>
     <meta charset="UTF-8">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
@@ -32,13 +35,14 @@
     <table class="table table-hover text-center mt-3">
         <thead class="table-light">
             <tr>
+                <th ></th>
                 <th class="align-middle" colspan="2">Title</th>
                 <th class="align-middle" colspan="2">Series</th>
                 <th class="align-middle" colspan="4">Description</th>
                 <th colspan="1">BL</th>
                 <th colspan="1">AR</th>
-                <th colspan="1">DS</th>
-                <th colspan="1">CQ</th>
+<!--                <th colspan="1"></th>-->
+                <th colspan="1"><i class="far fa-file-lines"></i></th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +51,13 @@
             </tr>
             <tr th:each="book : ${books}" th:if="${#lists.isEmpty(searchedBooks)}" class="clickable">
                 <input type="hidden" th:value="${book.id}">
+                <td class="align-middle star-cell">
+                    <div class="star-wrapper">
+                        <i th:class="${currentUser?.favoriteBooks?.contains(book)} ? 'fa-solid fa-star star-bookmark' : 'fa-regular fa-star star-bookmark'"
+                           style="font-size: 17px;">
+                        </i>
+                    </div>
+                </td>
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
                 <td class="align-middle" th:text="${book.series}" colspan="2"></td>
                 <td class="align-middle" th:utext="${book.description}" colspan="4"></td>
@@ -70,7 +81,7 @@
                     <span th:if="${book.book_level == null}">-</span>
                 </td>
                 <td class="align-middle" colspan="1" th:text="${book.ar_point != null ? book.ar_point : '-'}"></td>
-                <td class="align-middle" colspan="1" th:text="${#lists.size(book.details)}"></td>
+<!--                <td class="align-middle" colspan="1" th:text="${#lists.size(book.details)}"></td>-->
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
                     <span class="badge badge-success rounded-pill d-inline">Y</span>
                 </td>
@@ -80,6 +91,13 @@
             </tr>
             <tr th:each="book : ${searchedBooks}" th:if="${not #lists.isEmpty(searchedBooks)}" class="clickable">
                 <input type="hidden" th:value="${book.id}">
+                <td class="align-middle star-cell">
+                    <div class="star-wrapper">
+                        <i th:class="${currentUser?.favoriteBooks?.contains(book)} ? 'fa-solid fa-star star-bookmark' : 'fa-regular fa-star star-bookmark'"
+                           style="font-size: 17px;">
+                        </i>
+                    </div>
+                </td>
                 <td class="align-middle" colspan="2" th:text="${book.title}"></td>
                 <td class="align-middle" th:text="${book.series}" colspan="2"></td>
                 <td class="align-middle" th:utext="${book.description}" colspan="4"></td>
@@ -103,7 +121,7 @@
                     <span th:if="${book.book_level == null}">-</span>
                 </td>
                 <td class="align-middle" colspan="1" th:text="${book.ar_point != null ? book.ar_point : '-'}"></td>
-                <td class="align-middle" colspan="1" th:text="${#lists.size(book.details)}"></td>
+<!--                <td class="align-middle" colspan="1" th:text="${#lists.size(book.details)}"></td>-->
                 <td class="align-middle" th:if="${book.question != null}" colspan="1">
                     <span class="badge badge-success rounded-pill d-inline">Y</span>
                 </td>

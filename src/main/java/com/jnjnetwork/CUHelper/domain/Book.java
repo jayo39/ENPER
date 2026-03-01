@@ -53,6 +53,10 @@ public class Book {
     @Column(name = "series_normalized")
     private String seriesNormalized;
 
+    @ManyToMany(mappedBy = "favoriteBooks")
+    @ToString.Exclude
+    private List<User> favoritedByUsers = new ArrayList<>();
+
     @PrePersist
     @PreUpdate
     public void prepareNormalizedData() {

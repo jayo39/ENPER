@@ -1,17 +1,16 @@
 package com.jnjnetwork.CUHelper.service;
 
+import com.jnjnetwork.CUHelper.domain.Book;
 import com.jnjnetwork.CUHelper.domain.Role;
 import com.jnjnetwork.CUHelper.domain.User;
-import com.jnjnetwork.CUHelper.repository.HistoryRepository;
-import com.jnjnetwork.CUHelper.repository.RoleRepository;
-import com.jnjnetwork.CUHelper.repository.ScheduleRepository;
-import com.jnjnetwork.CUHelper.repository.UserRepository;
+import com.jnjnetwork.CUHelper.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -22,6 +21,7 @@ public class UserServiceImpl implements UserService{
     RoleRepository roleRepository;
     ScheduleRepository scheduleRepository;
     HistoryRepository historyRepository;
+    BookRepository bookRepository;
 
     @Autowired
     public void setScheduleRepository(ScheduleRepository scheduleRepository) {
@@ -41,11 +41,18 @@ public class UserServiceImpl implements UserService{
     public void setHistoryRepository(HistoryRepository historyRepository) {
         this.historyRepository = historyRepository;
     }
+    @Autowired
+    public void setBookRepository(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public Optional<User> findById(Long id) { return userRepository.findById(id); }
 
     @Override
     public List<Role> selectRolesById(Long id) {
@@ -98,6 +105,22 @@ public class UserServiceImpl implements UserService{
         if(u != null) {
             u.setLog_date(user.getLog_date());
             userRepository.saveAndFlush(u);
+        }
+    }
+
+    @Transactional
+    public boolean toggleFavorite(Long userId, Long bookId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        Book book = bookRepository.findById(bookId).orElseThrow();
+
+        if (user.getFavoriteBooks().contains(book)) {
+            user.getFavoriteBooks().remove(book);
+            userRepository.save(user);
+            return false;
+        } else {
+            user.getFavoriteBooks().add(book);
+            userRepository.save(user);
+            return true;
         }
     }
 }

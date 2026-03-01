@@ -20,6 +20,7 @@ public class BookController {
     QuestionService questionService;
     DetailService detailService;
     HistoryService historyService;
+    UserService userService;
 
     @Autowired
     public void setBookService(BookService bookService) {
@@ -37,6 +38,8 @@ public class BookController {
     public void setHistoryService(HistoryService historyService) {
         this.historyService = historyService;
     }
+    @Autowired
+    public void setUserService(UserService userService) { this.userService = userService; }
 
     @GetMapping("/add")
     public void add() {;}
@@ -50,31 +53,21 @@ public class BookController {
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable long id, Model model) {
         Book book = bookService.findById(id);
-        List<Detail> details;
-        if (book != null) {
-            details = book.getDetails();
-        } else {
-            details = null;
-        }
+        if (book == null) return "error/404";
+
+        List<Detail> details = book.getDetails();
         Question question = questionService.findByBookId(id);
 
-        // Log history here
-        try {
-            User user;
-            try {
-                user = U.getLoggedUser();
-            } catch (Exception e) {
-                return null;
-            }
-            if (user != null && book != null) {
-                History history = new History();
-                history.setUser(user);
-                history.setBook(book);
-                history.setAccessDate(LocalDateTime.now());
-                historyService.save(history);
-            }
-        } catch (Exception e) {
-            // user not logged in, do nothing for now
+        User user = U.getLoggedUser();
+        if (user != null) {
+            User freshUser = userService.findById(user.getId()).orElseThrow();
+            model.addAttribute("currentUser", freshUser);
+
+            History history = new History();
+            history.setUser(user);
+            history.setBook(book);
+            history.setAccessDate(LocalDateTime.now());
+            historyService.save(history);
         }
 
         model.addAttribute("book", book);
@@ -116,6 +109,10 @@ public class BookController {
             return "redirect:/";
         } else if (keyword.length() == 1) {
             return "error/404";
+        }
+        User sessionUser = U.getLoggedUser();
+        if (sessionUser != null) {
+            model.addAttribute("currentUser", userService.findByUsername(sessionUser.getUsername()));
         }
         List<Book> books = bookService.findByKeyword(keyword);
         model.addAttribute("searchedBooks", books);

@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
 <script th:unless="${book}">
-  alert("Invalid request.");
-  history.back();
+    alert("Invalid request.");
+    history.back();
 </script>
 
 <head>
@@ -26,6 +26,7 @@
     <th:block th:insert="~{component/clock.html::clock}"></th:block>
     <script th:inline="javascript">
         var roles = [[${logged_user.roles}]];
+        const isUserLoggedIn = [[${currentUser != null}]];
     </script>
 
     <body>
@@ -38,7 +39,7 @@
             </div>
             <h2>[[${book.title}]]</h2>
             <hr>
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
                 <div id="ex1-wrapper">
                     <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
                         <li class="nav-item tab-item" role="presentation">
@@ -79,6 +80,15 @@
                         </li>
                     </ul>
                 </div>
+                <div class="ps-3 mb-3">
+                    <button type="button" id="btnBookmark" class="btn btn-rounded btn-light shadow-0 d-flex align-items-center gap-2">
+                        <i id="detailStar"
+                           th:class="${currentUser?.favoriteBooks != null && #lists.contains(currentUser.favoriteBooks.![id], book.id)} ? 'fa-solid fa-star star-bookmark' : 'fa-regular fa-star star-bookmark'"
+                           style="font-size: 13px;"></i>
+                        <span class="small fw-bold" style="line-height: 1;">Bookmark</span>
+                    </button>
+                </div>
+                <input id="book_id_fav" type="hidden" th:value="${book.id}">
             </div>
         </div>
         <div class="tab-content" id="ex1-content">
@@ -128,7 +138,7 @@
                                 <a th:if="${question != null and question.worksheet != null}"
                                    th:href="@{/worksheets/{fileName}(fileName=${question.worksheet})}"
                                    target="_blank">
-                                    <div class="d-flex align-items-center gap-1"><i class="far fa-file-word"></i>[[${question.worksheet}]]</div>
+                                    <div class="d-flex align-items-center gap-1"><i class="far fa-file-lines"></i>[[${question.worksheet}]]</div>
                                 </a>
                             </div>
                         </div>

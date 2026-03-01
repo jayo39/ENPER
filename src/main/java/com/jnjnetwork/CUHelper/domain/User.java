@@ -38,6 +38,18 @@ public class User {
     @Builder.Default
     @JsonIgnore
     private List<Role> roles = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_favorite_books",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    @ToString.Exclude
+    @Builder.Default
+    @JsonIgnore
+    private List<Book> favoriteBooks = new ArrayList<>();
+
     public void addRole(Role... roles) {
         if(roles != null) {
             Collections.addAll(this.roles, roles);

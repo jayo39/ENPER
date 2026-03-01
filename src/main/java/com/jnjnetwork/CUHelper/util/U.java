@@ -19,8 +19,13 @@ public class U {
     }
 
     public static User getLoggedUser(){
-        PrincipalDetails userDetails = (PrincipalDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDetails.getUser();
-        return user;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof PrincipalDetails) {
+            PrincipalDetails userDetails = (PrincipalDetails) principal;
+            return userDetails.getUser();
+        }
+
+        return null;
     }
 }

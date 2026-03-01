@@ -20,9 +20,36 @@
     padding-bottom: 1px !important;
 }
 
-/* Color levels: High = Red/Dark, Low = Blue */
 .level-low { background-color: #0C6DFD; }      /* Bright Blue */
 .level-mid-low { background-color: #54B4D3; }  /* Light Blue/Teal */
 .level-mid { background-color: #14A44D; }      /* Greenish */
 .level-mid-high { background-color: #EBA83A; } /* Yellow/Orange */
 .level-high { background-color: #B23B3B; }     /* Dark Red */
+
+/* Target the specific cell containing the star */
+.star-cell {
+    vertical-align: middle !important;
+    display: table-cell;
+}
+
+.star-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 40px;
+}
+
+.star-bookmark {
+    cursor: pointer;
+    line-height: 1;
+}
+
+.fa-star.fa-solid {
+    color: #ffca28;
+}
+
+.star-bookmark:hover {
+    transform: scale(1.2);
+    transition: transform 0.1s ease-in-out;
+}

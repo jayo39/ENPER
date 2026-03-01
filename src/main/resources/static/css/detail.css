@@ -28,3 +28,21 @@
 #ex1-wrapper::-webkit-scrollbar {
     display: none;
 }
+
+.star-bookmark.fa-solid {
+    color: #ffca28 !important;
+}
+
+#btnBookmark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+}
+
+.star-bookmark {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
