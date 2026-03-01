@@ -30,15 +30,8 @@ $(document).on('click', '.star-bookmark', function(e) {
 
             $.get(refreshUrl, function(data) {
                 const $newRows = $(data).find('tbody tr');
-
-                $row.fadeOut(300, function() {
-                    $tbody.html($newRows);
-
-                    const $newlyMovedRow = $tbody.find(`input[value="${bookId}"]`).closest('tr');
-                    if ($newlyMovedRow.length > 0) {
-                        $newlyMovedRow.hide().fadeIn(300);
-                    }
-                });
+                $tbody.html($newRows);
+                const $newlyMovedRow = $tbody.find(`input[value="${bookId}"]`).closest('tr');
             });
         },
         error: function(err) {
