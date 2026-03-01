@@ -23,7 +23,7 @@ public class FavoriteController {
     @PostMapping("/toggle/{bookId}")
     public ResponseEntity<?> toggleFavorite(@PathVariable Long bookId) {
         User user = U.getLoggedUser();
-        if (user == null) return ResponseEntity.status(401).body("Unauthorized");
+        if (user == null) return ResponseEntity.status(401).body("Unauthorized Action");
 
         Book book = bookService.findById(bookId);
         if (book == null) return ResponseEntity.status(404).body("Book not found");

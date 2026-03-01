@@ -31,9 +31,9 @@
         <div id="keywordErr" class="d-none text-danger">Please enter a keyword that is at least 2 characters long.</div>
     </div>
 </form>
-<div class="container-fluid mt-3">
-    <table class="table table-hover text-center mt-3">
-        <thead class="table-light">
+<div class="container-fluid mt-3 border-top">
+    <table class="table table-hover text-center">
+        <thead>
             <tr>
                 <th ></th>
                 <th class="align-middle" colspan="2">Title</th>
@@ -54,7 +54,7 @@
                 <td class="align-middle star-cell">
                     <div class="star-wrapper">
                         <i th:class="${currentUser?.favoriteBooks?.contains(book)} ? 'fa-solid fa-star star-bookmark' : 'fa-regular fa-star star-bookmark'"
-                           style="font-size: 17px;">
+                           style="font-size: 18px;">
                         </i>
                     </div>
                 </td>
@@ -94,7 +94,7 @@
                 <td class="align-middle star-cell">
                     <div class="star-wrapper">
                         <i th:class="${currentUser?.favoriteBooks?.contains(book)} ? 'fa-solid fa-star star-bookmark' : 'fa-regular fa-star star-bookmark'"
-                           style="font-size: 17px;">
+                           style="font-size: 18px;">
                         </i>
                     </div>
                 </td>
