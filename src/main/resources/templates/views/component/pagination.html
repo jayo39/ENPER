@@ -13,7 +13,7 @@
                 </th:block>
             </th:block>
             <li class="page-item" th:if="${totalPage > endPage }"><a class="page-link" th:href="@{${url }(page=${endPage + 1 })}">›</a></li>
-            <li class="page-item" th:if="${page < totalPage }"><a class="page-link" th:href="@{${url }(page=${totalPage })}">»</a></li>
+            <li class="page-item" th:if="${page < totalPage }"><a class="page-link" th:href="@{${url }(page=${totalPage })}" title="Last">»</a></li>
         </ul>
     </div>
 </th:block>
