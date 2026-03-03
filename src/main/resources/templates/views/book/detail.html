@@ -84,8 +84,8 @@
                     <button type="button" id="btnBookmark" class="btn btn-rounded btn-light shadow-0 d-flex align-items-center gap-2">
                         <i id="detailStar"
                            th:class="${currentUser?.favoriteBooks != null && #lists.contains(currentUser.favoriteBooks.![id], book.id)} ? 'fa-solid fa-star star-bookmark' : 'fa-regular fa-star star-bookmark'"
-                           style="font-size: 13px;"></i>
-                        <span class="small fw-bold" style="line-height: 1;">Bookmark</span>
+                           style="font-size: 13px; margin-bottom: 2px;"></i>
+                        <span class="small fw-bold">Bookmark</span>
                     </button>
                 </div>
                 <input id="book_id_fav" type="hidden" th:value="${book.id}">
