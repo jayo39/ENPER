@@ -7,10 +7,7 @@ import com.jnjnetwork.CUHelper.service.UserService;
 import com.jnjnetwork.CUHelper.util.U;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/favorite")
@@ -31,5 +28,12 @@ public class FavoriteController {
         boolean isFavorite = userService.toggleFavorite(user.getId(), bookId);
 
         return ResponseEntity.ok().body(isFavorite);
+    }
+
+    @GetMapping("/list/{userId}")
+    public ResponseEntity<?> getFavorites(@PathVariable Long userId) {
+        User user = userService.findById(userId).orElseThrow();
+
+        return ResponseEntity.ok(user.getFavoriteBooks());
     }
 }

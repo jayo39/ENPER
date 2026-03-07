@@ -1,5 +1,6 @@
 package com.jnjnetwork.CUHelper.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,11 +41,13 @@ public class Book {
 
     @OneToMany
     @JoinColumn(name = "book_id")
+    @JsonIgnore
     @ToString.Exclude
     private List<Detail> details = new ArrayList<>();
 
     @OneToOne
     @ToString.Exclude
+    @JsonIgnore
     private Question question;
 
     @Column(name = "title_normalized")
@@ -54,6 +57,7 @@ public class Book {
     private String seriesNormalized;
 
     @ManyToMany(mappedBy = "favoriteBooks")
+    @JsonIgnore
     @ToString.Exclude
     private List<User> favoritedByUsers = new ArrayList<>();
 

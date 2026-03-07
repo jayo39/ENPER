@@ -1,4 +1,4 @@
-#myModal {
+#customFavModal {
     display: none;
     position: fixed;
     z-index: 10;
@@ -10,7 +10,16 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.register-content {
+.modal-header {
+    width: 350px;
+}
+
+.modal-body {
+    width: 350px;
+    overflow-y: auto;
+}
+
+.fav-modal-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,14 +28,17 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 320px;
+    width: 400px;
+    height: 550px;
 }
 
-#registerBtn {
-    display: flex;
-    justify-content: center;
+.fav-modal-close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-#register-success {
-  display: none;
+.fav-modal-close:hover {
+    color: black;
 }

@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/modules/0a348b55c7b346c6205166c353ec4c44.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/booklist.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}">
-    <link href="/css/register.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/favorite.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
     <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
     <meta property="og:image" content="/image/enper.png">
     <meta property="og:title" content="ENPER">
@@ -19,6 +20,7 @@
 <th:block th:insert="~{component/scheduleSidebar.html::scheduleSidebar}"></th:block>
 <th:block th:insert="~{component/clock.html::clock}"></th:block>
 <th:block th:insert="~{component/register.html::register}"></th:block>
+<th:block th:insert="~{component/favorite.html::favModal}"></th:block>
 <div class="container-fluid">
     <div id="register-success" class="alert alert-primary alert-dismissible fade show" data-mdb-alert-init>
         <button type="button" class="btn-close" data-mdb-dismiss="alert"></button>
@@ -39,14 +41,17 @@
         <tbody>
         <tr th:each="user : ${users}">
             <td class="align-middle">
-                <div class="d-flex justify-content-center gap-1" th:if="${user.username == 'jayo39'}">
-                    <div th:text="${user.username}"></div>
-                    <div>
+                <div class="d-flex justify-content-center gap-1">
+                    <a href="javascript:void(0)"
+                       class="user-link text-decoration-none text-reset"
+                       th:data-id="${user.id}"
+                       th:data-username="${user.username}"
+                       onclick="showFavorites(this)">
+                        <span th:text="${user.username}"></span>
+                    </a>
+                    <div th:if="${user.username == 'jayo39'}">
                         <span class="badge rounded-pill badge-danger"><i class="fas fa-gear"></i></span>
                     </div>
-                </div>
-                <div th:if="${user.username != 'jayo39'}">
-                    <div th:text="${user.username}"></div>
                 </div>
             </td>
             <td class="align-middle" th:text="${user.formattedLogDate}"></td>
@@ -83,4 +88,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="/js/schedule.js"></script>
 <script src="/js/register.js"></script>
+<script src="/js/favorite.js"></script>
 </html>

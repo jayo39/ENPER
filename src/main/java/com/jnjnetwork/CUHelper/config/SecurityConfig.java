@@ -23,8 +23,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .addFilterBefore(recaptchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/schedule/**", "/book/detail/**", "/main/**", "/favorite/**").authenticated()
-                        .requestMatchers("/admin/**", "/book/add/**", "/book/edit/**", "/detail/add/**", "/detail/delete/**", "/detail/edit/**", "/book/delete/**", "/user/delete/**", "/question/**", "/user/delete", "/book/delete", "/detail/delete", "/book/edit", "/detail/edit").hasRole("ADMIN")
+                        .requestMatchers("/schedule/**", "/book/detail/**", "/main/**", "/favorite/toggle/**").authenticated()
+                        .requestMatchers("/admin/**", "/book/add/**", "/book/edit/**", "/detail/add/**", "/detail/delete/**", "/detail/edit/**", "/book/delete/**", "/user/delete/**", "/question/**", "/user/delete", "/book/delete", "/detail/delete", "/book/edit", "/detail/edit", "/favorite/list/**").hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .formLogin(form -> form
                         .loginPage("/user/login")

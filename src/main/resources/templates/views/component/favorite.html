@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<th:block th:fragment="favModal">
+    <div id="customFavModal" class="modal">
+        <div class="fav-modal-content modal-content">
+
+            <div class="modal-header">
+                <h5 class="m-0">Saved Books (<span id="fav-modal-username"></span>)</h5>
+            </div>
+
+            <div class="modal-body">
+                <ul id="favorites-list" class="list-group list-group-light">
+                </ul>
+                <div id="favorites-loader" class="text-center d-none my-3">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</th:block>
+</html>
