@@ -10,11 +10,11 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-header {
+.fav-header {
     width: 350px;
 }
 
-.modal-body {
+.fav-body {
     width: 350px;
     overflow-y: auto;
 }
