@@ -56,5 +56,6 @@
 @media (max-width: 768px) {
     .bl-block {
         width: 50px;
+        font-size: 0.8rem;
     }
 }
