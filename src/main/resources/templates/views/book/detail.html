@@ -57,14 +57,13 @@
                         <li th:if="${not #lists.isEmpty(details)}" class="nav-item tab-item" role="presentation">
                             <a
                                     data-mdb-tab-init
-                                    class="nav-link"
+                                    class="nav-link d-flex align-items-center"
                                     id="ex1-tab-2"
                                     href="#ex1-tabs-2"
                                     role="tab"
                                     aria-controls="ex1-tabs-2"
                                     aria-selected="false"
-                            >Detailed Summary</a
-                            >
+                            >Detailed Summary <span class="badge badge-light rounded-pill ms-1" style="font-size: 0.85em;" th:text="${#lists.size(book.details)}"></span></a>
                         </li>
                         <li th:if="${question != null}" class="nav-item tab-item" role="presentation">
                             <a
